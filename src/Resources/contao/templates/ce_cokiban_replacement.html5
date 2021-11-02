@@ -1,0 +1,14 @@
+<?php $this->extend('block_unsearchable'); ?>
+
+<?php $this->block('content'); ?>
+
+    <?php if($this->background): ?>
+        <div class="background_container" style="background-image: url(<?php echo $this->background; ?>)"></div>
+    <?php endif; ?>
+
+    <div class="text_container">
+        <p><?php echo $this->button; ?></p>
+        <p><?php echo $this->text; ?></p>
+    </div>
+
+<?php $this->endblock(); ?>
