@@ -68,15 +68,22 @@ class ParseFrontendTemplateListener
 
                 if(isset($GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName]['background']))
                 {
-                    $background = FilesModel::findById($GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName]['background']);
-
-                    if($background !== null)
+                    if(preg_match('/\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b/u', $GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName]['background']))
                     {
-                        $objTemplate->background = $background->path;
+                        $background = FilesModel::findById($GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName]['background']);
+
+                        if($background !== null)
+                        {
+                            $objTemplate->background = $background->path;
+                        }
+                        else
+                        {
+                            $objTemplate->background = null;
+                        }
                     }
                     else
                     {
-                        $objTemplate->background = null;
+                        $objTemplate->background = $GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName]['background'];
                     }
                 }
 
