@@ -20,7 +20,7 @@ document.addEventListener('alpine:init', function () {
             config.cookies.forEach(function(item) {
                 alpine.cache[item] = false;
             });
-            alpine.valid = { ...alpine.cache };
+            alpine.valid = Object.assign({}, alpine.cache);
             alpine.pages = config.pages;
             alpine.load();
             if(alpine.active === false) {
@@ -45,12 +45,12 @@ document.addEventListener('alpine:init', function () {
                         alpine.cache[item] = storage.cookies[item];
                     }
                 });
-                alpine.valid = { ...alpine.cache };
+                alpine.valid = Object.assign({}, alpine.cache);
             }
         },
         save() {
             let alpine = this;
-            alpine.valid = { ...alpine.cache }
+            alpine.valid = Object.assign({}, alpine.cache);
             localStorage.setItem(alpine.name, JSON.stringify({
                 id: alpine.id,
                 version: alpine.version,
