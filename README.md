@@ -97,7 +97,7 @@ cokiban:
                 ce_youtube:
                     button: '{{cokiban::button}}'
                     text: 'Um diesen Ihnalt zu sehen akzeptieren Sie bitte den Cookie für YouTube.'
-                    background: 'f74e15a7-7ec3-13eb-8a1d-ef99f142b2bc'
+                    background: 'f74e15a7-7ec3-13eb-8a1d-ef99f142b2bc'          ##### Datei UUID oder ein Pfad
 ```
 
 ## Link zum Cookiebanner / Inserttag
