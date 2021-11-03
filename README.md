@@ -31,7 +31,7 @@ Für das **ce\_cokiban\_replacement.html** Template verwende ich diesen CSS-Code
 }
 ```
 
-## Konfoguration
+## Konfiguration
 
 Die Konfiguration wird der **config.yml** hinzugefügt. Tipp: Der übersichtshalber kann man eine zusätzliche **cokiban.yml** erstellen und die Konfiguration in diese auslagern. Mittels `imports: - { resource: cokiban.yml }` kann diese importiert werden.
 
@@ -98,4 +98,20 @@ cokiban:
                     button: '{{cokiban::button}}'
                     text: 'Um diesen Ihnalt zu sehen akzeptieren Sie bitte den Cookie für YouTube.'
                     background: 'f74e15a7-7ec3-13eb-8a1d-ef99f142b2bc'
+```
+
+## Link zum Cookiebanner / Inserttag
+
+Um einen Link zu erzeugen der das Cookiebanner öffnet gibt es zwei Inserttags:
+
+```
+{{cokiban::button}} -> <a href="#" class="button" title="Cookiebanner öffnen">Zeige Cookiebanner!</a>
+{{cokiban}}         -> <a href="#" title="Cookiebanner öffnen">Zeige Cookiebanner!</a>
+```
+und:
+
+```
+{{cokiban_open::cssClass}} -> <a href="#" class="cssClass" title="Cookiebanner öffnen">
+{{cokiban_open}}           -> <a href="#" title="Cookiebanner öffnen">
+{{cokiban_close}}          -> </a>
 ```
