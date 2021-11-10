@@ -4,9 +4,16 @@ Diese Modul erzeugt einen Cookie-Banner der rein über die "config.yml" von cont
 
 ## Scripte & Styles
 
-Cokiban setzt auf Alpine.js <https://alpinejs.dev>, dieses muss manuell durch den Nutzer eingebunden werden.
+Cokiban erfordert Alpine.js (<https://alpinejs.dev>). Im Seitenlayout kann Alpine.js mittels des **js_alpine** bei den JavaScript-Templates aktiviert werden. Außerdem muss das JavaScript-Template **js_cokiban** aktiviert werden, dieses importiert das JavaScript und die Stylesheets für das Banner.
 
-Über das Seitenlayout muss das JavaScript **js_cokiban** aktiviert werden, dieses importiert das JavaScript und die Stylesheets für das Banner.
+Nutzt man gulp oder webpack können die Dateien über diese Pfade inkludiert werden:
+
+```
+__DOCUMENTROOT__/web/bundles/cokiban/alpine.js
+__DOCUMENTROOT__/web/bundles/cokiban/cokiban.js
+__DOCUMENTROOT__/web/bundles/cokiban/cokiban.min.css
+__DOCUMENTROOT__/web/bundles/cokiban/cokiban.scss
+```
 
 Für das **ce\_cokiban\_replacement.html** Template verwende ich diesen CSS-Code:
 
@@ -18,11 +25,9 @@ Für das **ce\_cokiban\_replacement.html** Template verwende ich diesen CSS-Code
 }
 .ce_cokiban_replacement .background_container {
   position: absolute; left: -5px; top: -5px; right: -5px; bottom: -5px;
-  pointer-events: none;
-  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+  pointer-events: none; user-select: none;
   background-size: cover;
-  opacity: .5;
-  filter: blur(5px);
+  opacity: 0.5;
 }
 .ce_cokiban_replacement .text_container {
   position: relative;
