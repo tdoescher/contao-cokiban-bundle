@@ -17,9 +17,11 @@ document.addEventListener('alpine:init', function () {
             alpine.version = config.version;
             alpine.days = config.days;
             alpine.active = config.active;
-            config.cookies.forEach(function(item) {
-                alpine.cache[item] = false;
-            });
+            if(Array.isArray(config.cookies)) {
+                config.cookies.forEach(function(item) {
+                    alpine.cache[item] = false;
+                });
+            }
             alpine.valid = Object.assign({}, alpine.cache);
             alpine.pages = config.pages;
             alpine.load();
