@@ -1,5 +1,2 @@
-<?php
 
-$GLOBALS['TL_JAVASCRIPT'][] = 'bundles/cokiban/alpine.js|static';
-
-?>
+<script src="bundles/cokiban/alpine.js"></script>
