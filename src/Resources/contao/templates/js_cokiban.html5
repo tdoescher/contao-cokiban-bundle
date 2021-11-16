@@ -1,6 +1,7 @@
 <?php
 
 $GLOBALS['TL_CSS'][] = 'bundles/cokiban/cokiban.min.css|static';
-$GLOBALS['TL_JAVASCRIPT'][] = 'bundles/cokiban/cokiban.js|static';
 
 ?>
+
+<script src="bundles/cokiban/cokiban.js"></script>
