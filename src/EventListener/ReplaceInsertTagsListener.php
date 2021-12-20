@@ -22,7 +22,7 @@ class ReplaceInsertTagsListener
     {
         if(!$GLOBALS['TL_COKIBAN'])
         {
-            return '';
+            return false;
         }
 
         $list = explode('::', $tag);
