@@ -19,16 +19,15 @@ $icon-color: #b5854c;
   }
 
   .cokiban-banner { position: fixed; left: 0; bottom: 0; right: 0; overflow: scroll; max-height: 100%; padding: 0.25em; box-sizing: border-box; opacity: 0; visibility: hidden; pointer-events: none; user-select: none; transform: scale(0.9) translateY(1em); transform-origin: bottom; transition: all ease 300ms;
-    #cokiban.cokiban-show & { opacity: 1; visibility: visible; pointer-events: auto; -webkit-user-select: auto; -moz-user-select: auto; -ms-user-select: auto; user-select: auto; transform: scale(1) translateY(0); }
   }
 
   .cokiban-container { position: relative; max-width: $max-width; margin: 0 auto; background-color: $background; padding: 1em; border-radius: 0.5em; box-shadow: 0 0 0.75em rgba(#000, 0.25); }
 
   .cokiban-header { display: flex; align-items: center;
-    .cokiban-icon { height: 2em; width: auto; margin-right: 0.75em; fill: $icon-color; }
+    .cokiban-icon { margin-right: 0.75em; fill: $icon-color; }
     .cokiban-title { font-size: 1.4em; font-weight: 600; text-transform: uppercase; }
     .cokiban-back { margin: 0 0 0 auto !important; }
-}
+  }
 
   .cokiban-body { margin-bottom: 1.5em;
     .cokiban-checkboxes { display: flex; flex-wrap: wrap; margin: 1em 0;
@@ -71,7 +70,7 @@ $icon-color: #b5854c;
 
   .cokiban-buttons { display: flex; margin: 0 -0.25em;
     button { flex: 1; margin: 0 0.25em; }
-}
+  }
 
   .cokiban-footer { margin-top: 1.5em;
     p { margin: 0;
@@ -81,5 +80,7 @@ $icon-color: #b5854c;
     }
   }
 
-  &.cokiban-show { opacity: 1; visibility: visible; pointer-events: auto; }
+  &.cokiban-show { opacity: 1; visibility: visible; pointer-events: auto;
+    .cokiban-banner { opacity: 1; visibility: visible; pointer-events: auto; -webkit-user-select: auto; -moz-user-select: auto; -ms-user-select: auto; user-select: auto; transform: scale(1) translateY(0); }
+  }
 }
