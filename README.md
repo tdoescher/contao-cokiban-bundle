@@ -9,9 +9,9 @@ Cokiban erfordert Alpine.js (<https://alpinejs.dev>). Im Seitenlayout kann Alpin
 Nutzt man gulp oder webpack können die Dateien über diese Pfade inkludiert werden:
 
 ```
-__DOCUMENTROOT__/web/bundles/cokiban/alpine.js
-__DOCUMENTROOT__/web/bundles/cokiban/cokiban.js
+__DOCUMENTROOT__/web/bundles/cokiban/cokiban.min.js
 __DOCUMENTROOT__/web/bundles/cokiban/cokiban.min.css
+__DOCUMENTROOT__/web/bundles/cokiban/cokiban.js
 __DOCUMENTROOT__/web/bundles/cokiban/cokiban.scss
 ```
 
