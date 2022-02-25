@@ -9,7 +9,10 @@ const sass = require('gulp-sass')(require('sass'))
 const styles = () => {
     return gulp.src('src/Resources/public/cokiban.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(postcss([autoprefixer(), cssnano({ preset: ['default', { discardComments: { removeAll: true } }] })]))
+        .pipe(postcss([
+            autoprefixer(),
+            cssnano({ preset: ['default', { discardComments: { removeAll: true } }] })
+        ]))
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('src/Resources/public/'))
 }
@@ -23,7 +26,6 @@ const scripts = () => {
         .pipe(gulp.dest('src/Resources/public/'))
 }
 
-const build = gulp.task('build', gulp.series(styles, scripts))
+const build = gulp.task('build', gulp.parallel(styles, scripts))
 
 exports.default = build
-exports.build = build

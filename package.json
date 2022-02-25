@@ -13,6 +13,11 @@
   "devDependencies": {
     "autoprefixer": "^10.4.2",
     "cssnano": "^5.0.17",
+    "eslint": "^8.9.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-esbuild": "^0.10.1",
     "gulp-postcss": "^9.0.1",
@@ -20,5 +25,19 @@
     "gulp-sass": "^5.1.0",
     "postcss": "^8.4.6",
     "sass": "^1.49.8"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true
+    },
+    "extends": "standard",
+    "rules": {
+      "arrow-parens": 2,
+      "indent": [
+        "error",
+        4
+      ],
+      "prefer-arrow-callback": 2
+    }
   }
 }
