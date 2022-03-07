@@ -66,6 +66,7 @@ document.addEventListener('alpine:init', () => {
             Object.keys(alpine.cache).forEach((item) => {
                 alpine.cache[item] = true
             })
+            clearInterval(this.counter)
             alpine.save()
         },
         saveSettings () {

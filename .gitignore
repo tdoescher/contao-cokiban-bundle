@@ -1,3 +1,7 @@
+# App
+files
+web
+
 # Node.js
 .npm
 node_modules
@@ -9,5 +13,5 @@ package-lock.json
 # macOS
 .nova
 .DS_Store*
-Icon?
+Icon^M
 ._*
