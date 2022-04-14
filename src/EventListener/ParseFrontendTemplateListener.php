@@ -30,7 +30,13 @@ class ParseFrontendTemplateListener
 
         if($templateName === 'fe_page')
         {
-            $objTemplate = new FrontendTemplate('cokiban');
+            $template = 'cokiban';
+
+            if(isset($GLOBALS['TL_COKIBAN']['template']) && $GLOBALS['TL_COKIBAN']['template'] !== '') {
+                $template = $GLOBALS['TL_COKIBAN']['template'];
+            }
+
+            $objTemplate = new FrontendTemplate($template);
 
             $objTemplate->id = $GLOBALS['TL_COKIBAN']['id'];
             $objTemplate->name = 'cokiban_store_'.$objTemplate->id;
@@ -61,8 +67,14 @@ class ParseFrontendTemplateListener
 
             if(isset($GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName]))
             {
-                $objTemplate = new FrontendTemplate('ce_cokiban_replacement');
-                $objTemplate->class = 'ce_cokiban_replacement';
+                $template = 'ce_cokiban_replacement';
+
+                if(isset($GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName]['template']) && $GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName]['template'] !== '') {
+                    $template = $GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName]['template'];
+                }
+
+                $objTemplate = new FrontendTemplate($template);
+                $objTemplate->class = $template;
                 $objTemplate->button = $GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName]['button'];
                 $objTemplate->text = $GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName]['text'];
 

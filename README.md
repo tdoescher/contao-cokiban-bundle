@@ -46,18 +46,19 @@ cokiban:
     alias:                        ##### Alias oder ID des Startpunktes für diese Konfiguration #####
       version: 1                  ##### Durch das erhöhen wird das Banner beim Besucher erzwungen #####
         days: 30                  ##### Tage bis das Banner erneut angezeigt wird, 0 für nie #####
-         groups:                  ##### Gruppierungen der Cookie-Auswahl #####
-           tracking:              ##### Alias der Gruppe #####
-             analytics:           ##### Alias des Cookies, Array der Tempaltes die nicht ohne akzeoptieren ##### des Cookis angezeigt werden sollen
-               - 'analytics_google'
-           media:
-             googlemaps:
-               - 'ce_googlemaps_embed'
-             youtube:
-               - 'ce_youtube'
-         pages:                   ##### Alias oder ID der Seiten auf denen der Banner nicht angezeigt werden soll #####
-           - 'impressum'
-           - 'datenschutz'
+          groups:                  ##### Gruppierungen der Cookie-Auswahl #####
+            tracking:              ##### Alias der Gruppe #####
+              analytics:           ##### Alias des Cookies, Array der Tempaltes die nicht ohne akzeoptieren ##### des Cookis angezeigt werden sollen
+                - 'analytics_google'
+            media:
+              googlemaps:
+                - 'ce_googlemaps_embed'
+              youtube:
+                - 'ce_youtube'
+          pages:                   ##### Alias oder ID der Seiten auf denen der Banner nicht angezeigt werden soll #####
+            - 'impressum'
+            - 'datenschutz'
+          tempalte: 'cokiban'     ##### Optional - Angabe des zu verwendenden Templates, ohne Angabe "cokiban" verwendet
     translations:                 ##### Übersetzungen
         de:                       ##### Kürzel der Sprache, als fallback wird die erste angegeben Sprache verwendent #####
             banner:
@@ -102,7 +103,8 @@ cokiban:
                 ce_youtube:
                     button: '{{cokiban::button}}'
                     text: 'Um diesen Ihnalt zu sehen akzeptieren Sie bitte den Cookie für YouTube.'
-                    background: 'f74e15a7-7ec3-13eb-8a1d-ef99f142b2bc'          ##### Datei UUID oder ein Pfad
+                    background: 'f74e15a7-7ec3-13eb-8a1d-ef99f142b2bc'          ##### UUID oder Pfad einer Bild-Datei
+                    tempalte: 'ce_cokiban_replacement'                          ##### Optional - Angabe des zu verwendenden Templates, ohne Angabe "ce_cokiban_replacement" verwendet
 ```
 
 ## Link zum Cookiebanner / Inserttag
