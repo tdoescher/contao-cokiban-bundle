@@ -2,13 +2,13 @@
 
 <?php $this->block('content'); ?>
 
-    <?php if($this->background): ?>
-        <div class="background_container" style="background-image: url(<?php echo $this->background; ?>)"></div>
+    <?php if($this->replacementBackground): ?>
+        <div class="background_container" style="background-image: url(<?php echo $this->replacementBackground; ?>)"></div>
     <?php endif; ?>
 
     <div class="text_container">
-        <p><?php echo $this->button; ?></p>
-        <p><?php echo $this->text; ?></p>
+        <p><?php echo $this->replacementButton; ?></p>
+        <p><?php echo $this->replacementText; ?></p>
     </div>
 
 <?php $this->endblock(); ?>
