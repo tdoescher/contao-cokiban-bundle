@@ -18,18 +18,19 @@ __DOCUMENTROOT__/web/bundles/cokiban/cokiban.scss
 Für das **ce\_cokiban\_replacement.html** Template verwende ich diesen CSS-Code:
 
 ```
-.ce_cokiban_replacement {
+.ce_cokiban_replacement .replacement {
   position: relative;
   display: flex; justify-content: center; align-items: center;
   background-color: #000;
 }
-.ce_cokiban_replacement .background_container {
+
+.ce_cokiban_replacement .replacement .background_container {
   position: absolute; left: -5px; top: -5px; right: -5px; bottom: -5px;
   pointer-events: none; user-select: none;
   background-size: cover;
   opacity: 0.5;
 }
-.ce_cokiban_replacement .text_container {
+.ce_cokiban_replacement .replacement .text_container {
   position: relative;
   max-width: 600px; padding: 1em;
   color: #fff; text-align: center;
