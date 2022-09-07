@@ -31,8 +31,6 @@ class GetPageLayoutListener
 
         if(!isset($config['banners'][$rootPage->alias]) || !is_array($config['translations']))
         {
-            $GLOBALS['TL_COKIBAN'] = false;
-
             return;
         }
 

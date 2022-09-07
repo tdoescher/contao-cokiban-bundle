@@ -21,6 +21,8 @@ class Plugin implements BundlePluginInterface
 {
     public function getBundles(ParserInterface $parser): array
     {
+        $GLOBALS['TL_COKIBAN'] = false;
+
         return [
             BundleConfig::create(CokibanBundle::class)
                 ->setLoadAfter([ContaoCoreBundle::class])
