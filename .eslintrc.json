@@ -1,0 +1,13 @@
+{
+  "root": true,
+  "env": {
+    "browser": true
+  },
+  "extends": "standard",
+  "rules": { 
+    "arrow-parens": ["error"],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "prefer-arrow-callback": ["error"],
+    "semi": ["error", "always"]
+  }
+}

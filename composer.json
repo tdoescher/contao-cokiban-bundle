@@ -1,27 +1,27 @@
 {
-    "name": "tdoescher/cokiban-bundle",
-    "description": "Cookie-Banner der über die Contao config.yml konfiguriert wird",
-    "type": "contao-bundle",
-    "license": "LGPL-3.0-or-later",
-    "authors": [
-        {
-            "name": "Torben Döscher",
-            "email": "mail@tdoescher.de",
-            "homepage": "https://tdoescher.de",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-        "php": ">=7.2",
-        "contao/core-bundle": "^4.11 || ^5.0",
-        "tdoescher/alpinejs-bundle": "^1"
-    },
-    "extra": {
-        "contao-manager-plugin": "tdoescher\\CokibanBundle\\ContaoManager\\Plugin"
-    },
-    "autoload": {
-        "psr-4": {
-            "tdoescher\\CokibanBundle\\": "src/"
-        }
+  "name": "tdoescher/cokiban-bundle",
+  "description": "Cookie-Banner der über die Contao config.yml konfiguriert wird",
+  "type": "contao-bundle",
+  "license": "LGPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "Torben Döscher",
+      "email": "mail@tdoescher.de",
+      "homepage": "https://tdoescher.de",
+      "role": "Developer"
     }
+  ],
+  "require": {
+    "php": ">=7.2",
+    "contao/core-bundle": "^4.11 || ^5.0",
+    "tdoescher/alpinejs-bundle": "^1"
+  },
+  "extra": {
+    "contao-manager-plugin": "tdoescher\\CokibanBundle\\ContaoManager\\Plugin"
+  },
+  "autoload": {
+    "psr-4": {
+      "tdoescher\\CokibanBundle\\": "src/"
+    }
+  }
 }

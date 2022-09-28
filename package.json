@@ -23,30 +23,5 @@
     "gulp-sass": "^5.1.0",
     "postcss": "^8.4.16",
     "sass": "^1.55.0"
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true
-    },
-    "extends": "standard",
-    "rules": {
-      "arrow-parens": [
-        "error"
-      ],
-      "indent": [
-        "error",
-        4,
-        {
-          "SwitchCase": 1
-        }
-      ],
-      "prefer-arrow-callback": [
-        "error"
-      ],
-      "semi": [
-        "error",
-        "always"
-      ]
-    }
   }
 }
