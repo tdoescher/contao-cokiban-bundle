@@ -36,6 +36,9 @@ class GetPageLayoutListener
 
         $GLOBALS['TL_COKIBAN'] = $config['banners'][$rootPage->alias];
         $GLOBALS['TL_COKIBAN']['id'] = $rootPage->id;
+        $GLOBALS['TL_COKIBAN']['groups'] = [];
+        $GLOBALS['TL_COKIBAN']['cookies'] = [];
+        $GLOBALS['TL_COKIBAN']['templates'] = [];
 
         foreach($GLOBALS['TL_COKIBAN']['groups'] as $groupKey => $group)
         {
