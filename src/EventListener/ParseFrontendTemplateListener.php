@@ -23,7 +23,7 @@ class ParseFrontendTemplateListener
 {
     public function __invoke(string $buffer, string $templateName, FrontendTemplate $template): string
     {
-        if(!$GLOBALS['TL_COKIBAN'] || $buffer === '')
+        if(!isset($GLOBALS['TL_COKIBAN']) || $buffer === '')
         {
             return $buffer;
         }

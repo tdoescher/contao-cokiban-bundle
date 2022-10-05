@@ -20,7 +20,7 @@ class ReplaceInsertTagsListener
 {
     public function __invoke(string $tag)
     {
-        if(!$GLOBALS['TL_COKIBAN'])
+        if(!isset($GLOBALS['TL_COKIBAN']))
         {
             return false;
         }
