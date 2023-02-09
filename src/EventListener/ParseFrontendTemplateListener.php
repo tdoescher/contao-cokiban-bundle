@@ -1,24 +1,22 @@
 <?php
 
 /**
- * This file is part of Cokiban Bundle for Contao
+ * This file is part of CokibanBundle for Contao
  *
  * @package     tdoescher/cokiban-bundle
  * @author      Torben Döscher <mail@tdoescher.de>
  * @license     LGPL
- * @copyright   tdoescher.de - WEB und IT <https://tdoescher.de>
+ * @copyright   tdoescher.de // WEB & IT <https://tdoescher.de>
  */
 
 namespace tdoescher\CokibanBundle\EventListener;
 
-use Contao\CoreBundle\ServiceAnnotation\Hook;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 use Contao\Controller;
 use Contao\FilesModel;
 use Contao\FrontendTemplate;
 
-/**
- * @Hook("parseFrontendTemplate")
- */
+#[AsHook('parseFrontendTemplate', priority: 100)]
 class ParseFrontendTemplateListener
 {
     public function __invoke(string $buffer, string $templateName, FrontendTemplate $template): string

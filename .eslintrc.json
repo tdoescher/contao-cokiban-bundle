@@ -4,6 +4,7 @@
     "browser": true
   },
   "extends": "standard",
+  "ignorePatterns": ["app.bundle.min.js"],
   "rules": { 
     "arrow-parens": ["error"],
     "indent": ["error", 2, { "SwitchCase": 1 }],

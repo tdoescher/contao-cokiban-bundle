@@ -1,7 +1,7 @@
 services:
-  tdoescher\CokibanBundle\EventListener\GetPageLayoutListener:
+  _defaults:
     autoconfigure: true
-  tdoescher\CokibanBundle\EventListener\ParseFrontendTemplateListener:
-    autoconfigure: true
-  tdoescher\CokibanBundle\EventListener\ReplaceInsertTagsListener:
-    autoconfigure: true
+
+  tdoescher\CokibanBundle\EventListener\GetPageLayoutListener: ~
+  tdoescher\CokibanBundle\EventListener\ParseFrontendTemplateListener: ~
+  tdoescher\CokibanBundle\EventListener\ReplaceInsertTagsListener: ~

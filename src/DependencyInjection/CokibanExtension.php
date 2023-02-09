@@ -1,12 +1,12 @@
 <?php
 
 /**
- * This file is part of Cokiban Bundle for Contao
+ * This file is part of CokibanBundle for Contao
  *
  * @package     tdoescher/cokiban-bundle
  * @author      Torben Döscher <mail@tdoescher.de>
  * @license     LGPL
- * @copyright   tdoescher.de - WEB und IT <https://tdoescher.de>
+ * @copyright   tdoescher.de // WEB & IT <https://tdoescher.de>
  */
 
 namespace tdoescher\CokibanBundle\DependencyInjection;
@@ -19,12 +19,12 @@ use tdoescher\CokibanBundle\DependencyInjection\Configuration;
 
 class CokibanExtension extends Extension
 { 
-    public function load(array $mergedConfig, ContainerBuilder $container)
-    {
-        $loader = new YamlFileLoader($container, new FileLocator( __DIR__ . '/../Resources/config'));
-        $loader->load('listener.yaml');
+  public function load(array $mergedConfig, ContainerBuilder $container)
+  {
+    $loader = new YamlFileLoader($container, new FileLocator( __DIR__ . '/../Resources/config'));
+    $loader->load('listener.yaml');
 
-        $config = $this->processConfiguration(new Configuration(), $mergedConfig);
-        $container->setParameter('cokiban', $config);
-    }
+    $config = $this->processConfiguration(new Configuration(), $mergedConfig);
+    $container->setParameter('cokiban', $config);
+  }
 }
