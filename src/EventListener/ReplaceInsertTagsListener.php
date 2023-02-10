@@ -16,7 +16,7 @@ use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 #[AsHook('replaceInsertTags', priority: 100)]
 class ReplaceInsertTagsListener
 {
-  public function __invoke(string $insertTag))
+  public function __invoke(string $insertTag)
   {
     if(!isset($GLOBALS['TL_COKIBAN']))
     {
