@@ -33,7 +33,7 @@ $cokiban-icon-color: #b5854c;
   .cokiban-body { margin-bottom: 1.5em;
     .cokiban-checkboxes { display: flex; flex-wrap: wrap; margin: 1em 0;
       .cokiban-checkbox {
-        input { display: none; }
+        input { position: absolute; display: block; opacity: 0; }
         label { display: flex; align-items: center; padding: 0.25em 0; cursor: pointer;
           &::before { content: ''; display: block; height: 1.2em; width: 1.2em; margin-right: 0.25em; background-color: $cokiban-font; border-radius: 0.15em; }
         }
@@ -50,7 +50,7 @@ $cokiban-icon-color: #b5854c;
     }
     .cokiban-group { position: relative; margin: 1em 0;
       .cokiban-switch { position: absolute; top: 0; right: 0.5em;
-        input { display: none; }
+        input { position: absolute; display: block; opacity: 0; }
         label { display: flex; align-items: center; cursor: pointer;
           span { padding-right: 0.5em; color: lighten($cokiban-font, 20); font-size: 0.875em;
             &.cokiban-invisible { display: none; }
