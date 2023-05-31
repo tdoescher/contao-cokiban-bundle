@@ -17,7 +17,7 @@
                     <div class="cokiban-checkboxes">
                         <div class="cokiban-checkbox cokiban-checkbox-checked">
                             <input type="checkbox" name="cokiban-cookie-mandatory" id="cokiban-checkbox-mandatory" checked disabled>
-                            <label for="cokiban-checkbox-mandatory">Notwendig</label>
+                            <label for="cokiban-checkbox-mandatory"><?php echo $this->translation['groups']['mandotory']['headline']; ?></label>
                         </div>
                         <?php if(count($this->groups)): ?>
                             <?php foreach($this->groups as $groupKey => $group): ?>
