@@ -38,12 +38,12 @@ class ReplaceInsertTagsListener
 
     if($insertTag === 'cokiban')
     {
-      return '<a href="#" '.$class.'titel="'.$title.'" x-data @click.prevent="$store.cokiban.openBanner()">'.$text.'</a>';
+      return '<a href="#" '.$class.'titel="'.$title.'" data-x-data data-x-on:click.prevent="$store.cokiban.openBanner()">'.$text.'</a>';
     }
 
     if($insertTag === 'cokiban_open')
     {
-      return '<a href="#" '.$class.'titel="'.$title.'" x-data @click.prevent="$store.cokiban.openBanner()">';
+      return '<a href="#" '.$class.'titel="'.$title.'" data-x-data data-x-on:click.prevent="$store.cokiban.openBanner()">';
     }
 
     if($insertTag === 'cokiban_close')
