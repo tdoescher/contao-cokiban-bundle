@@ -22,7 +22,7 @@
                         <?php if(count($this->groups)): ?>
                             <?php foreach($this->groups as $groupKey => $group): ?>
                                 <div class="cokiban-checkbox">
-                                    <input type="checkbox" name="cokiban-checkbox-<?php echo $groupKey; ?>" id="cokiban-checkbox-<?php echo $groupKey; ?>" data-x-model="cache.<?php echo $groupKey; ?>" @change="switchCookie('<?php echo $groupKey; ?>')">
+                                    <input type="checkbox" name="cokiban-checkbox-<?php echo $groupKey; ?>" id="cokiban-checkbox-<?php echo $groupKey; ?>" data-x-model="cache.<?php echo $groupKey; ?>" data-x-on:change="switchCookie('<?php echo $groupKey; ?>')">
                                     <label for="cokiban-checkbox-<?php echo $groupKey; ?>"><?php echo $this->translation['groups'][$groupKey]['headline']; ?></label>
                                 </div>
                             <?php endforeach; ?>
@@ -42,10 +42,10 @@
                                 <p><strong><?php echo $this->translation['groups'][$groupKey]['headline']; ?></strong></p>
                                 <p><?php echo $this->translation['groups'][$groupKey]['text']; ?></p>
                                 <div class="cokiban-switch">
-                                    <input type="checkbox" name="cokiban-switch-<?php echo $groupKey; ?>" id="cokiban-switch-<?php echo $groupKey; ?>" data-x-model="cache.<?php echo $groupKey; ?>" @change="switchCookie('<?php echo $groupKey; ?>')" data-text-true="<?php echo $this->translation['banner']['switch_true']; ?>" data-text-falce="<?php echo $this->translation['banner']['switch_false']; ?>">
+                                    <input type="checkbox" name="cokiban-switch-<?php echo $groupKey; ?>" id="cokiban-switch-<?php echo $groupKey; ?>" data-x-model="cache.<?php echo $groupKey; ?>" data-x-on:change="switchCookie('<?php echo $groupKey; ?>')" data-text-true="<?php echo $this->translation['banner']['switch_true']; ?>" data-text-falce="<?php echo $this->translation['banner']['switch_false']; ?>">
                                     <label for="cokiban-switch-<?php echo $groupKey; ?>">
                                         <span class="cokiban-invisible"><?php echo $groupKey; ?></span>
-                                        <span x-text="cookies.<?php echo $groupKey; ?> ? '<?php echo $this->translation['banner']['switch_true']; ?>' : '<?php echo $this->translation['banner']['switch_false']; ?>'"></span>
+                                        <span data-x-text="cookies.<?php echo $groupKey; ?> ? '<?php echo $this->translation['banner']['switch_true']; ?>' : '<?php echo $this->translation['banner']['switch_false']; ?>'"></span>
                                     </label>
                                 </div>
                                 <?php foreach($group as $cookieKey => $cookie): ?>
@@ -55,10 +55,10 @@
                                             <?php echo $this->translation['cookies'][$cookieKey]['text']; ?>
                                         </p>
                                         <div class="cokiban-switch">
-                                            <input type="checkbox" name="cokiban-switch-<?php echo $groupKey.'-'.$cookieKey; ?>" id="cokiban-switch-<?php echo $groupKey.'-'.$cookieKey; ?>" data-x-model="cache.<?php echo $groupKey.ucfirst($cookieKey); ?>" @change="switchCookie('<?php echo $groupKey.ucfirst($cookieKey); ?>')">
+                                            <input type="checkbox" name="cokiban-switch-<?php echo $groupKey.'-'.$cookieKey; ?>" id="cokiban-switch-<?php echo $groupKey.'-'.$cookieKey; ?>" data-x-model="cache.<?php echo $groupKey.ucfirst($cookieKey); ?>" data-x-on:change="switchCookie('<?php echo $groupKey.ucfirst($cookieKey); ?>')">
                                             <label for="cokiban-switch-<?php echo $groupKey.'-'.$cookieKey; ?>">
                                                 <span class="cokiban-invisible"><?php echo $this->translation['cookies'][$cookieKey]['headline']; ?></span>
-                                        <span x-text="cookies.<?php echo $groupKey.ucfirst($cookieKey); ?> ? '<?php echo $this->translation['banner']['switch_true']; ?>' : '<?php echo $this->translation['banner']['switch_false']; ?>'"></span>
+                                        <span data-x-text="cookies.<?php echo $groupKey.ucfirst($cookieKey); ?> ? '<?php echo $this->translation['banner']['switch_true']; ?>' : '<?php echo $this->translation['banner']['switch_false']; ?>'"></span>
                                             </label>
                                         </div>
                                     </div>
