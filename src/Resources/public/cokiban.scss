@@ -1,20 +1,20 @@
-$cokiban-max-width: 500px;
-$cokiban-background: #fff;
-$cokiban-font: #313131;
-$cokiban-font-family: 'Open Sans', -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-$cokiban-button: #e9e9e9;
-$cokiban-button-font: $cokiban-font;
-$cokiban-button-accept: #21803d;
-$cokiban-button-accept-font: #fff;
-$cokiban-icon-color: #b5854c;
+$cokibanMaxWidth: 500px;
+$cokibanBackground: hsl(0, 0%, 100%);
+$cokibanFont: hsl(0, 0%, 19%);
+$cokibanFontFamily: system-ui, sans-serif;
+$cokibanButton: hsl(0, 0%, 91%);
+$cokibanButtonFont: $cokibanFont;
+$cokibanButtonAccept: hsl(138, 59%, 32%);
+$cokibanButtonAcceptFont: hsl(0, 0%, 100%);
+$cokibanIconColor: hsl(32, 42%, 50%);
 
-#cokiban { position: fixed; left: 0; top: 0; right: 0; bottom: 0; z-index: 999999; color: $cokiban-font; font-family: $cokiban-font-family; font-size: 16px; font-weight: 400; background-color: rgba(#000, 0.5); opacity: 0; visibility: hidden; pointer-events: none; user-select: none; transition: all ease 300ms;
-  a, a:link, a:visited { color: $cokiban-font; text-decoration: underline; }
+#cokiban { position: fixed; left: 0; top: 0; right: 0; bottom: 0; z-index: 999999; color: $cokibanFont; font-family: $cokibanFontFamily; font-size: 16px; font-weight: 400; background-color: rgba(#000, 0.5); opacity: 0; visibility: hidden; pointer-events: none; user-select: none; transition: all ease 300ms;
+  a, a:link, a:visited { color: $cokibanFont; text-decoration: underline; }
   a:active, a:focus, a:hover { text-decoration: none; }
-  button { display: inline-block; padding: 0.75em 0.25em; color: $cokiban-button-font; font: inherit; text-transform: none; cursor: pointer; background-color: $cokiban-button; border: 0; border-radius: 0.25em; outline: inherit; -webkit-appearance: none; transition: all ease 200ms;
-    &.acccept { color: $cokiban-button-accept-font; background-color: $cokiban-button-accept; }
-    &:focus, &:hover { background-color: darken($cokiban-button, 10);
-      &.acccept { color: $cokiban-button-accept-font; background-color: darken($cokiban-button-accept, 10) }
+  button { display: inline-block; padding: 0.75em 0.25em; color: $cokibanButtonFont; font: inherit; text-transform: none; cursor: pointer; background-color: $cokibanButton; border: 0; border-radius: 0.25em; outline: inherit; -webkit-appearance: none; transition: all ease 200ms;
+    &.acccept { color: $cokibanButtonAcceptFont; background-color: $cokibanButtonAccept; }
+    &:focus, &:hover { background-color: darken($cokibanButton, 10);
+      &.acccept { color: $cokibanButtonAcceptFont; background-color: darken($cokibanButtonAccept, 10) }
     }
     &::before, &::after { content: none; }
   }
@@ -22,10 +22,10 @@ $cokiban-icon-color: #b5854c;
   .cokiban-banner { position: fixed; left: 0; bottom: 0; right: 0; overflow: scroll; max-height: 100%; padding: 0.25em; box-sizing: border-box; opacity: 0; visibility: hidden; pointer-events: none; user-select: none; transform: scale(0.9) translateY(1em); transform-origin: bottom; transition: all ease 300ms;
   }
 
-  .cokiban-container { position: relative; max-width: $cokiban-max-width; margin: 0 auto; background-color: $cokiban-background; padding: 1em; border-radius: 0.5em; box-shadow: 0 0 0.75em rgba(#000, 0.25); }
+  .cokiban-container { position: relative; max-width: $cokibanMaxWidth; margin: 0 auto; background-color: $cokibanBackground; padding: 1em; border-radius: 0.5em; box-shadow: 0 0 0.75em rgba(#000, 0.25); }
 
   .cokiban-header { display: flex; align-items: center;
-    .cokiban-icon { margin-right: 0.75em; fill: $cokiban-icon-color; }
+    .cokiban-icon { margin-right: 0.75em; fill: $cokibanIconColor; }
     .cokiban-title { font-size: 1.4em; font-weight: 600; text-transform: uppercase; }
     .cokiban-back { margin: 0 0 0 auto !important; }
   }
@@ -35,14 +35,14 @@ $cokiban-icon-color: #b5854c;
       .cokiban-checkbox {
         input { position: absolute; display: block; opacity: 0; }
         label { display: flex; align-items: center; padding: 0.25em 0; cursor: pointer;
-          &::before { content: ''; display: block; height: 1.2em; width: 1.2em; margin-right: 0.25em; background-color: $cokiban-font; border-radius: 0.15em; }
+          &::before { content: ''; display: block; height: 1.2em; width: 1.2em; margin-right: 0.25em; background-color: $cokibanFont; border-radius: 0.15em; }
         }
         input:checked + label {
           &::before { background-size: 0.9em; background-position: center center; background-repeat: no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23e9e9e9' d='m31.3 7.19-2.78-2.78a1.89 1.89 0 0 0 -1.4-.58 1.87 1.87 0 0 0 -1.39.58l-13.44 13.45-6-6a1.9 1.9 0 0 0 -1.39-.57 1.92 1.92 0 0 0 -1.4.57l-2.8 2.75a2 2 0 0 0 0 2.78l7.41 7.42 2.79 2.78a1.87 1.87 0 0 0 1.39.58 1.89 1.89 0 0 0 1.4-.58l2.78-2.78 14.83-14.81a1.91 1.91 0 0 0 .57-1.4 1.86 1.86 0 0 0 -.57-1.41z'/%3E%3C/svg%3E"); }
         }
         &.cokiban-checkbox-checked {
           label { cursor: not-allowed;
-            &::before { background-color: lighten($cokiban-font, 50); }
+            &::before { background-color: lighten($cokibanFont, 50); }
           }
         }
         &:not(:last-child) { margin-right: 0.75em; }
@@ -52,20 +52,20 @@ $cokiban-icon-color: #b5854c;
       .cokiban-switch { position: absolute; top: 0; right: 0.5em;
         input { position: absolute; display: block; opacity: 0; }
         label { display: flex; align-items: center; cursor: pointer;
-          span { padding-right: 0.5em; color: lighten($cokiban-font, 20); font-size: 0.875em;
+          span { padding-right: 0.5em; color: lighten($cokibanFont, 20); font-size: 0.875em;
             &.cokiban-invisible { display: none; }
           }
-          &::after { content: ''; display: block; height: 18px; width: 32px; background-color: lighten($cokiban-font, 40); background-repeat: no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Ccircle fill='%23fff' cx='9' cy='9' r='7'/%3E%3C/svg%3E"); border-radius: 9px; transition: all ease 200ms; }
+          &::after { content: ''; display: block; height: 18px; width: 32px; background-color: lighten($cokibanFont, 40); background-repeat: no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Ccircle fill='%23fff' cx='9' cy='9' r='7'/%3E%3C/svg%3E"); border-radius: 9px; transition: all ease 200ms; }
         }
         input:checked + label {
-          &::after { background-color: $cokiban-button-accept; background-position: right top; }
+          &::after { background-color: $cokibanButtonAccept; background-position: right top; }
         }
       }
-      .cokiban-group-cookie { position: relative; margin: .5em 0; padding: .5em; font-size: 0.875em; background-color: lighten($cokiban-button, 5); border: 1px solid $cokiban-button; border-radius: .25em;
+      .cokiban-group-cookie { position: relative; margin: .5em 0; padding: .5em; font-size: 0.875em; background-color: lighten($cokibanButton, 5); border: 1px solid $cokibanButton; border-radius: .25em;
         p { margin: 0; }
           .cokiban-switch { top: 1em; }
         }
-      &:not(:last-child) { border-bottom: 1px solid $cokiban-button; }
+      &:not(:last-child) { border-bottom: 1px solid $cokibanButton; }
     }
   }
 
@@ -75,7 +75,7 @@ $cokiban-icon-color: #b5854c;
 
   .cokiban-footer { margin-top: 1.5em;
     p { margin: 0;
-      a, a:link, a:visited { color: lighten($cokiban-font, 20); font-size: 0.875em;
+      a, a:link, a:visited { color: lighten($cokibanFont, 20); font-size: 0.875em;
         & + a { margin-left: 0.5em; }
       }
     }
