@@ -61,7 +61,7 @@ document.addEventListener('alpine:init', () => {
         version: alpine.version,
         date: new Date().getTime(),
         cookies: alpine.valid
-      }));
+      }))
       alpine.closeBanner()
     },
     acceptAll () {
@@ -96,7 +96,6 @@ document.addEventListener('alpine:init', () => {
     },
     openBanner () {
       const alpine = this
-      console.log(this.show)
       alpine.details = false
       alpine.show = true
     },
