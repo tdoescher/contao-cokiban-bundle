@@ -1,7 +1,7 @@
+import Alpine from 'alpinejs'
+
 document.addEventListener('alpine:init', () => {
-  // eslint-disable-next-line no-undef
   Alpine.prefix('data-x-')
-  // eslint-disable-next-line no-undef
   Alpine.store('cokiban', {
     id: null,
     name: '',
@@ -90,10 +90,6 @@ document.addEventListener('alpine:init', () => {
       })
       alpine.cache[group] = groupActive
     },
-    showDetails () {
-      const alpine = this
-      alpine.details = !this.details
-    },
     openBanner () {
       const alpine = this
       alpine.details = false
@@ -104,4 +100,32 @@ document.addEventListener('alpine:init', () => {
       alpine.show = false
     }
   })
+  Alpine.bind('cokiban', () => ({
+    'data-x-bind:class' () {
+      return { 'cokiban--show': this.show }
+    }
+  }))
+  Alpine.bind('cokibanDetails', () => ({
+    'data-x-on:click' () {
+      this.details = !this.details
+    }
+  }))
+  Alpine.bind('cokibanSwitch', () => ({
+    'data-x-on:change' (cookie) {
+      this.switchCookie(cookie)
+    }
+  }))
+  Alpine.bind('cokibanSaveSettings', () => ({
+    'data-x-on:click' () {
+      this.saveSettings()
+    }
+  }))
+  Alpine.bind('cokibanAcceptAll', () => ({
+    'data-x-on:click' () {
+      this.acceptAll()
+    }
+  }))
 })
+
+window.Alpine = Alpine
+Alpine.start()
