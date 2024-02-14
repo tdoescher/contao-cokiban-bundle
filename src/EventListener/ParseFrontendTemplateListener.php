@@ -61,7 +61,7 @@ class ParseFrontendTemplateListener
 
         if(isset($GLOBALS['TL_COKIBAN']['templates'][$templateName]))
         {
-            $buffer = '<template data-x-data data-x-if="$store.cokiban.valid.'.implode(' || $store.cokiban.valid.', $GLOBALS['TL_COKIBAN']['templates'][$templateName]).'">'.$buffer.'</template>';
+            $buffer = '<template x-data x-if="$store.cokiban.valid.'.implode(' || $store.cokiban.valid.', $GLOBALS['TL_COKIBAN']['templates'][$templateName]).'">'.$buffer.'</template>';
 
             if(isset($GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName]))
             {
@@ -98,7 +98,7 @@ class ParseFrontendTemplateListener
                     }
                 }
 
-                $buffer = '<template data-x-data data-x-if="!($store.cokiban.valid.'.implode(' && $store.cokiban.valid.', $GLOBALS['TL_COKIBAN']['templates'][$templateName]).')">'.$objTemplate->parse().'</template>'.$buffer;
+                $buffer = '<template x-data x-if="!($store.cokiban.valid.'.implode(' && $store.cokiban.valid.', $GLOBALS['TL_COKIBAN']['templates'][$templateName]).')">'.$objTemplate->parse().'</template>'.$buffer;
             }
 
             return $buffer;

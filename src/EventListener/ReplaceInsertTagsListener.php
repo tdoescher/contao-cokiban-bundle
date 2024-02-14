@@ -6,7 +6,7 @@
  * @package     tdoescher/cokiban-bundle
  * @author      Torben Döscher <mail@tdoescher.de>
  * @license     LGPL
- * @copyright   tdoescher.de - WEB und IT <https://tdoescher.de>
+ * @copyright   tdoescher.de // WEB & IT <https://tdoescher.de>
  */
 
 namespace tdoescher\CokibanBundle\EventListener;
@@ -38,12 +38,12 @@ class ReplaceInsertTagsListener
 
     if($insertTag === 'cokiban')
     {
-      return '<a href="#" '.$class.'titel="'.$title.'" data-x-data data-x-on:click.prevent="$store.cokiban.openBanner()">'.$text.'</a>';
+      return '<a href="#" '.$class.'titel="'.$title.'" data-x-data data-x-bind="$store.cokiban.bindOpenBanner">'.$text.'</a>';
     }
-
+    
     if($insertTag === 'cokiban_open')
     {
-      return '<a href="#" '.$class.'titel="'.$title.'" data-x-data data-x-on:click.prevent="$store.cokiban.openBanner()">';
+      return '<a href="#" '.$class.'titel="'.$title.'" data-x-data data-x-bind="$store.cokiban.bindOpenBanner">';
     }
 
     if($insertTag === 'cokiban_close')
