@@ -1,10 +1,10 @@
-const autoprefixer = require('autoprefixer')
-const cssnano = require('cssnano')
-const esbuild = require('gulp-esbuild')
-const gulp = require('gulp')
-const postcss = require('gulp-postcss')
-const rename = require('gulp-rename')
-const sass = require('gulp-sass')(require('sass'))
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+const esbuild = require('gulp-esbuild');
+const gulp = require('gulp');
+const postcss = require('gulp-postcss');
+const rename = require('gulp-rename');
+const sass = require('gulp-sass')(require('sass'));
 
 const styles = () => {
   return gulp.src('src/Resources/public/cokiban.scss')
@@ -13,9 +13,9 @@ const styles = () => {
       autoprefixer(),
       cssnano({ preset: ['default', { discardComments: { removeAll: true } }] })
     ]))
-    .pipe(rename({ extname: '.min.css' }))
-    .pipe(gulp.dest('src/Resources/public/'))
-}
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest('src/Resources/public/'));
+};
 
 const scripts = () => {
   return gulp.src('src/Resources/public/cokiban.js')
@@ -23,9 +23,9 @@ const scripts = () => {
       outfile: 'cokiban.min.js',
       minify: true
     }))
-    .pipe(gulp.dest('src/Resources/public/'))
-}
+    .pipe(gulp.dest('src/Resources/public/'));
+};
 
-const build = gulp.task('build', gulp.parallel(styles, scripts))
+const build = gulp.task('build', gulp.parallel(styles, scripts));
 
-exports.default = build
+exports.default = build;

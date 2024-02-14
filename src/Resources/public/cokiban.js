@@ -1,7 +1,7 @@
-import Alpine from 'alpinejs'
-
 document.addEventListener('alpine:init', () => {
-  Alpine.prefix('data-x-')
+  // eslint-disable-next-line no-undef
+  Alpine.prefix('data-x-');
+  // eslint-disable-next-line no-undef
   Alpine.store('cokiban', {
     id: null,
     name: '',
@@ -14,114 +14,125 @@ document.addEventListener('alpine:init', () => {
     cache: {},
     valid: {},
     initialize (config) {
-      this.id = config.id
-      this.name = config.name
-      this.version = config.version
-      this.days = config.days
-      this.active = config.active
+      const alpine = this;
+      alpine.id = config.id;
+      alpine.name = config.name;
+      alpine.version = config.version;
+      alpine.days = config.days;
+      alpine.active = config.active;
       if (Array.isArray(config.cookies)) {
         config.cookies.forEach((item) => {
-          this.cache[item] = false
-        })
+          alpine.cache[item] = false;
+        });
       }
-      this.valid = Object.assign({}, this.cache)
-      this.loadConfig()
-      if (this.active === false) {
-        return
+      alpine.valid = Object.assign({}, alpine.cache);
+      alpine.pages = config.pages;
+      alpine.load();
+      if (alpine.active === false) {
+        return;
       }
-      if (this.date === null || (this.days && (this.date + this.days * 86400000) < new Date().getTime())) {
-        this.openBanner()
+      if (alpine.date === null || (alpine.days && (alpine.date + alpine.days * 86400000) < new Date().getTime())) {
+        alpine.openBanner();
       }
     },
-    loadConfig () {
-      let storage = localStorage.getItem(this.name)
+    load () {
+      const alpine = this;
+      let storage = localStorage.getItem(alpine.name);
       try {
-        storage = JSON.parse(storage)
+        storage = JSON.parse(storage);
       } catch {
-        storage = null
+        storage = null;
       }
-      if (storage !== null && storage.version === this.version) {
-        this.date = storage.date
+      if (storage !== null && storage.version === alpine.version) {
+        alpine.date = storage.date;
         Object.keys(storage.cookies).forEach((item) => {
-          if (this.cache[item] !== undefined) {
-            this.cache[item] = storage.cookies[item]
+          if (alpine.cache[item] !== undefined) {
+            alpine.cache[item] = storage.cookies[item];
           }
-        })
-        this.valid = Object.assign({}, this.cache)
+        });
+        alpine.valid = Object.assign({}, alpine.cache);
       }
     },
-    saveConfig () {
-      this.valid = Object.assign({}, this.cache)
-      localStorage.setItem(this.name, JSON.stringify({
-        id: this.id,
-        version: this.version,
+    save () {
+      const alpine = this;
+      alpine.valid = Object.assign({}, alpine.cache);
+      localStorage.setItem(alpine.name, JSON.stringify({
+        id: alpine.id,
+        version: alpine.version,
         date: new Date().getTime(),
-        cookies: this.valid
-      }))
-      this.closeBanner()
+        cookies: alpine.valid
+      }));
+      alpine.closeBanner();
     },
     acceptAll () {
-      Object.keys(this.cache).forEach((item) => {
-        this.cache[item] = true
-      })
-      this.saveConfig()
-    },
-    showDetails () {
-      this.details = !this.details
+      const alpine = this;
+      Object.keys(alpine.cache).forEach((item) => {
+        alpine.cache[item] = true;
+      });
+      clearInterval(this.counter);
+      alpine.save();
     },
     saveSettings () {
-      this.saveConfig()
+      const alpine = this;
+      alpine.save();
     },
     switchCookie (cookie) {
-      const group = cookie.split(/[A-Z]/)[0]
-      let groupActive = true
-      this.cache[cookie] = !this.cache[cookie]
-      Object.keys(this.cache).forEach((item) => {
-        if (item !== cookie && item.startsWith(group)) {
-          this.cache[item] = this.cache[cookie]
+      const alpine = this;
+      const group = cookie.split(/[A-Z]/)[0];
+      let groupActive = true;
+      alpine.cache[cookie] = !alpine.cache[cookie];
+      Object.keys(alpine.cache).forEach((item) => {
+        if (item !== cookie && item.startsWith(cookie)) {
+          alpine.cache[item] = alpine.cache[cookie];
         }
-        if (item !== group && item.startsWith(group) && !this.cache[item]) {
-          groupActive = false
+        if (item !== group && item.startsWith(group) && !alpine.cache[item]) {
+          groupActive = false;
         }
-      })
-      this.cache[group] = groupActive
+      });
+      alpine.cache[group] = groupActive;
+    },
+    showDetails () {
+      const alpine = this;
+      alpine.details = !alpine.details;
     },
     openBanner () {
-      this.details = false
-      this.show = true
+      const alpine = this;
+      alpine.details = false;
+      alpine.show = true;
     },
     closeBanner () {
-      this.show = false
+      const alpine = this;
+      alpine.show = false;
     },
     bindCokiban: {
       'data-x-bind:class' () {
-        return { 'cokiban--show': this.show }
+        return { 'cokiban-show': this.show };
       }
     },
     bindDetails: {
-      'data-x-on:click' () {
-        this.showDetails()
+      'data-x-on:click.prevent' () {
+        this.showDetails();
       }
     },
     bindSwitch: {
       'data-x-on:change' (event) {
-        this.switchCookie(event.target.dataset.cookie)
+        this.switchCookie(event.target.dataset.cookie);
       }
     },
     bindSaveSettings: {
       'data-x-on:click' () {
-        this.saveSettings()
+        this.saveSettings();
       }
     },
     bindAcceptAll: {
       'data-x-on:click' () {
-        this.acceptAll()
+        this.acceptAll();
       }
     },
     bindOpenBanner: {
       'data-x-on:click.prevent' () {
-        this.$store.cokiban.openBanner()
+        this.$store.cokiban.openBanner();
       }
     }
-  })
-})
+  });
+});
