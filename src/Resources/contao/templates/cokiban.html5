@@ -58,7 +58,7 @@
                                             <input type="checkbox" name="cokiban-switch-<?php echo $groupKey.'-'.$cookieKey; ?>" id="cokiban-switch-<?php echo $groupKey.'-'.$cookieKey; ?>" data-x-bind="bindSwitch" data-x-model="cache.<?php echo $groupKey.ucfirst($cookieKey); ?>" data-cookie="<?php echo $groupKey.ucfirst($cookieKey); ?>">
                                             <label for="cokiban-switch-<?php echo $groupKey.'-'.$cookieKey; ?>">
                                                 <span class="cokiban-invisible"><?php echo $this->translation['cookies'][$cookieKey]['headline']; ?></span>
-                                        <span data-x-text="cookies.<?php echo $groupKey.ucfirst($cookieKey); ?> ? '<?php echo $this->translation['banner']['switch_true']; ?>' : '<?php echo $this->translation['banner']['switch_false']; ?>'"></span>
+                                        <span data-x-text="cache.<?php echo $groupKey.ucfirst($cookieKey); ?> ? '<?php echo $this->translation['banner']['switch_true']; ?>' : '<?php echo $this->translation['banner']['switch_false']; ?>'"></span>
                                             </label>
                                         </div>
                                     </div>
