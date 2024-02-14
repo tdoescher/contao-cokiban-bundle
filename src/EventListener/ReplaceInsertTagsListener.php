@@ -40,7 +40,7 @@ class ReplaceInsertTagsListener
     {
       return '<a href="#" '.$class.'titel="'.$title.'" data-x-data data-x-bind="$store.cokiban.bindOpenBanner">'.$text.'</a>';
     }
-
+    
     if($insertTag === 'cokiban_open')
     {
       return '<a href="#" '.$class.'titel="'.$title.'" data-x-data data-x-bind="$store.cokiban.bindOpenBanner">';

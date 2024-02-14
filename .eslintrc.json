@@ -4,11 +4,11 @@
     "browser": true
   },
   "extends": "standard",
-  "ignorePatterns": ["*.bundle.min.js"],
+  "ignorePatterns": ["app.bundle.min.js"],
   "rules": { 
     "arrow-parens": ["error"],
     "indent": ["error", 2, { "SwitchCase": 1 }],
     "prefer-arrow-callback": ["error"],
-    "semi": ["error", "never"]
+    "semi": ["error", "always"]
   }
 }
