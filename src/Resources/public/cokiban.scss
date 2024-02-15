@@ -14,10 +14,6 @@ $cokibanIconColor: hsl(32, 42%, 50%);
     &:focus,
     &:hover { text-decoration: none; }
   }
-  button { padding: 0; color: $cokibanFont; text-decoration: underline; cursor: pointer; border: 0; appearance: none;
-    &:focus,
-    &:hover { text-decoration: none; }
-  }
   .cokiban__invisible { display: none; }
   .cokiban__container { position: relative; max-width: $cokibanMaxWidth; margin: 0 auto; background: $cokibanBackground; padding: 1em; border-radius: 0.5em; box-shadow: 0 0 0.75em rgba(#000, 0.25); }
   .cokiban__banner { position: fixed; left: 0; bottom: 0; right: 0; overflow: scroll; max-height: 100%; padding: 0.25em; box-sizing: border-box; opacity: 0; visibility: hidden; pointer-events: none; user-select: none; transform: scale(0.9) translateY(1em); transform-origin: bottom; transition: all ease 300ms;
@@ -71,6 +67,10 @@ $cokibanIconColor: hsl(32, 42%, 50%);
     &:hover { background: darken($cokibanButton, 10); }
     &::before,
     &::after { content: none; }
+  }
+  .cokiban__button--link { padding: 0; color: $cokibanFont; text-decoration: underline; cursor: pointer; background: transparent; border: 0; appearance: none;
+    &:focus,
+    &:hover { text-decoration: none; }
   }
   .cokiban__button--acccept { color: $cokibanButtonAcceptFont; background: $cokibanButtonAccept;
     &:focus,
