@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of Cokiban Bundle for Contao
+ * This file is part of CokibanBundle for Contao
  *
  * @package     tdoescher/cokiban-bundle
  * @author      Torben Döscher <mail@tdoescher.de>
