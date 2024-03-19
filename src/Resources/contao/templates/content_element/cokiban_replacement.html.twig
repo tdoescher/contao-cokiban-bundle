@@ -1,0 +1,16 @@
+{% extends "@Contao/content_element/_base.html.twig" %}
+
+{% set attributes = attributes.addClass(["content-cokiban-replacement", "content-#{type|replace({'_': '-'})}--replacement"]) %}
+
+{% block content %}
+  <div class="replacement">
+    {% if background %}
+      <div class="background_container" style="background-image: url({{ background }})"></div>
+    {% endif %}
+
+    <div class="text_container">
+      <p>{{ button }}</p>
+      <p>{{ text }}</p>
+    </div>
+  </div>
+{% endblock %}
