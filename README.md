@@ -151,12 +151,12 @@ cokiban:
                     headline: 'YouTube'
                     text: '<a href="{{link_url::datenschutz}}#youtube" title="Youtube Datenschutzerklärung" target="_blank" rel="noopener">Youtube Datenschutzerklärung</a>'
             replacements:                                                       ##### Übersetzungen der Replacement Elemente nach Template, wird kein Replacement angegeben wird keins erzeugt
-                'content_element/googlemaps_embed':
+                content_element/googlemaps_embed:
                     button: '{{cokiban::button}}'
                     text: 'Um diesen Ihnalt zu sehen akzeptieren Sie bitte den Cookie für GoogleMaps.'
                     background: 'files/map.jpg'                                 ##### UUID oder Pfad einer Bild-Datei
                     tempalte: 'content-cokiban-replacement'                     ##### Optional - Angabe des zu verwendenden Templates, ohne Angabe "ce_cokiban_replacement" verwendet
-                'content_element/youtube':
+                content_element/youtube:
                     button: '{{cokiban::button}}'
                     text: 'Um diesen Ihnalt zu sehen akzeptieren Sie bitte den Cookie für YouTube.'
                     background: 'f74e15a7-7ec3-13eb-8a1d-ef99f142b2bc'          ##### UUID oder Pfad einer Bild-Datei
