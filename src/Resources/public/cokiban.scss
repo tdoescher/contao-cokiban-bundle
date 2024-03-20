@@ -40,7 +40,7 @@ $cokibanIconColor: hsl(32, 42%, 50%);
   }
   .cokiban__invisible { display: none; }
   .cokiban__container { position: relative; max-width: var(--cokiban-max-width); margin: 0 auto; background: var(--cokiban-background); padding: 1em; border-radius: var(--cokiban-border-radius); box-shadow: 0 0 0.75em rgba(#000, 0.25); }
-  .cokiban__banner { position: fixed; left: 0; bottom: 0; right: 0; overflow: scroll; max-height: 100%; padding: calc(var(--cokiban-border-radius) * 0.25); box-sizing: border-box; opacity: 0; visibility: hidden; pointer-events: none; user-select: none; transform: scale(0.9) translateY(1em); transform-origin: bottom; transition: all ease 300ms;
+  .cokiban__banner { position: fixed; left: 0; bottom: 0; right: 0; overflow: scroll; max-height: 100%; padding: var(--cokiban-border-radius); box-sizing: border-box; opacity: 0; visibility: hidden; pointer-events: none; user-select: none; transform: scale(0.9) translateY(1em); transform-origin: bottom; transition: all ease 300ms;
   }
   .cokiban__header { display: flex; align-items: center;
     &__icon { margin-inline-end: 0.75em; fill: var(--cokiban-icon-color); }
