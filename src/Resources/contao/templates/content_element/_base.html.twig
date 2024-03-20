@@ -1,7 +1,8 @@
 {% extends "@Contao/content_element/_base.html.twig" %}
 
 {% block wrapper %}
-  {{ cokiban_open() }}
+  {{ cokiban_wrapper_open() }}
     {{ parent() }}
-  {{ cokiban_close() }}
+  {{ cokiban_wrapper_close() }}
+  {{ cokiban_replacement() }}
 {% endblock %}

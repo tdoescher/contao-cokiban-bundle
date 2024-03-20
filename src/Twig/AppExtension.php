@@ -21,8 +21,9 @@ class AppExtension extends AbstractExtension
   public function getFunctions()
   {
     return [
-      new TwigFunction('cokiban_open', [$this, 'cokibanOpen'], ['needs_context' => true, 'is_safe' => ['html']]),
-      new TwigFunction('cokiban_close', [$this, 'cokibanClose'], ['needs_environment' => true, 'needs_context' => true, 'is_safe' => ['html']])
+      new TwigFunction('cokiban_wrapper_open', [$this, 'cokibanOpen'], ['needs_context' => true, 'is_safe' => ['html']]),
+      new TwigFunction('cokiban_wrapper_close', [$this, 'cokibanClose'], ['needs_context' => true, 'is_safe' => ['html']]),
+      new TwigFunction('cokiban_replacement', [$this, 'cokibanReplacement'], ['needs_environment' => true, 'needs_context' => true, 'is_safe' => ['html']])
     ];
   }
 
@@ -37,12 +38,23 @@ class AppExtension extends AbstractExtension
     return '<template data-x-data data-x-if="$store.cokiban.valid.'.implode(' || $store.cokiban.valid.', $GLOBALS['TL_COKIBAN']['templates'][$templateName]).'">';
   }
 
-  public function cokibanClose($environment, $context)
+  public function cokibanClose($context)
+  {
+    $templateName = $context['template'];
+
+    if(!isset($GLOBALS['TL_COKIBAN']['templates'][$templateName])) {
+      return;
+    }
+
+    return '</template>';
+  }
+
+  public function cokibanReplacement($environment, $context)
   {
     $templateName = $context['template'];
 
     if(!isset($GLOBALS['TL_COKIBAN']['templates'][$templateName]) || !isset($GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName])) {
-      return '</template>';
+      return;
     }
 
     $replacementTemplate = 'content_element/cokiban_replacement';
@@ -66,6 +78,8 @@ class AppExtension extends AbstractExtension
       }
     }
 
-    return '</template><template data-x-data data-x-if="!($store.cokiban.valid.'.implode(' && $store.cokiban.valid.', $GLOBALS['TL_COKIBAN']['templates'][$templateName]).')">'.$environment->render('@Contao/'.$replacementTemplate.'.html.twig', $context).'</template>';
+    $replacement = $environment->render('@Contao/'.$replacementTemplate.'.html.twig', $context);
+
+    return '<template data-x-data data-x-if="!($store.cokiban.valid.'.implode(' && $store.cokiban.valid.', $GLOBALS['TL_COKIBAN']['templates'][$templateName]).')">'.$replacement.'</template>';
   }
 }
