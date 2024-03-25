@@ -26,13 +26,14 @@ class GetPageLayoutListener
     $config = System::getContainer()->getParameter('cokiban');
 
     $rootPage = PageModel::findByIdOrAlias($pageModel->rootAlias);
+    $rootPageAlias = str_replace('-', '_', $rootPage->alias);
 
-    if(!isset($config['banners'][$rootPage->alias]) || !is_array($config['translations']))
+    if(!isset($config['banners'][$rootPageAlias]) || !is_array($config['translations']))
     {
       return;
     }
 
-    $GLOBALS['TL_COKIBAN'] = $config['banners'][$rootPage->alias];
+    $GLOBALS['TL_COKIBAN'] = $config['banners'][$rootPageAlias];
     $GLOBALS['TL_COKIBAN']['id'] = $rootPage->id;
 
     if(!isset($GLOBALS['TL_COKIBAN']['groups'])) $GLOBALS['TL_COKIBAN']['groups'] = [];
