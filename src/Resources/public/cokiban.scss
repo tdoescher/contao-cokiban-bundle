@@ -34,7 +34,7 @@ $cokibanIconColor: hsl(32, 42%, 50%);
 
 #cokiban { position: fixed; inset: 0; z-index: 999999; color: var(--cokiban-font); font-family: var(--cokiban-font-family); font-size: 16px; background: rgba(#000, 0.5); opacity: 0; visibility: hidden; pointer-events: none; user-select: none; transition: all ease 200ms;
   p { margin: 0; }
-  a { color: var(--cokiban-font); text-decoration: underline;
+  a { color: var(--cokiban-font); font-weight: 400; font-style: normal; text-decoration: underline;
     &:focus,
     &:hover { text-decoration: none; }
   }
@@ -86,12 +86,12 @@ $cokibanIconColor: hsl(32, 42%, 50%);
   .cokiban__buttons { display: flex; gap: 0.5em;
     > * { flex: 1; }
   }
-  .cokiban__button { display: inline-block; padding: 0.75em 0.25em; color: var(--cokiban-button-font); font: inherit; text-transform: none; text-decoration: none; cursor: pointer; background: var(--cokiban-button); border: 0; border-radius: calc(var(--cokiban-border-radius) * 0.5); outline: inherit; appearance: none; transition: all ease 200ms;
+  .cokiban__button { display: inline-block; padding: 0.75em 0.25em; color: var(--cokiban-button-font); font-family: inherit; font-weight: 400; font-style: normal; text-transform: none; text-decoration: none; cursor: pointer; background: var(--cokiban-button); border: 0; border-radius: calc(var(--cokiban-border-radius) * 0.5); outline: inherit; appearance: none; transition: all ease 200ms;
     &:focus,
     &:hover { background: var(--cokiban-button-hover); }
     &::before,
     &::after { content: none; }
-    &--link { padding: 0; color: var(--cokiban-font); text-decoration: underline; cursor: pointer; background: transparent; border: 0; appearance: none;
+    &--link { padding: 0; color: var(--cokiban-font); font-weight: 400; font-style: normal; text-decoration: underline; cursor: pointer; background: transparent; border: 0; appearance: none;
       &:focus,
       &:hover { text-decoration: none; }
     }
