@@ -68,7 +68,7 @@ document.addEventListener('alpine:init', () => {
         alpine.cache[item] = true
       })
       clearInterval(this.counter)
-      alpine.save()
+      alpine.saveConfig()
     },
     showDetails () {
       this.details = !this.details
