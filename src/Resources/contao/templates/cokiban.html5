@@ -9,7 +9,7 @@
           <span data-x-show="!details"><?php echo $this->translation['banner']['main_headline']; ?></span>
           <span data-x-show="details"><?php echo $this->translation['banner']['details_headline']; ?></span>
         </div>
-        <button class="cokiban__header__back cokiban__button--link" title="<?php echo $this->translation['banner']['details_back_link_title']; ?>" data-x-bind="bindDetails" data-x-show="details"><?php echo $this->translation['banner']['details_back_link_text']; ?></button>
+        <button class="cokiban__header__back cokiban__button cokiban__button--link" title="<?php echo $this->translation['banner']['details_back_link_title']; ?>" data-x-bind="bindDetails" data-x-show="details"><?php echo $this->translation['banner']['details_back_link_text']; ?></button>
       </div>
       <template data-x-if="!details">
         <div class="cokiban__body">
@@ -72,7 +72,7 @@
       </div>
       <div class="cokiban__footer">
         <?php echo $this->translation['banner']['footer_text']; ?>
-        <button class="cokiban__button--link" title="<?php echo $this->translation['banner']['details_link_title']; ?>" data-x-bind="bindDetails" data-x-show="!details"><?php echo $this->translation['banner']['details_link_text']; ?></button>
+        <button class="cokiban__button cokiban__button--link" title="<?php echo $this->translation['banner']['details_link_title']; ?>" data-x-bind="bindDetails" data-x-show="!details"><?php echo $this->translation['banner']['details_link_text']; ?></button>
       </div>
     </div>
   </div>
