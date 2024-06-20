@@ -1,5 +1,7 @@
 document.addEventListener('alpine:init', () => {
+  // eslint-disable-next-line no-undef
   Alpine.prefix('data-x-')
+  // eslint-disable-next-line no-undef
   Alpine.store('cokiban', {
     id: null,
     name: '',
@@ -23,14 +25,14 @@ document.addEventListener('alpine:init', () => {
           alpine.cache[item] = false
         })
       }
-      alpine.valid = Object.assign({}, alpine.cache);
-      alpine.pages = config.pages;
+      alpine.valid = Object.assign({}, alpine.cache)
+      alpine.pages = config.pages
       alpine.loadConfig()
       if (alpine.active === false) {
         return
       }
       if (alpine.date === null || (alpine.days && (alpine.date + alpine.days * 86400000) < new Date().getTime())) {
-        alpine.openBanner();
+        alpine.openBanner()
       }
     },
     loadConfig () {
@@ -47,7 +49,7 @@ document.addEventListener('alpine:init', () => {
           if (alpine.cache[item] !== undefined) {
             alpine.cache[item] = storage.cookies[item]
           }
-        });
+        })
         alpine.valid = Object.assign({}, alpine.cache)
       }
     },
@@ -58,8 +60,8 @@ document.addEventListener('alpine:init', () => {
         id: alpine.id,
         version: alpine.version,
         date: new Date().getTime(),
-        cookies: alpine.valid
-      }));
+        cookies: alpine.valid,
+      }))
       alpine.closeBanner()
     },
     acceptAll () {
@@ -101,32 +103,32 @@ document.addEventListener('alpine:init', () => {
     bindCokiban: {
       'data-x-bind:class' () {
         return { 'cokiban--show': this.show }
-      }
+      },
     },
     bindDetails: {
       'data-x-on:click.prevent' () {
         this.showDetails()
-      }
+      },
     },
     bindSwitch: {
       'data-x-on:change' (event) {
         this.switchCookie(event.target.dataset.cookie)
-      }
+      },
     },
     bindSaveSettings: {
       'data-x-on:click' () {
         this.saveSettings()
-      }
+      },
     },
     bindAcceptAll: {
       'data-x-on:click' () {
         this.acceptAll()
-      }
+      },
     },
     bindOpenBanner: {
       'data-x-on:click.prevent' () {
         this.$store.cokiban.openBanner()
-      }
-    }
+      },
+    },
   })
 })
