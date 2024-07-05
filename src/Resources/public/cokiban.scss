@@ -4,6 +4,7 @@ $cokibanBorder: hsl(0, 0%, 85%);
 $cokibanBorderRadius: 0.5em;
 $cokibanCookie: hsl(0, 0%, 95%);
 $cokibanFont: hsl(0, 0%, 20%);
+$cokibanFontHover: hsl(0, 0%, 40%);
 $cokibanFontFamily: system-ui, sans-serif;
 $cokibanButton: hsl(0, 0%, 90%);
 $cokibanButtonHover: hsl(0, 0%, 80%);
@@ -20,6 +21,7 @@ $cokibanIconColor: hsl(32, 42%, 50%);
   --cokiban-border-radius: #{$cokibanBorderRadius};
   --cokiban-cookie: #{$cokibanCookie};
   --cokiban-font: #{$cokibanFont};
+  --cokiban-font-hover: #{$cokibanFontHover};
   --cokiban-font-family: #{$cokibanFontFamily};
   --cokiban-button: #{$cokibanButton};
   --cokiban-button-hover: #{$cokibanButtonHover};
@@ -34,7 +36,7 @@ $cokibanIconColor: hsl(32, 42%, 50%);
   p { margin: 0; }
   a { color: var(--cokiban-font); font-family: inherit; font-weight: 400; font-style: normal; text-decoration: underline;
     &:focus,
-    &:hover { text-decoration: none; }
+    &:hover { color: var(--cokiban-font-hover); text-decoration: none; }
   }
   .cokiban__invisible { display: none; }
   .cokiban__container { position: relative; max-width: var(--cokiban-max-width); margin: 0 auto; background: var(--cokiban-background); padding: 1em; border-radius: var(--cokiban-border-radius); box-shadow: 0 0 0.75em rgba(#000, 0.25); }
@@ -73,8 +75,8 @@ $cokibanIconColor: hsl(32, 42%, 50%);
   .cokiban__switch { position: absolute; top: 0.75em; right: 0.5em;
     input { position: absolute; display: block; opacity: 0; }
     label { display: flex; align-items: center; cursor: pointer;
-      span { padding-right: 0.5em; color: var(--cokiban-font-light); font-size: 0.875em; }
-      &::after { content: ''; display: block; height: 18px; width: 32px; background-color: var(--cokiban-font-light); background-repeat: no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Ccircle fill='%23fff' cx='9' cy='9' r='7'/%3E%3C/svg%3E"); border-radius: 9px; transition: all ease 200ms; }
+      span { padding-right: 0.5em; color: var(--cokiban-font); font-size: 0.875em; }
+      &::after { content: ''; display: block; height: 18px; width: 32px; background-color: var(--cokiban-border); background-repeat: no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Ccircle fill='%23fff' cx='9' cy='9' r='7'/%3E%3C/svg%3E"); border-radius: 9px; transition: all ease 200ms; }
     }
     input:checked + label {
       &::after { background-color: var(--cokiban-button-accept); background-position: right top; }
@@ -100,7 +102,7 @@ $cokibanIconColor: hsl(32, 42%, 50%);
   }
   .cokiban__footer { margin-block-start: 0.75em;
     a,
-    button { color: var(--cokiban-font-light); font-size: 0.875em;
+    button { font-size: 0.875em;
       + a,
       + button { margin-inline-start: 0.5em; }
     }
