@@ -1,6 +1,7 @@
 document.addEventListener('alpine:init', () => {
   // eslint-disable-next-line no-undef
   Alpine.prefix('data-x-')
+
   // eslint-disable-next-line no-undef
   Alpine.store('cokiban', {
     id: null,
