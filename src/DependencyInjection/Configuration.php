@@ -28,6 +28,7 @@ class Configuration implements ConfigurationInterface
         ->arrayNode('banners')
           ->arrayPrototype()
             ->children()
+              ->scalarNode('id')->end()
               ->integerNode('version')->end()
               ->integerNode('days')->end()
               ->arrayNode('groups')
