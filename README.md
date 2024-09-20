@@ -93,7 +93,7 @@ Die Konfiguration wird der **config.yml** hinzugefügt. Tipp: Der übersichtshal
 ```
 cokiban:
   banners:
-    alias:                       ##### Alias oder ID des Startpunktes für diese Konfiguration
+    alias:                       ##### Alias oder ID des Startpunktes für diese Konfiguration, alternativ kann mal "global" angeben für einen globalen Banner
       id: 'main'                 ##### Optional - Manuel setzen einer id für das Cookiebanner, ohne angabe wird die RootPageId verwendent
       version: 1                 ##### Durch das erhöhen wird das Banner beim Besucher erzwungen
       days: 30                   ##### Tage bis das Banner erneut angezeigt wird, 0 für nie
