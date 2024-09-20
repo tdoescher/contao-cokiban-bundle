@@ -28,12 +28,19 @@ class GetPageLayoutListener
     $rootPage = PageModel::findByIdOrAlias($pageModel->rootAlias);
     $rootPageAlias = str_replace('-', '_', $rootPage->alias);
 
-    if(!isset($config['banners'][$rootPageAlias]) || !is_array($config['translations']))
+    if(!is_array($config['translations']))
     {
       return;
     }
 
-    $GLOBALS['TL_COKIBAN'] = $config['banners'][$rootPageAlias];
+    if(isset($config['banners'][$rootPageAlias])) {
+      $GLOBALS['TL_COKIBAN'] = $config['banners'][$rootPageAlias];
+    } else if(isset($config['banners']['global'])) {
+      $GLOBALS['TL_COKIBAN'] = $config['banners']['global'];
+    } else {
+      return;
+    }
+
     $GLOBALS['TL_COKIBAN']['id'] = $GLOBALS['TL_COKIBAN']['id'] ?? $rootPage->id;
 
     if(!isset($GLOBALS['TL_COKIBAN']['groups'])) $GLOBALS['TL_COKIBAN']['groups'] = [];
