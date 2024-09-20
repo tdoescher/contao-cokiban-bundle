@@ -93,23 +93,24 @@ Die Konfiguration wird der **config.yml** hinzugefügt. Tipp: Der übersichtshal
 ```
 cokiban:
   banners:
-    alias:                         ##### Alias oder ID des Startpunktes für diese Konfiguration
-      version: 1                   ##### Durch das erhöhen wird das Banner beim Besucher erzwungen
-        days: 30                   ##### Tage bis das Banner erneut angezeigt wird, 0 für nie
-          groups:                  ##### Gruppierungen der Cookie-Auswahl
-            tracking:              ##### Alias der Gruppe
-              analytics:           ##### Alias des Cookies, Array der Tempaltes die nicht ohne akzeptieren des Cookis angezeigt werden sollen
-                - 'analytics_google'
-            media:
-              googlemaps:
-                - 'content_element/googlemaps_embed'
-                - 'content_element/googlemaps_html'
-              youtube:
-                - 'content_element/youtube'
-          pages:                   ##### Alias oder ID der Seiten auf denen der Banner nicht angezeigt werden soll
-            - 'impressum'
-            - 'datenschutz'
-          tempalte: 'cokiban'      ##### Optional - Angabe des zu verwendenden Templates, ohne Angabe "cokiban" verwendet
+    alias:                       ##### Alias oder ID des Startpunktes für diese Konfiguration
+      id: 'main'                 ##### Optional - Manuel setzen einer id für das Cookiebanner, ohne angabe wird die RootPageId verwendent
+      version: 1                 ##### Durch das erhöhen wird das Banner beim Besucher erzwungen
+      days: 30                   ##### Tage bis das Banner erneut angezeigt wird, 0 für nie
+      groups:                    ##### Gruppierungen der Cookie-Auswahl
+        tracking:                ##### Alias der Gruppe
+          analytics:             ##### Alias des Cookies, Array der Tempaltes die nicht ohne akzeptieren des Cookis angezeigt werden sollen
+            - 'analytics_google'
+        media:
+          googlemaps:
+            - 'content_element/googlemaps_embed'
+            - 'content_element/googlemaps_html'
+          youtube:
+            - 'content_element/youtube'
+      pages:                       ##### Alias oder ID der Seiten auf denen der Banner nicht angezeigt werden soll
+        - 'impressum'
+        - 'datenschutz'
+      tempalte: 'cokiban'          ##### Optional - Angabe des zu verwendenden Templates, ohne Angabe "cokiban" verwendet
     translations:                  ##### Übersetzungen
         de:                        ##### Kürzel der Sprache, als fallback wird die erste angegeben Sprache verwendent 
             banner:
