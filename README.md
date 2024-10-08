@@ -92,7 +92,7 @@ Die Konfiguration wird der **config.yml** hinzugefügt. Tipp: Der übersichtshal
 
 ```
 cokiban:
-  disable_token: 'custom-token'  ##### Optional - Funktion zum deaktiviren des Plugins mittels GET (https://website.com/?custom-token)
+  disable_token: 'custom-token'  ##### Optional - Funktion zum deaktiviren des Plugins mittels GET-Parameter(https://website.com/?custom-token)
   banners:
     alias:                       ##### Alias oder ID des Startpunktes für diese Konfiguration, alternativ kann mal "global" angeben für einen globalen Banner
       id: 'main'                 ##### Optional - Manuel setzen einer id für das Cookiebanner, ohne angabe wird die RootPageId verwendent
