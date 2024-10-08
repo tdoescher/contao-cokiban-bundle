@@ -28,6 +28,11 @@ class GetPageLayoutListener
     $rootPage = PageModel::findByIdOrAlias($pageModel->rootAlias);
     $rootPageAlias = str_replace('-', '_', $rootPage->alias);
 
+    if(isset($config['disable_token']) && isset($_GET[$config['disable_token']]))
+    {
+      return;
+    }
+
     if(!is_array($config['translations']))
     {
       return;

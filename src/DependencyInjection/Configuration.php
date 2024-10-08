@@ -25,6 +25,7 @@ class Configuration implements ConfigurationInterface
     $treeBuilder
       ->getRootNode()
       ->children()
+        ->scalarNode('disable_token')->end()
         ->arrayNode('banners')
           ->arrayPrototype()
             ->children()

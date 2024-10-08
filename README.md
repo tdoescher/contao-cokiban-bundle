@@ -92,6 +92,7 @@ Die Konfiguration wird der **config.yml** hinzugefügt. Tipp: Der übersichtshal
 
 ```
 cokiban:
+  disable_token: 'custom-token'  ##### Optional - Funktion zum deaktiviren des Plugins mittels GET (https://website.com/?custom-token)
   banners:
     alias:                       ##### Alias oder ID des Startpunktes für diese Konfiguration, alternativ kann mal "global" angeben für einen globalen Banner
       id: 'main'                 ##### Optional - Manuel setzen einer id für das Cookiebanner, ohne angabe wird die RootPageId verwendent
@@ -110,7 +111,7 @@ cokiban:
       pages:                       ##### Alias oder ID der Seiten auf denen der Banner nicht angezeigt werden soll
         - 'impressum'
         - 'datenschutz'
-      tempalte: 'cokiban'          ##### Optional - Angabe des zu verwendenden Templates, ohne Angabe "cokiban" verwendet
+      tempalte: 'cokiban'          ##### Optional - Angabe des zu verwendenden Templates, ohne Angabe wird "cokiban" verwendet
     translations:                  ##### Übersetzungen
         de:                        ##### Kürzel der Sprache, als fallback wird die erste angegeben Sprache verwendent 
             banner:
