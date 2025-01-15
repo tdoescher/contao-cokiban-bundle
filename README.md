@@ -98,6 +98,7 @@ cokiban:
       id: 'main'                 ##### Optional - Manuel setzen einer id für das Cookiebanner, ohne angabe wird die RootPageId verwendent
       version: 1                 ##### Durch das erhöhen wird das Banner beim Besucher erzwungen
       days: 30                   ##### Tage bis das Banner erneut angezeigt wird, 0 für nie
+      google_consent_mode: false ##### Wenn true, wird die Funktion gtag('consent','update',{...}) für den Google Consent Mode v2 ausgeführt
       groups:                    ##### Gruppierungen der Cookie-Auswahl
         tracking:                ##### Alias der Gruppe
           analytics:             ##### Alias des Cookies, Array der Tempaltes die nicht ohne akzeptieren des Cookis angezeigt werden sollen

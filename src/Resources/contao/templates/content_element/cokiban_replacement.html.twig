@@ -3,14 +3,16 @@
 {% set attributes = attributes.addClass(["content-cokiban-replacement", "content-#{type|replace({'_': '-'})}--replacement"]) %}
 
 {% block content %}
-  {% if background %}
-    <div class="content-cokiban-replacement__background" style="background-image: url({{ background }})"></div>
-  {% endif %}
+  <div class="content-cokiban-replacement__replacement">
+    {% if background %}
+      <div class="content-cokiban-replacement__background" style="background-image: url({{ background }})"></div>
+    {% endif %}
 
-  <div class="content-cokiban-replacement__text">
-    <div class="rte">
-      <p>{{ button }}</p>
-      <p>{{ text }}</p>
+    <div class="content-cokiban-replacement__text">
+      <div class="rte">
+        <p>{{ button }}</p>
+        <p>{{ text }}</p>
+      </div>
     </div>
   </div>
 {% endblock %}

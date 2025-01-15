@@ -9,6 +9,7 @@ document.addEventListener('alpine:init', () => {
     version: null,
     days: null,
     active: true,
+    googleConsentMode: false,
     date: null,
     show: false,
     details: false,
@@ -21,6 +22,7 @@ document.addEventListener('alpine:init', () => {
       alpine.version = config.version
       alpine.days = config.days
       alpine.active = config.active
+      alpine.googleConsentMode = config.googleConsentMode
       if (Array.isArray(config.cookies)) {
         config.cookies.forEach((item) => {
           alpine.cache[item] = false
@@ -53,6 +55,7 @@ document.addEventListener('alpine:init', () => {
         })
         alpine.valid = Object.assign({}, alpine.cache)
       }
+      alpine.updateGoogleConsentMode()
     },
     saveConfig () {
       const alpine = this
@@ -64,6 +67,7 @@ document.addEventListener('alpine:init', () => {
         cookies: alpine.valid,
       }))
       alpine.closeBanner()
+      alpine.updateGoogleConsentMode()
     },
     acceptAll () {
       const alpine = this
@@ -100,6 +104,24 @@ document.addEventListener('alpine:init', () => {
     },
     closeBanner () {
       this.show = false
+    },
+    updateGoogleConsentMode () {
+      const alpine = this
+      if (alpine.googleConsentMode && typeof gtag === 'function') {
+        const consent = {
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
+          'analytics_storage': 'denied'
+        }
+        Object.keys(alpine.cache).forEach((item) => {
+          const key = item.match(/[A-Z].*$/)
+          if(key) {
+            consent[key[0].toLowerCase() + '_storage'] = alpine.cache[item] ? 'granted' : 'denied'
+          }
+        })
+        gtag('consent', 'update', consent)
+      }
     },
     bindCokiban: {
       'data-x-bind:class' () {

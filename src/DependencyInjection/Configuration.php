@@ -32,6 +32,7 @@ class Configuration implements ConfigurationInterface
               ->scalarNode('id')->end()
               ->integerNode('version')->end()
               ->integerNode('days')->end()
+              ->booleanNode('google_consent_mode')->defaultFalse()->end()
               ->arrayNode('groups')
                 ->arrayPrototype()
                   ->arrayPrototype()

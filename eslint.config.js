@@ -1,5 +1,5 @@
 import globals from 'globals'
-import pluginJs from '@eslint/js'
+import js from '@eslint/js'
 
 export default [
   {
@@ -16,5 +16,5 @@ export default [
       'quotes': ['error', 'single'],
     },
   },
-  pluginJs.configs.recommended,
+  js.configs.recommended,
 ]

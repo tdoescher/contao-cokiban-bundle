@@ -41,6 +41,7 @@ class ParseFrontendTemplateListener
       $objTemplate->version = $GLOBALS['TL_COKIBAN']['version'];
       $objTemplate->days = $GLOBALS['TL_COKIBAN']['days'];
       $objTemplate->active = $GLOBALS['TL_COKIBAN']['active'];
+      $objTemplate->googleConsentMode = $GLOBALS['TL_COKIBAN']['google_consent_mode'];
       $objTemplate->groups = $GLOBALS['TL_COKIBAN']['groups'];
       $objTemplate->cookies = $GLOBALS['TL_COKIBAN']['cookies'];
       $objTemplate->translation = $GLOBALS['TL_LANG']['cokiban'];
@@ -51,6 +52,7 @@ class ParseFrontendTemplateListener
         'version' => $objTemplate->version,
         'days' => $objTemplate->days,
         'active' => $objTemplate->active,
+        'googleConsentMode' => $objTemplate->googleConsentMode,
         'cookies' => $objTemplate->cookies
       ];
 
