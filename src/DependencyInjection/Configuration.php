@@ -26,6 +26,7 @@ class Configuration implements ConfigurationInterface
       ->getRootNode()
       ->children()
         ->scalarNode('disable_token')->end()
+        ->scalarNode('hide_token')->end()
         ->arrayNode('banners')
           ->arrayPrototype()
             ->children()

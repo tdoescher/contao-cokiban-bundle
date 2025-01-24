@@ -31,35 +31,7 @@ __DOCUMENTROOT__/web/bundles/cokiban/cokiban.js
 __DOCUMENTROOT__/web/bundles/cokiban/cokiban.scss
 ```
 
-Für das **ce\_cokiban\_replacement.html** Template verwende ich diesen CSS-Code:
-
-```
-.ce_cokiban_replacement .replacement {
-  align-items: center;
-  background-color: #000;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.ce_cokiban_replacement .replacement .background_container {
-  background-size: cover;
-  inset: -1%;
-  opacity: 0.5;
-  pointer-events: none;
-  position: absolute;
-  user-select: none;
-}
-.ce_cokiban_replacement .replacement .text_container {
-  color: #fff;
-  max-width: 600px;
-  padding: 1em;
-  position: relative;
-  text-align: center;
-}
-```
-
-bzw. diesen für die **content\_element/cokiban\_replacement.html.twig** Twig-Version:
+Für das **content\_element/cokiban\_replacement.html.twig** Template verwende ich diesen CSS-Code:
 
 ```
 .content-cokiban-replacement__replacement {
@@ -93,6 +65,7 @@ Die Konfiguration wird der **config.yml** hinzugefügt. Tipp: Der übersichtshal
 ```
 cokiban:
   disable_token: 'custom-token'  ##### Optional - Funktion zum deaktiviren des Plugins mittels GET-Parameter(https://website.com/?custom-token)
+  hide_token: 'custom-token'     ##### Optional - Funktion zum ausblenden des Cokiban mittels GET-Parameter(https://website.com/?custom-token)
   banners:
     alias:                       ##### Alias oder ID des Startpunktes für diese Konfiguration, alternativ kann mal "global" angeben für einen globalen Banner
       id: 'main'                 ##### Optional - Manuel setzen einer id für das Cookiebanner, ohne angabe wird die RootPageId verwendent
@@ -157,13 +130,12 @@ cokiban:
                 content_element/googlemaps_embed:
                     button: '{{cokiban::button}}'
                     text: 'Um diesen Ihnalt zu sehen akzeptieren Sie bitte den Cookie für GoogleMaps.'
-                    background: 'files/map.jpg'                                 ##### UUID oder Pfad einer Bild-Datei
-                    tempalte: 'content-cokiban-replacement'                     ##### Optional - Angabe des zu verwendenden Templates, ohne Angabe "ce_cokiban_replacement" verwendet
+                    background: 'files/map.webp'                                 ##### UUID oder Pfad einer Bild-Datei
                 content_element/youtube:
                     button: '{{cokiban::button}}'
                     text: 'Um diesen Ihnalt zu sehen akzeptieren Sie bitte den Cookie für YouTube.'
                     background: 'f74e15a7-7ec3-13eb-8a1d-ef99f142b2bc'          ##### UUID oder Pfad einer Bild-Datei
-                    tempalte: 'ce_cokiban_replacement'                          ##### Optional - Angabe des zu verwendenden Templates, ohne Angabe "ce_cokiban_replacement" verwendet
+                    tempalte: 'content_element/cokiban_replacement_youtube'                          ##### Optional - Angabe des zu verwendenden Templates, ohne Angabe "content_element/cokiban_replacement" verwendet
 
 ```
 

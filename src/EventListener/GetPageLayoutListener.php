@@ -67,7 +67,7 @@ class GetPageLayoutListener
       }
     }
 
-    if(in_array($pageModel->id, $GLOBALS['TL_COKIBAN']['pages']) || in_array($pageModel->alias, $GLOBALS['TL_COKIBAN']['pages']))
+    if(in_array($pageModel->id, $GLOBALS['TL_COKIBAN']['pages']) || in_array($pageModel->alias, $GLOBALS['TL_COKIBAN']['pages']) || (isset($config['hide_token']) && isset($_GET[$config['hide_token']])))
     {
       $GLOBALS['TL_COKIBAN']['active'] = false;
     }
