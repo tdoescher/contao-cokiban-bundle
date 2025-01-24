@@ -32,7 +32,7 @@ $cokibanIconColor: hsl(32, 42%, 50%);
   --cokiban-icon-color: #{$cokibanIconColor};
 }
 
-#cokiban { position: fixed; inset: 0; z-index: 999999; color: var(--cokiban-font); font-family: var(--cokiban-font-family); font-size: 16px; background: rgba(#000, 0.5); opacity: 0; pointer-events: none; user-select: none; transition: all ease 200ms;
+#cokiban { position: fixed; inset: 0; z-index: 999999; color: var(--cokiban-font); font-family: var(--cokiban-font-family); font-size: 16px; font-weight: 400; letter-spacing: initial; background: rgba(#000, 0.5); opacity: 0; pointer-events: none; user-select: none; transition: all ease 200ms;
   p { margin: 0; }
   a { color: var(--cokiban-font); font-family: inherit; font-weight: 400; font-style: normal; text-decoration: underline;
     &:focus,
