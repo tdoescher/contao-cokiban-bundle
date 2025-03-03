@@ -15,99 +15,99 @@ $cokibanButtonAcceptFont: hsl(0, 0%, 100%);
 $cokibanIconColor: hsl(32, 42%, 50%);
 
 :root {
-  --cokiban-max-width: #{$cokibanMaxWidth};
-  --cokiban-background: #{$cokibanBackground};
-  --cokiban-border: #{$cokibanBorder};
-  --cokiban-border-radius: #{$cokibanBorderRadius};
-  --cokiban-cookie: #{$cokibanCookie};
-  --cokiban-font: #{$cokibanFont};
-  --cokiban-font-hover: #{$cokibanFontHover};
-  --cokiban-font-family: #{$cokibanFontFamily};
-  --cokiban-button: #{$cokibanButton};
-  --cokiban-button-hover: #{$cokibanButtonHover};
-  --cokiban-button-font: #{$cokibanButtonFont};
-  --cokiban-button-accept: #{$cokibanButtonAccept};
-  --cokiban-button-accept-hover: #{$cokibanButtonAcceptHover};
-  --cokiban-button-accept-font: #{$cokibanButtonAcceptFont};
-  --cokiban-icon-color: #{$cokibanIconColor};
+    --cokiban-max-width: #{$cokibanMaxWidth};
+    --cokiban-background: #{$cokibanBackground};
+    --cokiban-border: #{$cokibanBorder};
+    --cokiban-border-radius: #{$cokibanBorderRadius};
+    --cokiban-cookie: #{$cokibanCookie};
+    --cokiban-font: #{$cokibanFont};
+    --cokiban-font-hover: #{$cokibanFontHover};
+    --cokiban-font-family: #{$cokibanFontFamily};
+    --cokiban-button: #{$cokibanButton};
+    --cokiban-button-hover: #{$cokibanButtonHover};
+    --cokiban-button-font: #{$cokibanButtonFont};
+    --cokiban-button-accept: #{$cokibanButtonAccept};
+    --cokiban-button-accept-hover: #{$cokibanButtonAcceptHover};
+    --cokiban-button-accept-font: #{$cokibanButtonAcceptFont};
+    --cokiban-icon-color: #{$cokibanIconColor};
 }
 
 #cokiban { position: fixed; inset: 0; z-index: 999999; color: var(--cokiban-font); font-family: var(--cokiban-font-family); font-size: 16px; font-weight: 400; letter-spacing: initial; background: rgba(#000, 0.5); opacity: 0; pointer-events: none; user-select: none; transition: all ease 200ms;
-  p { margin: 0; }
-  a { color: var(--cokiban-font); font-family: inherit; font-weight: 400; font-style: normal; text-decoration: underline;
-    &:focus,
-    &:hover { color: var(--cokiban-font-hover); text-decoration: none; }
-  }
-  .cokiban__invisible { display: none; }
-  .cokiban__container { position: relative; max-width: var(--cokiban-max-width); margin: 0 auto; background: var(--cokiban-background); padding: 1em; border-radius: var(--cokiban-border-radius); box-shadow: 0 0 0.75em rgba(#000, 0.25); }
-  .cokiban__banner { position: fixed; left: 0; bottom: 0; right: 0; overflow: scroll; max-height: 100%; padding: var(--cokiban-border-radius); box-sizing: border-box; opacity: 0; pointer-events: none; user-select: none; transform: scale(0.9) translateY(1em); transform-origin: bottom; transition: all ease 300ms;
-  }
-  .cokiban__header { display: flex; align-items: center;
-    &__icon { margin-inline-end: 0.75em; fill: var(--cokiban-icon-color); }
-    &__title { font-size: 1.4em; font-weight: 600; text-transform: uppercase; }
-    &__back { margin: 0 0 0 auto !important; }
-  }
-  .cokiban__body { margin-block: 0.75em;
-    &__title { margin-block-end: 0.5em; }
-    &__text { margin-block-end: 1em; }
-  }
-  .cokiban__checkboxes { display: flex; flex-wrap: wrap; }
-  .cokiban__checkbox {
-    input { position: absolute; display: block; opacity: 0; }
-    label { display: flex; align-items: center; padding: 0.25em 0; cursor: pointer;
-      &::before { content: ''; display: block; height: 1.2em; width: 1.2em; margin-right: 0.25em; background: var(--cokiban-font); border-radius: calc(var(--cokiban-border-radius) * 0.35); }
+    p { margin: 0; }
+    a { color: var(--cokiban-font); font-family: inherit; font-weight: 400; font-style: normal; text-decoration: underline;
+        &:focus,
+        &:hover { color: var(--cokiban-font-hover); text-decoration: none; }
     }
-    input:checked + label {
-      &::before { background-size: 0.9em; background-position: center center; background-repeat: no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23e9e9e9' d='m31.3 7.19-2.78-2.78a1.89 1.89 0 0 0 -1.4-.58 1.87 1.87 0 0 0 -1.39.58l-13.44 13.45-6-6a1.9 1.9 0 0 0 -1.39-.57 1.92 1.92 0 0 0 -1.4.57l-2.8 2.75a2 2 0 0 0 0 2.78l7.41 7.42 2.79 2.78a1.87 1.87 0 0 0 1.39.58 1.89 1.89 0 0 0 1.4-.58l2.78-2.78 14.83-14.81a1.91 1.91 0 0 0 .57-1.4 1.86 1.86 0 0 0 -.57-1.41z'/%3E%3C/svg%3E"); }
+    .cokiban__invisible { display: none; }
+    .cokiban__container { position: relative; max-width: var(--cokiban-max-width); margin: 0 auto; background: var(--cokiban-background); padding: 1em; border-radius: var(--cokiban-border-radius); box-shadow: 0 0 0.75em rgba(#000, 0.25); }
+    .cokiban__banner { position: fixed; left: 0; bottom: 0; right: 0; overflow: scroll; max-height: 100%; padding: var(--cokiban-border-radius); box-sizing: border-box; opacity: 0; pointer-events: none; user-select: none; transform: scale(0.9) translateY(1em); transform-origin: bottom; transition: all ease 300ms;
     }
-    &--checked {
-      label { cursor: not-allowed;
-        &::before { opacity: 0.5; }
-      }
+    .cokiban__header { display: flex; align-items: center;
+        &__icon { margin-inline-end: 0.75em; fill: var(--cokiban-icon-color); }
+        &__title { font-size: 1.4em; font-weight: 600; text-transform: uppercase; }
+        &__back { margin: 0 0 0 auto !important; }
     }
-    &:not(:last-child) { margin-inline-end: 0.75em; }
-  }
-  .cokiban__group { position: relative;
-    &__title { margin-block-end: 0.5em; }
-    &__text { margin-block-end: 0.75em; }
-    & + .cokiban__group { padding-block-start: 0.75em; border-top: 1px solid var(--cokiban-border); }
-  }
-  .cokiban__switch { position: absolute; top: 0.75em; right: 0.5em;
-    input { position: absolute; display: block; opacity: 0; }
-    label { display: flex; align-items: center; cursor: pointer;
-      span { padding-right: 0.5em; color: var(--cokiban-font); font-size: 0.875em; }
-      &::after { content: ''; display: block; height: 18px; width: 32px; background-color: var(--cokiban-border); background-repeat: no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Ccircle fill='%23fff' cx='9' cy='9' r='7'/%3E%3C/svg%3E"); border-radius: 9px; transition: all ease 200ms; }
+    .cokiban__body { margin-block: 0.75em;
+        &__title { margin-block-end: 0.5em; }
+        &__text { margin-block-end: 1em; }
     }
-    input:checked + label {
-      &::after { background-color: var(--cokiban-button-accept); background-position: right top; }
+    .cokiban__checkboxes { display: flex; flex-wrap: wrap; }
+    .cokiban__checkbox {
+        input { position: absolute; display: block; opacity: 0; }
+        label { display: flex; align-items: center; padding: 0.25em 0; cursor: pointer;
+            &::before { content: ''; display: block; height: 1.2em; width: 1.2em; margin-right: 0.25em; background: var(--cokiban-font); border-radius: calc(var(--cokiban-border-radius) * 0.35); }
+        }
+        input:checked + label {
+            &::before { background-size: 0.9em; background-position: center center; background-repeat: no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23e9e9e9' d='m31.3 7.19-2.78-2.78a1.89 1.89 0 0 0 -1.4-.58 1.87 1.87 0 0 0 -1.39.58l-13.44 13.45-6-6a1.9 1.9 0 0 0 -1.39-.57 1.92 1.92 0 0 0 -1.4.57l-2.8 2.75a2 2 0 0 0 0 2.78l7.41 7.42 2.79 2.78a1.87 1.87 0 0 0 1.39.58 1.89 1.89 0 0 0 1.4-.58l2.78-2.78 14.83-14.81a1.91 1.91 0 0 0 .57-1.4 1.86 1.86 0 0 0 -.57-1.41z'/%3E%3C/svg%3E"); }
+        }
+        &--checked {
+            label { cursor: not-allowed;
+                &::before { opacity: 0.5; }
+            }
+        }
+        &:not(:last-child) { margin-inline-end: 0.75em; }
     }
-  }
-  .cokiban__cookie { position: relative; margin: 0.5em 0; padding: 0.5em; font-size: 0.875em; background: var(--cokiban-cookie); border: 1px solid var(--cokiban-border); border-radius: calc(var(--cokiban-border-radius) * 0.5); }
-  .cokiban__buttons { display: flex; gap: 0.5em;
-    > * { flex: 1; }
-  }
-  .cokiban__button { display: inline-block; padding: 0.75em 0.25em; color: var(--cokiban-button-font); font-family: inherit; font-weight: 400; font-style: normal; text-transform: none; text-decoration: none; cursor: pointer; background: var(--cokiban-button); border: 0; border-radius: calc(var(--cokiban-border-radius) * 0.5); outline: inherit; appearance: none; transition: all ease 200ms;
-    &:focus,
-    &:hover { background: var(--cokiban-button-hover); }
-    &::before,
-    &::after { content: none; }
-    &--link { padding: 0; color: var(--cokiban-font); text-decoration: underline; cursor: pointer; background: transparent; border: 0; appearance: none;
-      &:focus,
-      &:hover { text-decoration: none; background: transparent; border: 0; }
+    .cokiban__group { position: relative;
+        &__title { margin-block-end: 0.5em; }
+        &__text { margin-block-end: 0.75em; }
+        & + .cokiban__group { padding-block-start: 0.75em; border-top: 1px solid var(--cokiban-border); }
     }
-    &--acccept { color: var(--cokiban-button-accept-font); background: var(--cokiban-button-accept);
-      &:focus,
-      &:hover { color: var(--cokiban-button-accept-font); background: var(--cokiban-button-accept-hover); }
+    .cokiban__switch { position: absolute; top: 0.75em; right: 0.5em;
+        input { position: absolute; display: block; opacity: 0; }
+        label { display: flex; align-items: center; cursor: pointer;
+            span { padding-right: 0.5em; color: var(--cokiban-font); font-size: 0.875em; }
+            &::after { content: ''; display: block; height: 18px; width: 32px; background-color: var(--cokiban-border); background-repeat: no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Ccircle fill='%23fff' cx='9' cy='9' r='7'/%3E%3C/svg%3E"); border-radius: 9px; transition: all ease 200ms; }
+        }
+        input:checked + label {
+            &::after { background-color: var(--cokiban-button-accept); background-position: right top; }
+        }
     }
-  }
-  .cokiban__footer { margin-block-start: 0.75em;
-    a,
-    button { font-size: 0.875em;
-      + a,
-      + button { margin-inline-start: 0.5em; }
+    .cokiban__cookie { position: relative; margin: 0.5em 0; padding: 0.5em; font-size: 0.875em; background: var(--cokiban-cookie); border: 1px solid var(--cokiban-border); border-radius: calc(var(--cokiban-border-radius) * 0.5); }
+    .cokiban__buttons { display: flex; gap: 0.5em;
+        > * { flex: 1; }
     }
-  }
-  &.cokiban--show { opacity: 1; pointer-events: auto; -webkit-user-select: auto; -moz-user-select: auto; -ms-user-select: auto; user-select: auto;
-    .cokiban__banner { opacity: 1; pointer-events: auto; -webkit-user-select: auto; -moz-user-select: auto; -ms-user-select: auto; user-select: auto; transform: scale(1) translateY(0); }
-  }
+    .cokiban__button { display: inline-block; padding: 0.75em 0.25em; color: var(--cokiban-button-font); font-family: inherit; font-weight: 400; font-style: normal; text-transform: none; text-decoration: none; cursor: pointer; background: var(--cokiban-button); border: 0; border-radius: calc(var(--cokiban-border-radius) * 0.5); outline: inherit; appearance: none; transition: all ease 200ms;
+        &:focus,
+        &:hover { background: var(--cokiban-button-hover); }
+        &::before,
+        &::after { content: none; }
+        &--link { padding: 0; color: var(--cokiban-font); text-decoration: underline; cursor: pointer; background: transparent; border: 0; appearance: none;
+            &:focus,
+            &:hover { text-decoration: none; background: transparent; border: 0; }
+        }
+        &--acccept { color: var(--cokiban-button-accept-font); background: var(--cokiban-button-accept);
+            &:focus,
+            &:hover { color: var(--cokiban-button-accept-font); background: var(--cokiban-button-accept-hover); }
+        }
+    }
+    .cokiban__footer { margin-block-start: 0.75em;
+        a,
+        button { font-size: 0.875em;
+            + a,
+            + button { margin-inline-start: 0.5em; }
+        }
+    }
+    &.cokiban--show { opacity: 1; pointer-events: auto; -webkit-user-select: auto; -moz-user-select: auto; -ms-user-select: auto; user-select: auto;
+        .cokiban__banner { opacity: 1; pointer-events: auto; -webkit-user-select: auto; -moz-user-select: auto; -ms-user-select: auto; user-select: auto; transform: scale(1) translateY(0); }
+    }
 }

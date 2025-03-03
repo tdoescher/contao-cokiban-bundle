@@ -1,5 +1,5 @@
-import globals from 'globals'
-import js from '@eslint/js'
+import globals from 'globals';
+import js from '@eslint/js';
 
 export default [
   {
@@ -10,11 +10,11 @@ export default [
     rules: {
       'comma-dangle': ['error', 'always-multiline'],
       'arrow-parens': ['error'],
-      'indent': ['error', 2, { 'SwitchCase': 1 }],
+      'indent': ['error', 4, { 'SwitchCase': 1 }],
       'prefer-arrow-callback': ['error'],
-      'semi': ['error', 'never'],
+      'semi': ['error', 'always'],
       'quotes': ['error', 'single'],
     },
   },
   js.configs.recommended,
-]
+];
