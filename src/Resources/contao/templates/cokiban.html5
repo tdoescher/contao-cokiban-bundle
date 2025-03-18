@@ -17,8 +17,8 @@
           <div class="cokiban__checkboxes">
             <div class="cokiban__checkbox cokiban__checkbox--checked">
               <input type="checkbox" name="cokibanCookieMandatory" id="cokibanCookieMandatory" checked disabled>
-              <label for="cokibanCookieMandatory"><?php echo $this->translation['groups']['mandotory']['headline']; ?></label>
-            </div>
+              <label for="cokibanCookieMandatory"><?php echo $this->translation['groups']['mandatory']['headline']; ?></label>
+            </div>w
             <?php if(count($this->groups)): ?>
               <?php foreach($this->groups as $groupKey => $group): ?>
                 <div class="cokiban__checkbox">
@@ -33,8 +33,8 @@
       <template data-x-if="details">
         <div class="cokiban__body">
           <div class="cokiban__group">
-            <p class="cokiban__group__title"><strong><?php echo $this->translation['groups']['mandotory']['headline']; ?></strong></p>
-            <p class="cokiban__group__text"><?php echo $this->translation['groups']['mandotory']['text']; ?></p>
+            <p class="cokiban__group__title"><strong><?php echo $this->translation['groups']['mandatory']['headline']; ?></strong></p>
+            <p class="cokiban__group__text"><?php echo $this->translation['groups']['mandatory']['text']; ?></p>
           </div>
           <?php if(count($this->groups)): ?>
             <?php foreach($this->groups as $groupKey => $group): ?>

@@ -107,7 +107,7 @@ cokiban:
                 text: 'Zeige Cookiebanner!'
                 title: 'Cookiebanner öffnen'
             groups:                ##### Übersetzungen der Gruppen
-                mandotory:
+                mandatory:
                     headline: 'Notwendige Cookies'
                     text: 'Diese Cookies ermöglichen grundlegende Funktionen und sind für die einwandfreie Funktion der Website erforderlich.'
                 tracking:
