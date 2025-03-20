@@ -14,7 +14,7 @@
   "require": {
     "php": ">=8.0",
     "contao/core-bundle": "^4.13 || ^5.0",
-    "tdoescher/alpinejs-bundle": "^1"
+    "tdoescher/alpinejs-bundle": "^2"
   },
   "extra": {
     "contao-manager-plugin": "tdoescher\\CokibanBundle\\ContaoManager\\Plugin"
