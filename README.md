@@ -20,7 +20,7 @@ Um Templates hinter den Cookie-Banner zu verstecken die das **content\_element/\
 
 ## Scripte & Styles
 
-Cokiban erfordert Alpine.js (<https://alpinejs.dev>). Im Seitenlayout kann Alpine.js mittels des **js_alpine** bei den JavaScript-Templates aktiviert werden. Außerdem muss das JavaScript-Template **js_cokiban** aktiviert werden, dieses importiert das JavaScript und die Stylesheets für das Banner.
+Cokiban erfordert Alpine.js (<https://alpinejs.dev>). Um dies zu integrieren, kann man zum Beispiel das Bundle <http://github.com/tdoescher/contao-alpine-bundle> verwenden. Außerdem muss das JavaScript-Template **js_cokiban** aktiviert werden, dieses importiert das JavaScript und die Stylesheets für das Banner.
 
 Nutzt man gulp oder webpack können die Dateien über diese Pfade inkludiert werden:
 
