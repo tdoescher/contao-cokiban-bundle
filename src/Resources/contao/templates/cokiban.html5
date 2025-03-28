@@ -18,7 +18,7 @@
             <div class="cokiban__checkbox cokiban__checkbox--checked">
               <input type="checkbox" name="cokibanCookieMandatory" id="cokibanCookieMandatory" checked disabled>
               <label for="cokibanCookieMandatory"><?php echo $this->translation['groups']['mandatory']['headline']; ?></label>
-            </div>w
+            </div>
             <?php if(count($this->groups)): ?>
               <?php foreach($this->groups as $groupKey => $group): ?>
                 <div class="cokiban__checkbox">
