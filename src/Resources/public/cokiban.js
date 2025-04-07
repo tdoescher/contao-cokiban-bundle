@@ -122,7 +122,7 @@ document.addEventListener('alpine:init', () => {
                         consent[key[0].toLowerCase() + '_storage'] = alpine.cache[item] ? 'granted' : 'denied';
                     }
                 });
-                gtag('consent', 'update', consent);
+                setTimeout(() => gtag('consent', 'update', consent), '50');
             }
         },
         bindCokiban: {
