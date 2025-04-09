@@ -31,7 +31,10 @@ document.addEventListener('alpine:init', () => {
             alpine.valid = Object.assign({}, alpine.cache);
             alpine.pages = config.pages;
             alpine.loadConfig();
-            if (alpine.active === true || alpine.date === null || (alpine.days && (alpine.date + alpine.days * 86400000) < new Date().getTime())) {
+            if (alpine.active === false) {
+                return;
+            }
+            if (alpine.date === null || (alpine.days && (alpine.date + alpine.days * 86400000) < new Date().getTime())) {
                 alpine.openBanner();
             }
         },
@@ -52,8 +55,7 @@ document.addEventListener('alpine:init', () => {
                 });
                 alpine.valid = Object.assign({}, alpine.cache);
             }
-            alpine.initGoogleConsentMode();
-            alpine.updateGoogleConsentMode();
+            alpine.updateGoogleConsentMode(true);
         },
         saveConfig() {
             const alpine = this;
@@ -103,43 +105,41 @@ document.addEventListener('alpine:init', () => {
         closeBanner() {
             this.show = false;
         },
-        initGoogleConsentMode() {
+        updateGoogleConsentMode(init = false) {
             const alpine = this;
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { window.dataLayer.push(arguments); }
             if (alpine.googleConsentMode) {
-                console.log('initGoogleConsentMode');
-                const consent = {};
-                Object.keys(alpine.cache).forEach((item) => {
-                    const key = item.match(/[A-Z].*$/);
-                    if (key) {
-                        consent[key[0].toLowerCase() + '_storage'] = 'denied';
-                    }
-                });
-                window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push('consent', 'default', consent);
-            }
-        },
-        updateGoogleConsentMode() {
-            const alpine = this;
-            if (alpine.googleConsentMode) {
-                console.log('updateGoogleConsentMode');
-                const consent = {
+                if (init) {
+                    const consentDefault = {};
+                    Object.keys(alpine.cache).forEach((item) => {
+                        const key = item.match(/[A-Z].*$/);
+                        if (key) {
+                            consentDefault[key[0].toLowerCase() + '_storage'] = 'denied';
+                        }
+                    });
+                    gtag('consent', 'default', consentDefault);
+                }
+                const consentUpdate = {
                     'ad_storage': 'denied',
                     'ad_user_data': 'denied',
                     'ad_personalization': 'denied',
                     'analytics_storage': 'denied',
                 };
                 Object.keys(alpine.cache).forEach((item) => {
-                    if (item === 'marketing' && alpine.cache[item]) {
-                        consent['ad_storage'] = 'granted';
-                        consent['ad_user_data'] = 'granted';
-                        consent['ad_personalization'] = 'granted';
+                    if (item === 'marketing' && alpine.cache['marketing']) {
+                        consentUpdate['ad_storage'] = 'granted';
+                        consentUpdate['ad_user_data'] = 'granted';
+                        consentUpdate['ad_personalization'] = 'granted';
                     }
                     const key = item.match(/[A-Z].*$/);
                     if (key) {
-                        consent[key[0].toLowerCase() + '_storage'] = alpine.cache[item] ? 'granted' : 'denied';
+                        consentUpdate[key[0].toLowerCase() + '_storage'] = alpine.cache[item] ? 'granted' : 'denied';
                     }
                 });
-                window.dataLayer.push('consent', 'update', consent);
+                setTimeout(() => {
+                    gtag('consent', 'update', consentUpdate);
+                }, 50);
             }
         },
         bindCokiban: {
