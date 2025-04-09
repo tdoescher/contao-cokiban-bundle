@@ -15,7 +15,7 @@ document.addEventListener('alpine:init', () => {
         details: false,
         cache: {},
         valid: {},
-        initialize (config) {
+        initialize(config) {
             const alpine = this;
             alpine.id = config.id;
             alpine.name = config.name;
@@ -31,14 +31,11 @@ document.addEventListener('alpine:init', () => {
             alpine.valid = Object.assign({}, alpine.cache);
             alpine.pages = config.pages;
             alpine.loadConfig();
-            if (alpine.active === false) {
-                return;
-            }
-            if (alpine.date === null || (alpine.days && (alpine.date + alpine.days * 86400000) < new Date().getTime())) {
+            if (alpine.active === true || alpine.date === null || (alpine.days && (alpine.date + alpine.days * 86400000) < new Date().getTime())) {
                 alpine.openBanner();
             }
         },
-        loadConfig () {
+        loadConfig() {
             const alpine = this;
             let storage = localStorage.getItem(alpine.name);
             try {
@@ -55,9 +52,10 @@ document.addEventListener('alpine:init', () => {
                 });
                 alpine.valid = Object.assign({}, alpine.cache);
             }
+            alpine.initGoogleConsentMode();
             alpine.updateGoogleConsentMode();
         },
-        saveConfig () {
+        saveConfig() {
             const alpine = this;
             alpine.valid = Object.assign({}, alpine.cache);
             localStorage.setItem(alpine.name, JSON.stringify({
@@ -69,7 +67,7 @@ document.addEventListener('alpine:init', () => {
             alpine.closeBanner();
             alpine.updateGoogleConsentMode();
         },
-        acceptAll () {
+        acceptAll() {
             const alpine = this;
             Object.keys(alpine.cache).forEach((item) => {
                 alpine.cache[item] = true;
@@ -77,13 +75,13 @@ document.addEventListener('alpine:init', () => {
             clearInterval(this.counter);
             alpine.saveConfig();
         },
-        showDetails () {
+        showDetails() {
             this.details = !this.details;
         },
-        saveSettings () {
+        saveSettings() {
             this.saveConfig();
         },
-        switchCookie (cookie) {
+        switchCookie(cookie) {
             const alpine = this;
             const group = cookie.split(/[A-Z]/)[0];
             let groupActive = true;
@@ -98,18 +96,32 @@ document.addEventListener('alpine:init', () => {
             });
             alpine.cache[group] = groupActive;
         },
-        openBanner () {
+        openBanner() {
             this.details = false;
             this.show = true;
         },
-        closeBanner () {
+        closeBanner() {
             this.show = false;
         },
-        updateGoogleConsentMode () {
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { window.dataLayer.push(arguments); }
+        initGoogleConsentMode() {
             const alpine = this;
-            if (alpine.googleConsentMode && typeof gtag === 'function') {
+            if (alpine.googleConsentMode) {
+                console.log('initGoogleConsentMode');
+                const consent = {};
+                Object.keys(alpine.cache).forEach((item) => {
+                    const key = item.match(/[A-Z].*$/);
+                    if (key) {
+                        consent[key[0].toLowerCase() + '_storage'] = 'denied';
+                    }
+                });
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push('consent', 'default', consent);
+            }
+        },
+        updateGoogleConsentMode() {
+            const alpine = this;
+            if (alpine.googleConsentMode) {
+                console.log('updateGoogleConsentMode');
                 const consent = {
                     'ad_storage': 'denied',
                     'ad_user_data': 'denied',
@@ -117,41 +129,46 @@ document.addEventListener('alpine:init', () => {
                     'analytics_storage': 'denied',
                 };
                 Object.keys(alpine.cache).forEach((item) => {
+                    if (item === 'marketing' && alpine.cache[item]) {
+                        consent['ad_storage'] = 'granted';
+                        consent['ad_user_data'] = 'granted';
+                        consent['ad_personalization'] = 'granted';
+                    }
                     const key = item.match(/[A-Z].*$/);
-                    if(key) {
+                    if (key) {
                         consent[key[0].toLowerCase() + '_storage'] = alpine.cache[item] ? 'granted' : 'denied';
                     }
                 });
-                setTimeout(() => gtag('consent', 'update', consent), '50');
+                window.dataLayer.push('consent', 'update', consent);
             }
         },
         bindCokiban: {
-            'data-x-bind:class' () {
+            'data-x-bind:class'() {
                 return { 'cokiban--show': this.show };
             },
         },
         bindDetails: {
-            'data-x-on:click.prevent' () {
+            'data-x-on:click.prevent'() {
                 this.showDetails();
             },
         },
         bindSwitch: {
-            'data-x-on:change' (event) {
+            'data-x-on:change'(event) {
                 this.switchCookie(event.target.dataset.cookie);
             },
         },
         bindSaveSettings: {
-            'data-x-on:click' () {
+            'data-x-on:click'() {
                 this.saveSettings();
             },
         },
         bindAcceptAll: {
-            'data-x-on:click' () {
+            'data-x-on:click'() {
                 this.acceptAll();
             },
         },
         bindOpenBanner: {
-            'data-x-on:click.prevent' () {
+            'data-x-on:click.prevent'() {
                 this.$store.cokiban.openBanner();
             },
         },
