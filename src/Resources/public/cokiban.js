@@ -9,12 +9,13 @@ document.addEventListener('alpine:init', () => {
         version: null,
         days: null,
         active: true,
-        googleConsentMode: false,
         date: null,
         show: false,
         details: false,
         cache: {},
         valid: {},
+        googleConsentMode: false,
+        googleConsentModeDefault: { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied' },
         initialize(config) {
             const alpine = this;
             alpine.id = config.id;
@@ -24,10 +25,9 @@ document.addEventListener('alpine:init', () => {
             alpine.active = config.active;
             alpine.googleConsentMode = config.googleConsentMode;
             if (Array.isArray(config.cookies)) {
-                config.cookies.forEach((item) => {
-                    alpine.cache[item] = false;
-                });
+                config.cookies.forEach((item) => alpine.cache[item] = false);
             }
+            alpine.updateGoogleConsentMode(true);
             alpine.valid = Object.assign({}, alpine.cache);
             alpine.pages = config.pages;
             alpine.loadConfig();
@@ -55,7 +55,7 @@ document.addEventListener('alpine:init', () => {
                 });
                 alpine.valid = Object.assign({}, alpine.cache);
             }
-            alpine.updateGoogleConsentMode(true);
+            setTimeout(() => alpine.updateGoogleConsentMode(), 200);
         },
         saveConfig() {
             const alpine = this;
@@ -108,10 +108,12 @@ document.addEventListener('alpine:init', () => {
         updateGoogleConsentMode(init = false) {
             const alpine = this;
             window.dataLayer = window.dataLayer || [];
-            function gtag() { window.dataLayer.push(arguments); }
+            function gtag() {
+                window.dataLayer.push(arguments);
+            }
             if (alpine.googleConsentMode) {
                 if (init) {
-                    const consentDefault = {};
+                    const consentDefault = { ...alpine.googleConsentModeDefault };
                     Object.keys(alpine.cache).forEach((item) => {
                         const key = item.match(/[A-Z].*$/);
                         if (key) {
@@ -119,27 +121,25 @@ document.addEventListener('alpine:init', () => {
                         }
                     });
                     gtag('consent', 'default', consentDefault);
-                }
-                const consentUpdate = {
-                    'ad_storage': 'denied',
-                    'ad_user_data': 'denied',
-                    'ad_personalization': 'denied',
-                    'analytics_storage': 'denied',
-                };
-                Object.keys(alpine.cache).forEach((item) => {
-                    if (item === 'marketing' && alpine.cache['marketing']) {
-                        consentUpdate['ad_storage'] = 'granted';
-                        consentUpdate['ad_user_data'] = 'granted';
-                        consentUpdate['ad_personalization'] = 'granted';
-                    }
-                    const key = item.match(/[A-Z].*$/);
-                    if (key) {
-                        consentUpdate[key[0].toLowerCase() + '_storage'] = alpine.cache[item] ? 'granted' : 'denied';
-                    }
-                });
-                setTimeout(() => {
+                } else {
+                    const consentUpdate = { ...alpine.googleConsentModeDefault };
+                    Object.keys(alpine.cache).forEach((item) => {
+                        if (item === 'marketing' && alpine.cache['marketing']) {
+                            consentUpdate['ad_storage'] = 'granted';
+                            consentUpdate['ad_user_data'] = 'granted';
+                            consentUpdate['ad_personalization'] = 'granted';
+                        }
+                        if (item === 'trackingAnalytics' && alpine.cache['trackingAnalytics']) {
+                            consentUpdate['analytics_storage'] = 'granted';
+                        }
+                        const key = item.match(/[A-Z].*$/);
+                        if (key) {
+                            consentUpdate[key[0].toLowerCase() + '_storage'] = alpine.cache[item] ? 'granted' : 'denied';
+                        }
+                    });
                     gtag('consent', 'update', consentUpdate);
-                }, 50);
+                    gtag({'event': 'cookie_consent_update'});
+                }
             }
         },
         bindCokiban: {
