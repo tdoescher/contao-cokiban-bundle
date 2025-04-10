@@ -15,7 +15,12 @@ document.addEventListener('alpine:init', () => {
         cache: {},
         valid: {},
         googleConsentMode: false,
-        googleConsentModeDefault: { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied' },
+        googleConsentModeDefault: {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+        },
         initialize(config) {
             const alpine = this;
             alpine.id = config.id;
@@ -108,9 +113,11 @@ document.addEventListener('alpine:init', () => {
         updateGoogleConsentMode(init = false) {
             const alpine = this;
             window.dataLayer = window.dataLayer || [];
+
             function gtag() {
                 window.dataLayer.push(arguments);
             }
+
             if (alpine.googleConsentMode) {
                 if (init) {
                     const consentDefault = { ...alpine.googleConsentModeDefault };
@@ -138,7 +145,7 @@ document.addEventListener('alpine:init', () => {
                         }
                     });
                     gtag('consent', 'update', consentUpdate);
-                    gtag({'event': 'cookie_consent_update'});
+                    gtag({ event: 'cookie_consent_update' });
                 }
             }
         },
