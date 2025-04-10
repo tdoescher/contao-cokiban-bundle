@@ -145,7 +145,7 @@ document.addEventListener('alpine:init', () => {
                         }
                     });
                     gtag('consent', 'update', consentUpdate);
-                    gtag({ event: 'cookie_consent_update' });
+                    gtag('event', 'cookie_consent_update');
                 }
             }
         },
