@@ -3,4 +3,4 @@ services:
     autoconfigure: true
 
   tdoescher\CokibanBundle\Twig\AppExtension:
-    tags: [twig.extension]
+    tags: [ twig.extension ]
