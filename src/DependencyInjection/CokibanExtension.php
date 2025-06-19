@@ -18,13 +18,13 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use tdoescher\CokibanBundle\DependencyInjection\Configuration;
 
 class CokibanExtension extends Extension
-{ 
-  public function load(array $mergedConfig, ContainerBuilder $container)
-  {
-    $loader = new YamlFileLoader($container, new FileLocator( __DIR__ . '/../Resources/config'));
-    $loader->load('listener.yaml');
+{
+    public function load(array $mergedConfig, ContainerBuilder $container)
+    {
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader->load('listener.yaml');
 
-    $config = $this->processConfiguration(new Configuration(), $mergedConfig);
-    $container->setParameter('cokiban', $config);
-  }
+        $config = $this->processConfiguration(new Configuration(), $mergedConfig);
+        $container->setParameter('cokiban', $config);
+    }
 }
