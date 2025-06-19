@@ -81,10 +81,12 @@ class ParseFrontendTemplateListener
 
                         if ($background !== null) {
                             $objTemplate->replacementBackground = $background->path;
-                        } else {
+                        }
+                        else {
                             $objTemplate->replacementBackground = null;
                         }
-                    } else {
+                    }
+                    else {
                         $objTemplate->replacementBackground = $GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName]['background'];
                     }
                 }

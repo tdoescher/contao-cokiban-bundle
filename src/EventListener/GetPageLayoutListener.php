@@ -39,10 +39,12 @@ class GetPageLayoutListener
         if (isset($config['banners'][$rootPageAlias])) {
             $GLOBALS['TL_COKIBAN'] = $config['banners'][$rootPageAlias];
             $GLOBALS['TL_COKIBAN']['id'] = $GLOBALS['TL_COKIBAN']['id'] ?? $rootPage->id;
-        } else if (isset($config['banners']['global'])) {
+        }
+        else if (isset($config['banners']['global'])) {
             $GLOBALS['TL_COKIBAN'] = $config['banners']['global'];
             $GLOBALS['TL_COKIBAN']['id'] = $GLOBALS['TL_COKIBAN']['id'] ?? 'global';
-        } else {
+        }
+        else {
             return;
         }
 
@@ -64,13 +66,15 @@ class GetPageLayoutListener
 
         if (in_array($pageModel->id, $GLOBALS['TL_COKIBAN']['pages']) || in_array($pageModel->alias, $GLOBALS['TL_COKIBAN']['pages']) || (isset($config['hide_token']) && isset($_GET[$config['hide_token']]))) {
             $GLOBALS['TL_COKIBAN']['active'] = false;
-        } else {
+        }
+        else {
             $GLOBALS['TL_COKIBAN']['active'] = true;
         }
 
         if (isset($config['translations'][$rootPage->language])) {
             $GLOBALS['TL_LANG']['cokiban'] = $config['translations'][$rootPage->language];
-        } else {
+        }
+        else {
             $GLOBALS['TL_LANG']['cokiban'] = reset($config['translations']);
         }
     }
