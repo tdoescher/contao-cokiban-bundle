@@ -100,6 +100,9 @@ cokiban:
           details_link_title: 'Details anzeigen'
           details_back_link_text: 'zurück'
           details_back_link_title: 'zurück zur Übersicht'
+          footer_links:        #### oder footer_text
+            - '{{link::impressum}}'
+            - '{{link::datenschutz}}'
           footer_text: '{{link::datenschutz}} {{link::impressum}}'
           switch_true: 'aktiviert'
           switch_false: 'deaktiviert'

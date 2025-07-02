@@ -72,7 +72,8 @@ class AppExtension extends AbstractExtension
             if (preg_match('/\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b/u', $GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName]['background'])) {
                 $backgroundFile = FilesModel::findById($GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName]['background']);
                 $context['background'] = ($backgroundFile !== null) ? $backgroundFile->path : null;
-            } else {
+            }
+            else {
                 $context['background'] = $GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName]['background'];
             }
         }
