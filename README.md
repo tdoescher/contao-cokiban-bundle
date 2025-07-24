@@ -43,11 +43,13 @@ Für das **content\_element/cokiban\_replacement.html.twig** Template verwende i
 }
 .content-cokiban-replacement__background {
   position: absolute;
-  inset: -1%;
+  inset: 0;
+  height: 100%;
+  width: 100%;
   pointer-events: none;
   user-select: none;
   opacity: 0.5;
-  background-size: cover;
+  object-fit: cover;
 }
 .content-cokiban-replacement__text {
   position: relative;
