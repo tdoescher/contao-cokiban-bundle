@@ -124,7 +124,7 @@ document.addEventListener('alpine:init', () => {
     });
 
     // eslint-disable-next-line no-undef
-    Alpine.data('cokiban-banner', () => ({
+    Alpine.data('cokibanBanner', () => ({
         get store() {
             return Alpine.store('cokiban');
         },
@@ -203,7 +203,7 @@ document.addEventListener('alpine:init', () => {
             },
         },
     }));
-    Alpine.data('cokiban-button', () => ({
+    Alpine.data('cokibanButton', () => ({
         get store() {
             return Alpine.store('cokiban');
         },
@@ -213,7 +213,7 @@ document.addEventListener('alpine:init', () => {
             },
         },
     }));
-    Alpine.data('cokiban-template', () => ({
+    Alpine.data('cokibanTemplate', () => ({
         get store() {
             return Alpine.store('cokiban');
         },
@@ -223,7 +223,7 @@ document.addEventListener('alpine:init', () => {
             },
         },
     }));
-    Alpine.data('cokiban-replacement', () => ({
+    Alpine.data('cokibanReplacement', () => ({
         get store() {
             return Alpine.store('cokiban');
         },

@@ -35,7 +35,7 @@ class AppExtension extends AbstractExtension
             return;
         }
 
-        return '<template data-x-data="cokiban-template" data-x-bind="bind" data-cokiban-cookies="' . implode(',', $GLOBALS['TL_COKIBAN']['templates'][$templateName]) . '">';
+        return '<template data-x-data="cokibanTemplate" data-x-bind="bind" data-cokiban-cookies="' . implode(',', $GLOBALS['TL_COKIBAN']['templates'][$templateName]) . '">';
     }
 
     public function cokibanClose($context)
@@ -80,6 +80,6 @@ class AppExtension extends AbstractExtension
 
         $replacement = $environment->render('@Contao/' . $replacementTemplate . '.html.twig', $context);
 
-        return '<template data-x-data="cokiban-replacement" data-x-bind="bind" data-cokiban-cookies="' . implode(',', $GLOBALS['TL_COKIBAN']['templates'][$templateName]) . '">' . $replacement . '</template>';
+        return '<template data-x-data="cokibanReplacement" data-x-bind="bind" data-cokiban-cookies="' . implode(',', $GLOBALS['TL_COKIBAN']['templates'][$templateName]) . '">' . $replacement . '</template>';
     }
 }

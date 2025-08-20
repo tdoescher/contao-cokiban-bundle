@@ -1,4 +1,4 @@
-<div id="cokiban" data-x-data="cokiban-banner" data-x-bind="bindCokiban" data-cokiban-config="<?php echo $this->config; ?>" data-cokiban-cookies="<?php echo $this->cookies; ?>" data-cokiban-label-switch-true="<?php echo $this->translation['banner']['switch_true']; ?>" data-cokiban-label-switch-false="<?php echo $this->translation['banner']['switch_false']; ?>">
+<div id="cokiban" data-x-data="cokibanBanner" data-x-bind="bindCokiban" data-cokiban-config="<?php echo $this->config; ?>" data-cokiban-cookies="<?php echo $this->cookies; ?>" data-cokiban-label-switch-true="<?php echo $this->translation['banner']['switch_true']; ?>" data-cokiban-label-switch-false="<?php echo $this->translation['banner']['switch_false']; ?>">
     <div class="cokiban__banner">
         <div class="cokiban__container">
             <div class="cokiban__header">

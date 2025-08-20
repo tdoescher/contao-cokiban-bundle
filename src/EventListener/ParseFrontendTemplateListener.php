@@ -48,7 +48,7 @@ class ParseFrontendTemplateListener
         }
 
         if (isset($GLOBALS['TL_COKIBAN']['templates'][$templateName])) {
-            $buffer = '<template data-x-data="cokiban-template" data-x-bind="bind" data-cokiban-cookies="' . implode(',', $GLOBALS['TL_COKIBAN']['templates'][$templateName]) . '">' . $buffer . '</template>';
+            $buffer = '<template data-x-data="cokibanTemplate" data-x-bind="bind" data-cokiban-cookies="' . implode(',', $GLOBALS['TL_COKIBAN']['templates'][$templateName]) . '">' . $buffer . '</template>';
 
             if (isset($GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName])) {
                 $replacementTemplate = 'ce_cokiban_replacement';
@@ -79,7 +79,7 @@ class ParseFrontendTemplateListener
                     }
                 }
 
-                $buffer = '<template data-x-data="cokiban-replacement" data-x-bind="bind" data-cokiban-cookies="' . implode(',', $GLOBALS['TL_COKIBAN']['templates'][$templateName]) . '">' . $objTemplate->parse() . '</template>' . $buffer;
+                $buffer = '<template data-x-data="cokibanReplacement" data-x-bind="bind" data-cokiban-cookies="' . implode(',', $GLOBALS['TL_COKIBAN']['templates'][$templateName]) . '">' . $objTemplate->parse() . '</template>' . $buffer;
             }
 
             return $buffer;
