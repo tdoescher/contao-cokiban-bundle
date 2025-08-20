@@ -35,32 +35,20 @@ class ParseFrontendTemplateListener
             $objTemplate = new FrontendTemplate($cokibanTemplate);
 
             $objTemplate->id = $GLOBALS['TL_COKIBAN']['id'];
-            $objTemplate->name = 'cokiban_store_' . $objTemplate->id;
             $objTemplate->version = $GLOBALS['TL_COKIBAN']['version'];
             $objTemplate->days = $GLOBALS['TL_COKIBAN']['days'];
-            $objTemplate->active = $GLOBALS['TL_COKIBAN']['active'];
-            $objTemplate->googleConsentMode = $GLOBALS['TL_COKIBAN']['google_consent_mode'];
+            $objTemplate->active = $GLOBALS['TL_COKIBAN']['active'] ? '1' : '0';
+            $objTemplate->googleConsentMode = $objTemplate->googleConsentMode ? '1' : '0';
             $objTemplate->groups = $GLOBALS['TL_COKIBAN']['groups'];
-            $objTemplate->cookies = $GLOBALS['TL_COKIBAN']['cookies'];
             $objTemplate->translation = $GLOBALS['TL_LANG']['cokiban'];
-
-            $init = [
-                'id' => $objTemplate->id,
-                'name' => $objTemplate->name,
-                'version' => $objTemplate->version,
-                'days' => $objTemplate->days,
-                'active' => $objTemplate->active,
-                'googleConsentMode' => $objTemplate->googleConsentMode,
-                'cookies' => $objTemplate->cookies
-            ];
-
-            $objTemplate->init = str_replace('"', '\'', json_encode($init));
+            $objTemplate->config = $objTemplate->id.','.$objTemplate->version.','.$objTemplate->days.','.$objTemplate->active.','.$objTemplate->googleConsentMode;
+            $objTemplate->cookies = implode(',', $GLOBALS['TL_COKIBAN']['cookies']);
 
             return preg_replace("/<body([^>]*)>/is", '<body$1>' . $objTemplate->parse(), $buffer);
         }
 
         if (isset($GLOBALS['TL_COKIBAN']['templates'][$templateName])) {
-            $buffer = '<template data-x-data data-x-if="$store.cokiban.valid.' . implode(' || $store.cokiban.valid.', $GLOBALS['TL_COKIBAN']['templates'][$templateName]) . '">' . $buffer . '</template>';
+            $buffer = '<template data-x-data="cokiban-template" data-x-bind="bind" data-cokban-cookies="' . implode(',', $GLOBALS['TL_COKIBAN']['templates'][$templateName]) . '">' . $buffer . '</template>';
 
             if (isset($GLOBALS['TL_LANG']['cokiban']['replacements'][$templateName])) {
                 $replacementTemplate = 'ce_cokiban_replacement';
@@ -91,7 +79,7 @@ class ParseFrontendTemplateListener
                     }
                 }
 
-                $buffer = '<template data-x-data data-x-if="!($store.cokiban.valid.' . implode(' && $store.cokiban.valid.', $GLOBALS['TL_COKIBAN']['templates'][$templateName]) . ')">' . $objTemplate->parse() . '</template>' . $buffer;
+                $buffer = '<template data-x-data="cokiban-replacement" data-x-bind="bind" data-cokban-cookies="' . implode(',', $GLOBALS['TL_COKIBAN']['templates'][$templateName]) . '">' . $objTemplate->parse() . '</template>' . $buffer;
             }
 
             return $buffer;

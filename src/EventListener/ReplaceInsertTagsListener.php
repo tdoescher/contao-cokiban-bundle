@@ -35,11 +35,11 @@ class ReplaceInsertTagsListener
         $class = $value ? 'class="' . $value . '" ' : null;
 
         if ($insertTag === 'cokiban') {
-            return '<a href="#" ' . $class . 'titel="' . $title . '" data-x-data data-x-bind="$store.cokiban.bindOpenBanner">' . $text . '</a>';
+            return '<a href="#" ' . $class . 'titel="' . $title . '" data-x-data="cokiban-button" data-x-bind="bind">' . $text . '</a>';
         }
 
         if ($insertTag === 'cokiban_open') {
-            return '<a href="#" ' . $class . 'titel="' . $title . '" data-x-data data-x-bind="$store.cokiban.bindOpenBanner">';
+            return '<a href="#" ' . $class . 'titel="' . $title . '" data-x-data="cokiban-button" data-x-bind="bind">';
         }
 
         if ($insertTag === 'cokiban_close') {
