@@ -42,12 +42,12 @@
                                 <p class="cokiban__group__title"><strong><?php echo $this->translation['groups'][$groupKey]['headline']; ?></strong></p>
                                 <p class="cokiban__group__text"><?php echo $this->translation['groups'][$groupKey]['text']; ?></p>
                                 <div class="cokiban__switch">
-                                    <input type="checkbox" name="cokibanSwitch<?php echo ucfirst($groupKey); ?>" id="cokibanSwitch<?php echo ucfirst($groupKey); ?>" data-x-bind="bindSwitch" data-cokiban-cookie="<?php echo $groupKey.ucfirst($cookieKey); ?>">
+                                    <input type="checkbox" name="cokibanSwitch<?php echo ucfirst($groupKey); ?>" id="cokibanSwitch<?php echo ucfirst($groupKey); ?>" data-x-bind="bindSwitch" data-cokiban-cookie="<?php echo $groupKey; ?>">
                                     <label for="cokibanSwitch<?php echo ucfirst($groupKey); ?>">
                                         <span class="cokiban__invisible"><?php echo $this->translation['groups'][$groupKey]['headline']; ?></span>
                                         <span data-x-bind="bindSwitchLabel" data-cokiban-cookie="<?php echo $groupKey; ?>"></span>
                                     </label>
-                                    </div>
+                                </div>
                                 <?php foreach($group as $cookieKey => $cookie): ?>
                                     <div class="cokiban__cookie">
                                         <p class="cokiban__cookie__title"><strong><?php echo $this->translation['cookies'][$cookieKey]['headline']; ?></strong></p>
