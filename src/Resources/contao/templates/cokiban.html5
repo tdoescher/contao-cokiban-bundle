@@ -22,7 +22,7 @@
                         <?php if(count($this->groups)): ?>
                             <?php foreach($this->groups as $groupKey => $group): ?>
                                 <div class="cokiban__checkbox">
-                                    <input type="checkbox" name="cokibanCheckbox<?php echo ucfirst($groupKey); ?>" id="cokibanCheckbox<?php echo ucfirst($groupKey); ?>" data-x-bind="bindSwitch" data-cokiban-cookie="<?php echo $groupKey.ucfirst($cookieKey); ?>">
+                                    <input type="checkbox" name="cokibanCheckbox<?php echo ucfirst($groupKey); ?>" id="cokibanCheckbox<?php echo ucfirst($groupKey); ?>" data-x-bind="bindSwitch" data-cokiban-cookie="<?php echo $groupKey; ?>">
                                     <label for="cokibanCheckbox<?php echo ucfirst($groupKey); ?>"><?php echo $this->translation['groups'][$groupKey]['headline']; ?></label>
                                 </div>
                             <?php endforeach; ?>
