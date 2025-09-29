@@ -10,7 +10,9 @@ document.addEventListener('alpine:init', () => {
         days: null,
         active: true,
         date: null,
-        show: false,
+        showBanner: false,
+        showHint: false,
+        hint: { text: '...', title: 'Akzeptieren', button: 'Akzeptieren', function: null },
         details: false,
         labels: {},
         cache: {},
@@ -51,11 +53,16 @@ document.addEventListener('alpine:init', () => {
             this.closeBanner();
             this.updateGoogleConsentMode();
         },
+        accept(cookie) {
+            if(!this.cache[cookie]) {
+                this.switchCookie(cookie);
+                this.saveConfig();
+            }
+        },
         acceptAll() {
             Object.keys(this.cache).forEach((item) => {
                 this.cache[item] = true;
             });
-            clearInterval(this.counter);
             this.saveConfig();
         },
         saveSettings() {
@@ -77,10 +84,23 @@ document.addEventListener('alpine:init', () => {
         },
         openBanner() {
             this.details = false;
-            this.show = true;
+            this.showBanner = true;
+        },
+        openHint(content) {
+            if(content.text && content.title && content.button && content.callback) {
+                this.hint.text = content.text;
+                this.hint.title = content.title;
+                this.hint.button = content.button;
+                this.hint.callback = content.callback;
+                this.showHint = true;
+            }
         },
         closeBanner() {
-            this.show = false;
+            this.showBanner = false;
+        },
+        closeHint() {
+            this.showHint = false;
+            this.hint.callback();
         },
         updateGoogleConsentMode(init = false) {
             const alpine = this;
@@ -136,7 +156,7 @@ document.addEventListener('alpine:init', () => {
         },
         bindCokiban: {
             'data-x-bind:class'() {
-                return { 'cokiban--show': this.store.show };
+                return { 'cokiban--show-banner': this.store.showBanner, 'cokiban--show-hint': this.store.showHint };
             },
             'data-x-init'() {
                 const config = this.$el.dataset.cokibanConfig.split(',');
@@ -200,6 +220,22 @@ document.addEventListener('alpine:init', () => {
         bindAcceptAll: {
             'data-x-on:click'() {
                 this.store.acceptAll();
+            },
+        },
+        bindAcceptHint: {
+            'data-x-on:click'() {
+                this.store.closeHint();
+            },
+            'data-x-bind:title'() {
+                return this.store.hint.title;
+            },
+            'data-x-text'() {
+                return this.store.hint.button;
+            },
+        },
+        bindHint: {
+            'data-x-text'() {
+                return this.store.hint.text;
             },
         },
     }));
