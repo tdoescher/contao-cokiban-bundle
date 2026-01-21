@@ -10,7 +10,7 @@ export default [
         rules: {
             'comma-dangle': [ 'error', 'always-multiline' ],
             'arrow-parens': [ 'error' ],
-            'indent': [ 'error', 4, { 'SwitchCase': 2 } ],
+            'indent': [ 'error', 4, { 'SwitchCase': 1 } ],
             'prefer-arrow-callback': [ 'error' ],
             'semi': [ 'error', 'always' ],
             'quotes': [ 'error', 'single' ],
