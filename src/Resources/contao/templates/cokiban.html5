@@ -103,7 +103,7 @@
                 <p class="cokiban__body__text" data-x-bind="bindHint"></p>
             </div>
             <div class="cokiban__buttons">
-                <button class="cokiban__button cokiban__button--small" title="<?php echo $this->translation['banner']['close_button_title']; ?>" data-x-bind="bindClose"><?php echo $this->translation['banner']['close_button_text']; ?></button>
+                <button class="cokiban__button cokiban__button--small" title="<?php echo $this->translation['banner']['close_button_title']; ?>" data-x-bind="bindCloseHint"><?php echo $this->translation['banner']['close_button_text']; ?></button>
                 <button class="cokiban__button cokiban__button--acccept" data-x-bind="bindAcceptHint">Accept</button>
             </div>
         </div>
