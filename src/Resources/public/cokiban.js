@@ -12,7 +12,7 @@ document.addEventListener('alpine:init', () => {
         date: null,
         showBanner: false,
         showHint: false,
-        hint: { text: '...', title: 'Akzeptieren', button: 'Akzeptieren', function: null },
+        hint: { text: '...', title: 'Accept', button: 'Accept', function: null },
         details: false,
         labels: {},
         cache: {},
@@ -98,9 +98,12 @@ document.addEventListener('alpine:init', () => {
         closeBanner() {
             this.showBanner = false;
         },
-        closeHint() {
+        acceptHint() {
             this.showHint = false;
             this.hint.callback();
+        },
+        closeHint() {
+            this.showHint = false;
         },
         updateGoogleConsentMode(init = false) {
             const alpine = this;
@@ -224,13 +227,18 @@ document.addEventListener('alpine:init', () => {
         },
         bindAcceptHint: {
             'data-x-on:click'() {
-                this.store.closeHint();
+                this.store.acceptHint();
             },
             'data-x-bind:title'() {
                 return this.store.hint.title;
             },
             'data-x-text'() {
                 return this.store.hint.button;
+            },
+        },
+        bindCloseHint: {
+            'data-x-on:click'() {
+                this.store.closeHint();
             },
         },
         bindHint: {

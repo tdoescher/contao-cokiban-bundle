@@ -84,7 +84,7 @@ $cokibanIconColor: hsl(32, 42%, 50%);
   }
   .cokiban__cookie { position: relative; margin: 0.5em 0; padding: 0.5em; font-size: 0.875em; background: var(--cokiban-cookie); border: 1px solid var(--cokiban-border); border-radius: calc(var(--cokiban-border-radius) * 0.5); }
   .cokiban__buttons { display: flex; gap: 0.5em;
-    > * { flex: 1; }
+    > * { flex: 2; }
   }
   .cokiban__button { display: inline-block; width: auto; padding: 0.75em 0.25em; color: var(--cokiban-button-font); font-family: inherit; font-weight: 400; font-style: normal; text-transform: none; text-decoration: none; cursor: pointer; background: var(--cokiban-button); border: 0; border-radius: calc(var(--cokiban-border-radius) * 0.5); outline: inherit; appearance: none; transition: 0.2s ease all;
     &:focus,
@@ -99,6 +99,7 @@ $cokibanIconColor: hsl(32, 42%, 50%);
       &:focus,
       &:hover { color: var(--cokiban-button-accept-font); background: var(--cokiban-button-accept-hover); }
     }
+    &--small { flex: 1; }
   }
   .cokiban__footer { margin-block-start: 0.75em;
     ul { display: flex; gap: 0.5em; margin: 0; padding: 0; list-style-type: none; }
