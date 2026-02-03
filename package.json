@@ -9,7 +9,11 @@
     "type": "git",
     "url": "git+https://github.com/tdoescher/contao-cokiban-bundle.git"
   },
-  "files": ["scr/Resources/public", "cokibann.scss"],
+  "files": [
+    "cokiban.scss",
+    "scr/Resources/public/cokiban.scss",
+    "scr/Resources/public/cokiban.js"
+  ],
   "scripts": {
     "build": "node esbuild.js",
     "lg": "git add . && git commit -am \"Update\" && git push"
