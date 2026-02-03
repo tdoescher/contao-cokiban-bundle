@@ -3,5 +3,4 @@
 composer.json
 esbuild.js
 eslint.config.js
-src/
-README.md
+src/*
