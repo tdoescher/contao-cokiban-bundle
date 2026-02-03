@@ -11,8 +11,7 @@
   },
   "files": [
     "cokiban.scss",
-    "scr/Resources/public/cokiban.scss",
-    "scr/Resources/public/cokiban.js"
+    "scr/Resources/public/cokiban.scss"
   ],
   "scripts": {
     "build": "node esbuild.js",
