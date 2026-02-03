@@ -1,6 +1,0 @@
-.gitattributes
-.gitignore
-composer.json
-esbuild.js
-eslint.config.js
-*.php
