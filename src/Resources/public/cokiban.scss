@@ -32,14 +32,14 @@ $cokibanIconColor: hsl(32, 42%, 50%);
   --cokiban-icon-color: #{$cokibanIconColor};
 }
 
-#cokiban { position: fixed; inset: 0; z-index: 999999; color: var(--cokiban-font); font-family: var(--cokiban-font-family), sans-serif; font-size: 16px; font-weight: 400; letter-spacing: initial; background: rgba(#000, 0.5); opacity: 0; pointer-events: none; user-select: none; transition: 0.2s ease all;
+#cokiban { position: fixed; inset: 0; z-index: 999999; color: var(--cokiban-font); font-family: var(--cokiban-font-family), sans-serif; font-size: 16px; font-weight: 400; letter-spacing: initial; background: rgba(#000, 0.5); opacity: 0; pointer-events: none; user-select: none; visibility: hidden; transition: 0.2s ease all;
   p { margin: 0; }
   a { color: var(--cokiban-font); font-family: inherit; font-weight: 400; font-style: normal; text-decoration: underline;
     &:focus,
     &:hover { color: var(--cokiban-font-hover); text-decoration: none; }
   }
   .cokiban__invisible { display: none; }
-  .cokiban__wrapper { position: fixed; inset: auto 0 0 0; overflow: auto; max-height: 100%; padding: var(--cokiban-border-radius); box-sizing: border-box; opacity: 0; pointer-events: none; user-select: none; visibility: hidden; scale: 0.9; translate: 1em 0; transform-origin: bottom; transition: 0.3s ease all; }
+  .cokiban__wrapper { position: fixed; inset: auto 0 0 0; overflow: auto; max-height: 100%; padding: var(--cokiban-border-radius); box-sizing: border-box; opacity: 0; scale: 0.9; translate: 1em 0; transform-origin: bottom; transition: 0.3s ease all; }
   .cokiban__hint { top: 0; display: grid; place-items: center; }
   .cokiban__container { position: relative; max-width: var(--cokiban-max-width); margin: 0 auto; background: var(--cokiban-background); padding: 1em; border-radius: var(--cokiban-border-radius); box-shadow: 0 0 0.75em rgba(#000, 0.25); }
   .cokiban__header { display: flex; align-items: center;
@@ -110,9 +110,9 @@ $cokibanIconColor: hsl(32, 42%, 50%);
     }
   }
   &.cokiban--show-banner { opacity: 1; pointer-events: auto; user-select: auto; visibility: visible;
-    .cokiban__banner { opacity: 1; pointer-events: auto; scale: 1; translate: 0; }
+    .cokiban__banner { opacity: 1; scale: 1; translate: 0; }
   }
   &.cokiban--show-hint { opacity: 1; pointer-events: auto; user-select: auto; visibility: visible;
-    .cokiban__hint { opacity: 1; pointer-events: auto; scale: 1; translate: 0; }
+    .cokiban__hint { opacity: 1; scale: 1; translate: 0; }
   }
 }
