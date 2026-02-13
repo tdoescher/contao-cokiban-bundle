@@ -109,6 +109,7 @@ $cokibanIconColor: hsl(32, 42%, 50%);
       + button { margin-inline-start: 0.5em; }
     }
   }
+  .cokiban__sprite { display: none !important; }
   &.cokiban--show-banner { opacity: 1; visibility: visible;
     .cokiban__banner { opacity: 1; pointer-events: auto; user-select: auto; scale: 1; translate: 0; }
   }
