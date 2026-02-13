@@ -1,120 +1,125 @@
 <div id="cokiban" data-x-data="cokibanBanner" data-x-bind="bindCokiban" data-cokiban-config="<?php echo $this->config; ?>" data-cokiban-cookies="<?php echo $this->cookies; ?>" data-cokiban-label-switch-true="<?php echo $this->translation['banner']['switch_true']; ?>" data-cokiban-label-switch-false="<?php echo $this->translation['banner']['switch_false']; ?>">
-    <div class="cokiban__wrapper cokiban__banner">
-        <div class="cokiban__container">
-            <div class="cokiban__header">
-                <svg class="cokiban__header__icon" height="32" width="32" aria-hidden="true">
-                    <use xlink:href="#icon-cokiban-header"></use>
-                </svg>
-                <div class="cokiban__header__title">
-                    <span data-x-show="showOverview"><?php echo $this->translation['banner']['main_headline']; ?></span>
-                    <span data-x-show="showDetails"><?php echo $this->translation['banner']['details_headline']; ?></span>
+    <template data-x-bind="bindBanner">
+        <div class="cokiban__wrapper cokiban__banner">
+            <div class="cokiban__container">
+                <div class="cokiban__header">
+                    <svg class="cokiban__header__icon" height="32" width="32" aria-hidden="true">
+                        <use xlink:href="#icon-cokiban-header"></use>
+                    </svg>
+                    <div class="cokiban__header__title">
+                        <span data-x-show="showOverview"><?php echo $this->translation['banner']['main_headline']; ?></span>
+                        <span data-x-show="showDetails"><?php echo $this->translation['banner']['details_headline']; ?></span>
+                    </div>
+                    <button class="cokiban__header__back cokiban__button cokiban__button--link" title="<?php echo $this->translation['banner']['details_back_link_title']; ?>" data-x-bind="bindBackButton"><?php echo $this->translation['banner']['details_back_link_text']; ?></button>
                 </div>
-                <button class="cokiban__header__back cokiban__button cokiban__button--link" title="<?php echo $this->translation['banner']['details_back_link_title']; ?>" data-x-bind="bindBackButton"><?php echo $this->translation['banner']['details_back_link_text']; ?></button>
-            </div>
-            <template data-x-if="showOverview">
-                <div class="cokiban__body">
-                    <p class="cokiban__body__text"><?php echo $this->translation['banner']['main_text']; ?></p>
-                    <div class="cokiban__checkboxes">
-                        <div class="cokiban__checkbox cokiban__checkbox--checked">
-                            <input type="checkbox" name="cokibanCookieMandatory" id="cokibanCookieMandatory" checked disabled>
-                            <label for="cokibanCookieMandatory"><?php echo $this->translation['groups']['mandatory']['headline']; ?></label>
+                <template data-x-if="showOverview">
+                    <div class="cokiban__body">
+                        <p class="cokiban__body__text"><?php echo $this->translation['banner']['main_text']; ?></p>
+                        <div class="cokiban__checkboxes">
+                            <div class="cokiban__checkbox cokiban__checkbox--checked">
+                                <input type="checkbox" name="cokibanCookieMandatory" id="cokibanCookieMandatory" checked disabled>
+                                <label for="cokibanCookieMandatory"><?php echo $this->translation['groups']['mandatory']['headline']; ?></label>
+                            </div>
+                            <?php if (count($this->groups)): ?>
+                                <?php foreach ($this->groups as $groupKey => $group): ?>
+                                    <div class="cokiban__checkbox">
+                                        <input type="checkbox" name="cokibanCheckbox<?php echo ucfirst($groupKey); ?>" id="cokibanCheckbox<?php echo ucfirst($groupKey); ?>" data-x-bind="bindSwitch" data-cokiban-cookie="<?php echo $groupKey; ?>">
+                                        <label for="cokibanCheckbox<?php echo ucfirst($groupKey); ?>"><?php echo $this->translation['groups'][$groupKey]['headline']; ?></label>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </template>
+                <template data-x-if="showDetails">
+                    <div class="cokiban__body">
+                        <div class="cokiban__group">
+                            <p class="cokiban__group__title">
+                                <strong><?php echo $this->translation['groups']['mandatory']['headline']; ?></strong>
+                            </p>
+                            <p class="cokiban__group__text"><?php echo $this->translation['groups']['mandatory']['text']; ?></p>
                         </div>
                         <?php if (count($this->groups)): ?>
                             <?php foreach ($this->groups as $groupKey => $group): ?>
-                                <div class="cokiban__checkbox">
-                                    <input type="checkbox" name="cokibanCheckbox<?php echo ucfirst($groupKey); ?>" id="cokibanCheckbox<?php echo ucfirst($groupKey); ?>" data-x-bind="bindSwitch" data-cokiban-cookie="<?php echo $groupKey; ?>">
-                                    <label for="cokibanCheckbox<?php echo ucfirst($groupKey); ?>"><?php echo $this->translation['groups'][$groupKey]['headline']; ?></label>
+                                <div class="cokiban__group">
+                                    <p class="cokiban__group__title">
+                                        <strong><?php echo $this->translation['groups'][$groupKey]['headline']; ?></strong>
+                                    </p>
+                                    <p class="cokiban__group__text"><?php echo $this->translation['groups'][$groupKey]['text']; ?></p>
+                                    <div class="cokiban__switch">
+                                        <input type="checkbox" name="cokibanSwitch<?php echo ucfirst($groupKey); ?>" id="cokibanSwitch<?php echo ucfirst($groupKey); ?>" data-x-bind="bindSwitch" data-cokiban-cookie="<?php echo $groupKey; ?>">
+                                        <label for="cokibanSwitch<?php echo ucfirst($groupKey); ?>">
+                                            <span class="cokiban__invisible"><?php echo $this->translation['groups'][$groupKey]['headline']; ?></span>
+                                            <span data-x-bind="bindSwitchLabel" data-cokiban-cookie="<?php echo $groupKey; ?>"></span>
+                                        </label>
+                                    </div>
+                                    <?php foreach ($group as $cookieKey => $cookie): ?>
+                                        <div class="cokiban__cookie">
+                                            <p class="cokiban__cookie__title">
+                                                <strong><?php echo $this->translation['cookies'][$cookieKey]['headline']; ?></strong>
+                                            </p>
+                                            <p class="cokiban__cookie__titlep__text"><?php echo $this->translation['cookies'][$cookieKey]['text']; ?></p>
+                                            <div class="cokiban__switch">
+                                                <input type="checkbox" name="cokibanSwitch<?php echo ucfirst($groupKey) . ucfirst($cookieKey); ?>" id="cokibanSwitch<?php echo ucfirst($groupKey) . ucfirst($cookieKey); ?>" data-x-bind="bindSwitch" data-cokiban-cookie="<?php echo $groupKey . ucfirst($cookieKey); ?>">
+                                                <label for="cokibanSwitch<?php echo ucfirst($groupKey) . ucfirst($cookieKey); ?>">
+                                                    <span class="cokiban__invisible"><?php echo $this->translation['cookies'][$cookieKey]['headline']; ?></span>
+                                                    <span data-x-bind="bindSwitchLabel" data-cokiban-cookie="<?php echo $groupKey . ucfirst($cookieKey); ?>"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
                                 </div>
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </div>
+                </template>
+                <div class="cokiban__buttons">
+                    <button class="cokiban__button" title="<?php echo $this->translation['banner']['save_button_title']; ?>" data-x-bind="bindSaveSettings"><?php echo $this->translation['banner']['save_button_text']; ?></button>
+                    <button class="cokiban__button cokiban__button--acccept" title="<?php echo $this->translation['banner']['accept_button_title']; ?>" data-x-bind="bindAcceptAll"><?php echo $this->translation['banner']['accept_button_text']; ?></button>
                 </div>
-            </template>
-            <template data-x-if="showDetails">
-                <div class="cokiban__body">
-                    <div class="cokiban__group">
-                        <p class="cokiban__group__title">
-                            <strong><?php echo $this->translation['groups']['mandatory']['headline']; ?></strong></p>
-                        <p class="cokiban__group__text"><?php echo $this->translation['groups']['mandatory']['text']; ?></p>
+                <?php if ($this->translation['banner']['footer_links']): ?>
+                    <div class="cokiban__footer">
+                        <ul>
+                            <?php foreach ($this->translation['banner']['footer_links'] as $link): ?>
+                                <li><?php echo $link; ?></li>
+                            <?php endforeach; ?>
+                            <li data-x-show="showOverview">
+                                <button class="cokiban__button cokiban__button--link" title="<?php echo $this->translation['banner']['details_link_title']; ?>" data-x-bind="bindDetailsButton"><?php echo $this->translation['banner']['details_link_text']; ?></button>
+                            </li>
+                        </ul>
                     </div>
-                    <?php if (count($this->groups)): ?>
-                        <?php foreach ($this->groups as $groupKey => $group): ?>
-                            <div class="cokiban__group">
-                                <p class="cokiban__group__title">
-                                    <strong><?php echo $this->translation['groups'][$groupKey]['headline']; ?></strong>
-                                </p>
-                                <p class="cokiban__group__text"><?php echo $this->translation['groups'][$groupKey]['text']; ?></p>
-                                <div class="cokiban__switch">
-                                    <input type="checkbox" name="cokibanSwitch<?php echo ucfirst($groupKey); ?>" id="cokibanSwitch<?php echo ucfirst($groupKey); ?>" data-x-bind="bindSwitch" data-cokiban-cookie="<?php echo $groupKey; ?>">
-                                    <label for="cokibanSwitch<?php echo ucfirst($groupKey); ?>">
-                                        <span class="cokiban__invisible"><?php echo $this->translation['groups'][$groupKey]['headline']; ?></span>
-                                        <span data-x-bind="bindSwitchLabel" data-cokiban-cookie="<?php echo $groupKey; ?>"></span>
-                                    </label>
-                                </div>
-                                <?php foreach ($group as $cookieKey => $cookie): ?>
-                                    <div class="cokiban__cookie">
-                                        <p class="cokiban__cookie__title">
-                                            <strong><?php echo $this->translation['cookies'][$cookieKey]['headline']; ?></strong>
-                                        </p>
-                                        <p class="cokiban__cookie__titlep__text"><?php echo $this->translation['cookies'][$cookieKey]['text']; ?></p>
-                                        <div class="cokiban__switch">
-                                            <input type="checkbox" name="cokibanSwitch<?php echo ucfirst($groupKey) . ucfirst($cookieKey); ?>" id="cokibanSwitch<?php echo ucfirst($groupKey) . ucfirst($cookieKey); ?>" data-x-bind="bindSwitch" data-cokiban-cookie="<?php echo $groupKey . ucfirst($cookieKey); ?>">
-                                            <label for="cokibanSwitch<?php echo ucfirst($groupKey) . ucfirst($cookieKey); ?>">
-                                                <span class="cokiban__invisible"><?php echo $this->translation['cookies'][$cookieKey]['headline']; ?></span>
-                                                <span data-x-bind="bindSwitchLabel" data-cokiban-cookie="<?php echo $groupKey . ucfirst($cookieKey); ?>"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                </div>
-            </template>
-            <div class="cokiban__buttons">
-                <button class="cokiban__button" title="<?php echo $this->translation['banner']['save_button_title']; ?>" data-x-bind="bindSaveSettings"><?php echo $this->translation['banner']['save_button_text']; ?></button>
-                <button class="cokiban__button cokiban__button--acccept" title="<?php echo $this->translation['banner']['accept_button_title']; ?>" data-x-bind="bindAcceptAll"><?php echo $this->translation['banner']['accept_button_text']; ?></button>
-            </div>
-            <?php if ($this->translation['banner']['footer_links']): ?>
-                <div class="cokiban__footer">
-                    <ul>
-                        <?php foreach ($this->translation['banner']['footer_links'] as $link): ?>
-                            <li><?php echo $link; ?></li>
-                        <?php endforeach; ?>
-                        <li data-x-show="showOverview">
-                            <button class="cokiban__button cokiban__button--link" title="<?php echo $this->translation['banner']['details_link_title']; ?>" data-x-bind="bindDetailsButton"><?php echo $this->translation['banner']['details_link_text']; ?></button>
-                        </li>
-                    </ul>
-                </div>
-            <?php else: ?>
-                <div class="cokiban__footer">
-                    <?php echo $this->translation['banner']['footer_text']; ?>
-                    <button class="cokiban__button cokiban__button--link" title="<?php echo $this->translation['banner']['details_link_title']; ?>" data-x-bind="bindDetailsButton"><?php echo $this->translation['banner']['details_link_text']; ?></button>
-                </div>
-            <?php endif; ?>
-        </div>
-    </div>
-    <div class="cokiban__wrapper cokiban__hint">
-        <div class="cokiban__container">
-            <div class="cokiban__header">
-                <svg class="cokiban__header__icon" height="32" width="32" aria-hidden="true">
-                    <use xlink:href="#icon-cokiban-header"></use>
-                </svg>
-                <div class="cokiban__header__title">
-                    <span data-x-show="showOverview"><?php echo $this->translation['banner']['main_headline']; ?></span>
-                    <span data-x-show="showDetails"><?php echo $this->translation['banner']['details_headline']; ?></span>
-                </div>
-                <button class="cokiban__header__back cokiban__button cokiban__button--link" title="<?php echo $this->translation['banner']['details_back_link_title']; ?>" data-x-bind="bindBackButton"><?php echo $this->translation['banner']['details_back_link_text']; ?></button>
-            </div>
-            <div class="cokiban__body">
-                <p class="cokiban__body__text" data-x-bind="bindHint"></p>
-            </div>
-            <div class="cokiban__buttons">
-                <button class="cokiban__button cokiban__button--small" title="<?php echo $this->translation['banner']['close_button_title']; ?>" data-x-bind="bindCloseHint"><?php echo $this->translation['banner']['close_button_text']; ?></button>
-                <button class="cokiban__button cokiban__button--acccept" data-x-bind="bindAcceptHint">Accept</button>
+                <?php else: ?>
+                    <div class="cokiban__footer">
+                        <?php echo $this->translation['banner']['footer_text']; ?>
+                        <button class="cokiban__button cokiban__button--link" title="<?php echo $this->translation['banner']['details_link_title']; ?>" data-x-bind="bindDetailsButton"><?php echo $this->translation['banner']['details_link_text']; ?></button>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
-    </div>
+    </template>
+    <template data-x-bind="bindHint">
+        <div class="cokiban__wrapper cokiban__hint">
+            <div class="cokiban__container">
+                <div class="cokiban__header">
+                    <svg class="cokiban__header__icon" height="32" width="32" aria-hidden="true">
+                        <use xlink:href="#icon-cokiban-header"></use>
+                    </svg>
+                    <div class="cokiban__header__title">
+                        <span data-x-show="showOverview"><?php echo $this->translation['banner']['main_headline']; ?></span>
+                        <span data-x-show="showDetails"><?php echo $this->translation['banner']['details_headline']; ?></span>
+                    </div>
+                    <button class="cokiban__header__back cokiban__button cokiban__button--link" title="<?php echo $this->translation['banner']['details_back_link_title']; ?>" data-x-bind="bindBackButton"><?php echo $this->translation['banner']['details_back_link_text']; ?></button>
+                </div>
+                <div class="cokiban__body">
+                    <p class="cokiban__body__text" data-x-bind="bindHintText"></p>
+                </div>
+                <div class="cokiban__buttons">
+                    <button class="cokiban__button cokiban__button--small" title="<?php echo $this->translation['banner']['close_button_title']; ?>" data-x-bind="bindCloseHint"><?php echo $this->translation['banner']['close_button_text']; ?></button>
+                    <button class="cokiban__button cokiban__button--acccept" data-x-bind="bindAcceptHint">Accept</button>
+                </div>
+            </div>
+        </div>
+    </template>
     <svg class="cokiban__sprite" height="0" width="0" xmlns="http://www.w3.org/2000/svg">
         <defs>
             <symbol id="icon-cokiban-header" viewBox="0 0 32 32">

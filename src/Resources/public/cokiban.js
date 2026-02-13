@@ -11,7 +11,9 @@ document.addEventListener('alpine:init', () => {
         active: true,
         date: null,
         showBanner: false,
+        renderBanner: false,
         showHint: false,
+        renderHint: false,
         hint: { text: '...', title: 'Accept', button: 'Accept', function: null },
         details: false,
         labels: {},
@@ -54,7 +56,7 @@ document.addEventListener('alpine:init', () => {
             this.updateGoogleConsentMode();
         },
         accept(cookie) {
-            if(!this.cache[cookie]) {
+            if (!this.cache[cookie]) {
                 this.switchCookie(cookie);
                 this.saveConfig();
             }
@@ -84,14 +86,16 @@ document.addEventListener('alpine:init', () => {
         },
         openBanner() {
             this.details = false;
+            if (!this.renderBanner) this.renderBanner = true;
             this.showBanner = true;
         },
         openHint(content) {
-            if(content.text && content.title && content.button && content.callback) {
+            if (content.text && content.title && content.button && content.callback) {
                 this.hint.text = content.text;
                 this.hint.title = content.title;
                 this.hint.button = content.button;
                 this.hint.callback = content.callback;
+                if (!this.renderHint) this.renderHint = true;
                 this.showHint = true;
             }
         },
@@ -186,6 +190,16 @@ document.addEventListener('alpine:init', () => {
                 }
             },
         },
+        bindBanner: {
+            'data-x-if'() {
+                return this.store.renderBanner;
+            },
+        },
+        bindHint: {
+            'data-x-if'() {
+                return this.store.renderHint;
+            },
+        },
         bindDetailsButton: {
             'data-x-on:click.prevent'() {
                 this.store.details = true;
@@ -241,7 +255,7 @@ document.addEventListener('alpine:init', () => {
                 this.store.closeHint();
             },
         },
-        bindHint: {
+        bindHintText: {
             'data-x-text'() {
                 return this.store.hint.text;
             },
