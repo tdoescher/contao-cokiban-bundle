@@ -37,12 +37,11 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
         $config = System::getContainer()->getParameter('cokiban');
         $request = System::getContainer()->get('request_stack')->getCurrentRequest();
 
-        $pageModel = $request->attributes->get('pageModel');
-
-        if(!$pageModel) {
+        if(!$request) {
             return [];
         }
 
+        $pageModel = $request->attributes->get('pageModel');
         $rootPage = PageModel::findByIdOrAlias($pageModel->rootAlias);
         $rootPageAlias = str_replace('-', '_', $rootPage->alias);
 
