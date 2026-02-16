@@ -12,10 +12,11 @@
 namespace tdoescher\CokibanBundle\Twig;
 
 use Contao\FilesModel;
+use Contao\PageModel;
 use Contao\System;
+use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
-use Twig\Environment;
 use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension implements GlobalsInterface
@@ -95,16 +96,20 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
             $this->cokiban['translation'] = reset($config['translations']);
         }
 
+        if(!isset($GLOBALS['TL_COKIBAN'])) {
+            $GLOBALS['TL_COKIBAN'] = $this->cokiban;
+        }
+
         return [
             'cokiban' => [
                 'id' => $this->cokiban['id'],
                 'version' => $this->cokiban['version'],
                 'days' => $this->cokiban['days'],
                 'active' => $this->cokiban['active'],
-                'googleConsentMode' => $this->cokiban['googleConsentMode'] ? '1' : '0',
+                'googleConsentMode' => $this->cokiban['google_consent_mode'],
                 'groups' => $this->cokiban['groups'],
                 'translation' => $this->cokiban['translation'],
-                'config' => $this->cokiban['id'].','.$this->cokiban['version'].','.$this->cokiban['days'].','.$this->cokiban['active'].','.$this->cokiban['google_consent_mode'],
+                'config' => $this->cokiban['id'].','.$this->cokiban['version'].','.$this->cokiban['days'].','.($this->cokiban['active'] ? '1' : '0').','.($this->cokiban['google_consent_mode'] ? '1' : '0'),
                 'cookies' => implode(',', $this->cokiban['cookies']),
             ]
         ];
