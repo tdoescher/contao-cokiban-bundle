@@ -50,6 +50,11 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
         }
 
         $pageModel = $request->attributes->get('pageModel');
+
+        if(!$pageModel) {
+            return [];
+        }
+
         $rootPage = PageModel::findByIdOrAlias($pageModel->rootAlias);
         $rootPageAlias = str_replace('-', '_', $rootPage->alias);
 
