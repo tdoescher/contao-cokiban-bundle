@@ -2,6 +2,5 @@ services:
   _defaults:
     autoconfigure: true
 
-  tdoescher\CokibanBundle\EventListener\GetPageLayoutListener: ~
   tdoescher\CokibanBundle\EventListener\ParseFrontendTemplateListener: ~
   tdoescher\CokibanBundle\EventListener\ReplaceInsertTagsListener: ~
