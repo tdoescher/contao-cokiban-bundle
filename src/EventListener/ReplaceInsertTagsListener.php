@@ -30,8 +30,8 @@ class ReplaceInsertTagsListener
             return false;
         }
 
-        $text = $GLOBALS['TL_LANG']['cokiban']['button']['text'];
-        $title = $GLOBALS['TL_LANG']['cokiban']['button']['title'];
+        $text = $GLOBALS['TL_COKIBAN']['translation']['button']['text'];
+        $title = $GLOBALS['TL_COKIBAN']['translation']['button']['title'];
         $class = $value ? 'class="' . $value . '" ' : null;
 
         if ($insertTag === 'cokiban') {

@@ -22,7 +22,6 @@ class GetPageLayoutListener
 {
     public function __invoke(PageModel $pageModel, LayoutModel $layout, PageRegular $pageRegular): void
     {
-        $container = System::getContainer();
         $config = System::getContainer()->getParameter('cokiban');
 
         $rootPage = PageModel::findByIdOrAlias($pageModel->rootAlias);
@@ -72,10 +71,10 @@ class GetPageLayoutListener
         }
 
         if (isset($config['translations'][$rootPage->language])) {
-            $GLOBALS['TL_LANG']['cokiban'] = $config['translations'][$rootPage->language];
+            $GLOBALS['TL_COKIBAN']['translation'] = $config['translations'][$rootPage->language];
         }
         else {
-            $GLOBALS['TL_LANG']['cokiban'] = reset($config['translations']);
+            $GLOBALS['TL_COKIBAN']['translation'] = reset($config['translations']);
         }
     }
 }

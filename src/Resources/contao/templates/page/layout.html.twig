@@ -1,0 +1,9 @@
+{% extends "@Contao/page/layout.html.twig" %}
+
+{% block body %}
+    {% if cokiban is defined and cokiban.active %}
+        {% include "@Contao_CokibanBundle/partials/cokiban.html.twig" %}
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}

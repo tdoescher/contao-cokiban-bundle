@@ -38,9 +38,9 @@ class ParseFrontendTemplateListener
             $objTemplate->version = $GLOBALS['TL_COKIBAN']['version'];
             $objTemplate->days = $GLOBALS['TL_COKIBAN']['days'];
             $objTemplate->active = $GLOBALS['TL_COKIBAN']['active'] ? '1' : '0';
-            $objTemplate->googleConsentMode = $objTemplate->googleConsentMode ? '1' : '0';
+            $objTemplate->googleConsentMode = $GLOBALS['TL_COKIBAN']['googleConsentMode'] ? '1' : '0';
             $objTemplate->groups = $GLOBALS['TL_COKIBAN']['groups'];
-            $objTemplate->translation = $GLOBALS['TL_LANG']['cokiban'];
+            $objTemplate->translation = $GLOBALS['TL_COKIBAN']['translation'];
             $objTemplate->config = $objTemplate->id.','.$objTemplate->version.','.$objTemplate->days.','.$objTemplate->active.','.$objTemplate->googleConsentMode;
             $objTemplate->cookies = implode(',', $GLOBALS['TL_COKIBAN']['cookies']);
 
