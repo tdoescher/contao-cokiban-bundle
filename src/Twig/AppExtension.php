@@ -96,9 +96,7 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
             $this->cokiban['translation'] = reset($config['translations']);
         }
 
-        if(!isset($GLOBALS['TL_COKIBAN'])) {
-            $GLOBALS['TL_COKIBAN'] = $this->cokiban;
-        }
+        $GLOBALS['TL_COKIBAN'] = $this->cokiban;
 
         return [
             'cokiban' => [
