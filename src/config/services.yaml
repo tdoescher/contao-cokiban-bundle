@@ -1,0 +1,8 @@
+services:
+  _defaults:
+    autoconfigure: true
+    autowire: true
+
+  tdoescher\CokibanBundle\Service\CokibanContext: ~
+  tdoescher\CokibanBundle\Twig\AppExtension:
+    tags: [ twig.extension ]

@@ -15,57 +15,67 @@ use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 use Contao\Controller;
 use Contao\FilesModel;
 use Contao\FrontendTemplate;
+use tdoescher\CokibanBundle\Service\CokibanContext;
 
 #[AsHook('parseFrontendTemplate', priority: 100)]
 class ParseFrontendTemplateListener
 {
+    protected $cokiban = [];
+
+    public function __construct(private readonly CokibanContext $cokibanContext)
+    {
+        $this->cokiban = $cokibanContext->getConfig();
+    }
+
     public function __invoke(string $buffer, string $templateName, FrontendTemplate $template): string
     {
-        if (!isset($GLOBALS['TL_COKIBAN']) || !$GLOBALS['TL_COKIBAN'] || $buffer === '') {
+        $cokiban = $this->cokibanContext->getConfig();
+
+        if (!isset($this->cokiban) || !$this->cokiban || $buffer === '') {
             return $buffer;
         }
 
         if ($templateName === 'fe_page') {
             $cokibanTemplate = 'cokiban';
 
-            if (isset($GLOBALS['TL_COKIBAN']['template']) && $GLOBALS['TL_COKIBAN']['template'] !== '') {
-                $cokibanTemplate = $GLOBALS['TL_COKIBAN']['template'];
+            if (isset($this->cokiban['template']) && $this->cokiban['template'] !== '') {
+                $cokibanTemplate = $this->cokiban['template'];
             }
 
             $objTemplate = new FrontendTemplate($cokibanTemplate);
 
-            $objTemplate->id = $GLOBALS['TL_COKIBAN']['id'];
-            $objTemplate->version = $GLOBALS['TL_COKIBAN']['version'];
-            $objTemplate->days = $GLOBALS['TL_COKIBAN']['days'];
-            $objTemplate->active = $GLOBALS['TL_COKIBAN']['active'] ? '1' : '0';
-            $objTemplate->googleConsentMode = $GLOBALS['TL_COKIBAN']['googleConsentMode'] ? '1' : '0';
-            $objTemplate->groups = $GLOBALS['TL_COKIBAN']['groups'];
-            $objTemplate->translation = $GLOBALS['TL_COKIBAN']['translation'];
-            $objTemplate->config = $objTemplate->id.','.$objTemplate->version.','.$objTemplate->days.','.$objTemplate->active.','.$objTemplate->googleConsentMode;
-            $objTemplate->cookies = implode(',', $GLOBALS['TL_COKIBAN']['cookies']);
+            $objTemplate->id = $this->cokiban['id'];
+            $objTemplate->version = $this->cokiban['version'];
+            $objTemplate->days = $this->cokiban['days'];
+            $objTemplate->active = $this->cokiban['active'];
+            $objTemplate->googleConsentMode = $this->cokiban['google_consent_mode'];
+            $objTemplate->groups = $this->cokiban['groups'];
+            $objTemplate->translation = $this->cokiban['translation'];
+            $objTemplate->config = $objTemplate->id.','.$objTemplate->version.','.$objTemplate->days.','.($this->cokiban['active'] ? '1' : '0').','.($this->cokiban['google_consent_mode'] ? '1' : '0');
+            $objTemplate->cookies = implode(',', $this->cokiban['cookies']);
 
             return preg_replace("/<body([^>]*)>/is", '<body$1>' . $objTemplate->parse(), $buffer);
         }
 
-        if (isset($GLOBALS['TL_COKIBAN']['templates'][$templateName])) {
-            $buffer = '<template data-x-data="cokibanTemplate" data-x-bind="bind" data-cokiban-cookies="' . implode(',', $GLOBALS['TL_COKIBAN']['templates'][$templateName]) . '">' . $buffer . '</template>';
+        if (isset($this->cokiban['templates'][$templateName])) {
+            $buffer = '<template data-x-data="cokibanTemplate" data-x-bind="bind" data-cokiban-cookies="' . implode(',', $this->cokiban['templates'][$templateName]) . '">' . $buffer . '</template>';
 
-            if (isset($GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName])) {
+            if (isset($this->cokiban['translation']['replacements'][$templateName])) {
                 $replacementTemplate = 'ce_cokiban_replacement';
 
-                if (isset($GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName]['template']) && $GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName]['template'] !== '') {
-                    $replacementTemplate = $GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName]['template'];
+                if (isset($this->cokiban['translation']['replacements'][$templateName]['template']) && $this->cokiban['translation']['replacements'][$templateName]['template'] !== '') {
+                    $replacementTemplate = $this->cokiban['translation']['replacements'][$templateName]['template'];
                 }
 
                 $objTemplate = new FrontendTemplate($replacementTemplate);
                 $objTemplate->setData($template->getData());
                 $objTemplate->class = $replacementTemplate;
-                $objTemplate->replacementButton = $GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName]['button'];
-                $objTemplate->replacementText = $GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName]['text'];
+                $objTemplate->replacementButton = $this->cokiban['translation']['replacements'][$templateName]['button'];
+                $objTemplate->replacementText = $this->cokiban['translation']['replacements'][$templateName]['text'];
 
-                if (isset($GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName]['background'])) {
-                    if (preg_match('/\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b/u', $GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName]['background'])) {
-                        $background = FilesModel::findById($GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName]['background']);
+                if (isset($this->cokiban['translation']['replacements'][$templateName]['background'])) {
+                    if (preg_match('/\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b/u', $this->cokiban['translation']['replacements'][$templateName]['background'])) {
+                        $background = FilesModel::findById($this->cokiban['translation']['replacements'][$templateName]['background']);
 
                         if ($background !== null) {
                             $objTemplate->replacementBackground = $background->path;
@@ -75,14 +85,12 @@ class ParseFrontendTemplateListener
                         }
                     }
                     else {
-                        $objTemplate->replacementBackground = $GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName]['background'];
+                        $objTemplate->replacementBackground = $this->cokiban['translation']['replacements'][$templateName]['background'];
                     }
                 }
 
-                $buffer = '<template data-x-data="cokibanReplacement" data-x-bind="bind" data-cokiban-cookies="' . implode(',', $GLOBALS['TL_COKIBAN']['templates'][$templateName]) . '">' . $objTemplate->parse() . '</template>' . $buffer;
+                $buffer = '<template data-x-data="cokibanReplacement" data-x-bind="bind" data-cokiban-cookies="' . implode(',', $this->cokiban['templates'][$templateName]) . '">' . $objTemplate->parse() . '</template>' . $buffer;
             }
-
-            return $buffer;
         }
 
         return $buffer;

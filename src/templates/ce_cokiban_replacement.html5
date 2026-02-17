@@ -1,0 +1,16 @@
+<?php $this->extend('block_unsearchable'); ?>
+
+<?php $this->block('content'); ?>
+
+    <div class="replacement">
+        <?php if($this->replacementBackground): ?>
+            <img class="background_container" src="<?php echo $this->replacementBackground; ?>" alt="Background">
+        <?php endif; ?>
+
+        <div class="text_container">
+            <p><?php echo $this->replacementButton; ?></p>
+            <p><?php echo $this->replacementText; ?></p>
+        </div>
+    </div>
+
+<?php $this->endblock(); ?>

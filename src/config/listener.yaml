@@ -1,0 +1,7 @@
+services:
+  _defaults:
+    autoconfigure: true
+    autowire: true
+
+  tdoescher\CokibanBundle\EventListener\ParseFrontendTemplateListener: ~
+  tdoescher\CokibanBundle\EventListener\ReplaceInsertTagsListener: ~

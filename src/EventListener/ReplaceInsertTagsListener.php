@@ -12,13 +12,21 @@
 namespace tdoescher\CokibanBundle\EventListener;
 
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
+use tdoescher\CokibanBundle\Service\CokibanContext;
 
 #[AsHook('replaceInsertTags', priority: 100)]
 class ReplaceInsertTagsListener
 {
+    protected $cokiban = [];
+
+    public function __construct(private readonly CokibanContext $cokibanContext)
+    {
+        $this->cokiban = $cokibanContext->getConfig();
+    }
+
     public function __invoke(string $insertTag)
     {
-        if (!isset($GLOBALS['TL_COKIBAN'])) {
+        if (!isset($this->cokiban) || !$this->cokiban) {
             return false;
         }
 
@@ -30,8 +38,8 @@ class ReplaceInsertTagsListener
             return false;
         }
 
-        $text = $GLOBALS['TL_COKIBAN']['translation']['button']['text'];
-        $title = $GLOBALS['TL_COKIBAN']['translation']['button']['title'];
+        $text = $this->cokiban['translation']['button']['text'];
+        $title = $this->cokiban['translation']['button']['title'];
         $class = $value ? 'class="' . $value . '" ' : null;
 
         if ($insertTag === 'cokiban') {

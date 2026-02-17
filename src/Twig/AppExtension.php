@@ -12,9 +12,7 @@
 namespace tdoescher\CokibanBundle\Twig;
 
 use Contao\FilesModel;
-use Contao\PageModel;
-use Contao\System;
-use Twig\Environment;
+use tdoescher\CokibanBundle\Service\CokibanContext;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 use Twig\TwigFunction;
@@ -22,6 +20,11 @@ use Twig\TwigFunction;
 class AppExtension extends AbstractExtension implements GlobalsInterface
 {
     protected $cokiban = [];
+
+    public function __construct(private readonly CokibanContext $cokibanContext)
+    {
+        $this->cokiban = $this->cokibanContext->getConfig();
+    }
 
     public function getFunctions()
     {
@@ -34,73 +37,9 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
 
     public function getGlobals(): array
     {
-        $config = System::getContainer()->getParameter('cokiban');
-        $request = System::getContainer()->get('request_stack')->getCurrentRequest();
-
-        if (isset($config['disable_token']) && isset($_GET[$config['disable_token']])) {
+        if (!isset($this->cokiban) || !$this->cokiban) {
             return [];
         }
-
-        if (!is_array($config['translations'])) {
-            return [];
-        }
-
-        if(!$request) {
-            return [];
-        }
-
-        $pageModel = $request->attributes->get('pageModel');
-
-        if(!$pageModel) {
-            return [];
-        }
-
-        $rootPage = PageModel::findByIdOrAlias($pageModel->rootAlias);
-        $rootPageAlias = str_replace('-', '_', $rootPage->alias);
-
-        if (isset($config['banners'][$rootPageAlias])) {
-            $this->cokiban = $config['banners'][$rootPageAlias];
-            $this->cokiban['id'] = $this->cokiban['id'] ?? $rootPage->id;
-        }
-        else if (isset($config['banners']['global'])) {
-            $this->cokiban = $config['banners']['global'];
-            $this->cokiban['id'] = $this->cokiban['id'] ?? 'global';
-        }
-        else {
-            return [];
-        }
-
-        if (!isset($this->cokiban['groups'])) $this->cokiban['groups'] = [];
-        if (!isset($this->cokiban['cookies'])) $this->cokiban['cookies'] = [];
-        if (!isset($this->cokiban['templates'])) $this->cokiban['templates'] = [];
-
-        foreach ($this->cokiban['groups'] as $groupKey => $group) {
-            $this->cokiban['cookies'][] = $groupKey;
-
-            foreach ($group as $cookieKey => $cookie) {
-                $this->cokiban['cookies'][] = $groupKey . ucfirst($cookieKey);
-
-                foreach ($cookie as $tempalte) {
-                    $this->cokiban['templates'][$tempalte][] = $groupKey . ucfirst($cookieKey);
-                }
-            }
-        }
-
-        if (in_array($pageModel->id, $this->cokiban['pages']) || in_array($pageModel->alias, $this->cokiban['pages']) || (isset($config['hide_token']) && isset($_GET[$config['hide_token']]))) {
-            $this->cokiban['active'] = false;
-        }
-        else {
-            $this->cokiban['active'] = true;
-        }
-
-        if (isset($config['translations'][$rootPage->language])) {
-            $this->cokiban['translation'] = $config['translations'][$rootPage->language];
-        }
-        else {
-            $this->cokiban['translation'] = reset($config['translations']);
-        }
-
-        $GLOBALS['TL_COKIBAN'] = $this->cokiban;
 
         return [
             'cokiban' => [
@@ -108,10 +47,10 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
                 'version' => $this->cokiban['version'],
                 'days' => $this->cokiban['days'],
                 'active' => $this->cokiban['active'],
-                'googleConsentMode' => $this->cokiban['google_consent_mode'],
+                'google_consent_mode' => $this->cokiban['google_consent_mode'],
                 'groups' => $this->cokiban['groups'],
                 'translation' => $this->cokiban['translation'],
-                'config' => $this->cokiban['id'].','.$this->cokiban['version'].','.$this->cokiban['days'].','.($this->cokiban['active'] ? '1' : '0').','.($this->cokiban['google_consent_mode'] ? '1' : '0'),
+                'config' => $this->cokiban['id'] . ',' . $this->cokiban['version'] . ',' . $this->cokiban['days'] . ',' . ($this->cokiban['active'] ? '1' : '0') . ',' . ($this->cokiban['google_consent_mode'] ? '1' : '0'),
                 'cookies' => implode(',', $this->cokiban['cookies']),
             ]
         ];
@@ -143,27 +82,27 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
     {
         $templateName = $context['template'];
 
-        if (!isset($this->cokiban['templates'][$templateName]) || !isset($GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName])) {
+        if (!isset($this->cokiban['templates'][$templateName]) || !isset($this->cokiban['translation']['replacements'][$templateName])) {
             return;
         }
 
         $replacementTemplate = 'content_element/cokiban_replacement';
 
-        if (isset($GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName]['template']) && $GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName]['template'] !== '') {
-            $replacementTemplate = $GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName]['template'];
+        if (isset($this->cokiban['translation']['replacements'][$templateName]['template']) && $this->cokiban['translation']['replacements'][$templateName]['template'] !== '') {
+            $replacementTemplate = $this->cokiban['translation']['replacements'][$templateName]['template'];
         }
 
         $context['background'] = false;
-        $context['button'] = $GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName]['button'];
+        $context['button'] = $this->cokiban['translation']['replacements'][$templateName]['button'];
         $context['template'] = $replacementTemplate;
-        $context['text'] = $GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName]['text'];
+        $context['text'] = $this->cokiban['translation']['replacements'][$templateName]['text'];
 
-        if (isset($GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName]['background'])) {
-            if (preg_match('/\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b/u', $GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName]['background'])) {
-                $backgroundFile = FilesModel::findById($GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName]['background']);
+        if (isset($this->cokiban['translation']['replacements'][$templateName]['background'])) {
+            if (preg_match('/\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b/u', $this->cokiban['translation']['replacements'][$templateName]['background'])) {
+                $backgroundFile = FilesModel::findById($this->cokiban['translation']['replacements'][$templateName]['background']);
                 $context['background'] = ($backgroundFile !== null) ? $backgroundFile->path : null;
             } else {
-                $context['background'] = $GLOBALS['TL_COKIBAN']['translation']['replacements'][$templateName]['background'];
+                $context['background'] = $this->cokiban['translation']['replacements'][$templateName]['background'];
             }
         }
 
