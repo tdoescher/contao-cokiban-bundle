@@ -27,7 +27,7 @@ class CokibanContext
     {
         $request = $this->requestStack->getCurrentRequest();
 
-        if($request === null || $request->attributes->get('_scope') === 'backend') {
+        if($request === null || System::getContainer() === null || $request->attributes->get('_scope') === 'backend') {
             return [];
         }
 
