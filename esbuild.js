@@ -4,7 +4,7 @@ import { sassPlugin } from 'esbuild-sass-plugin';
 const scripts = async () => {
     try {
         await esbuild.build({
-            entryPoints: [ 'src/public/cokiban.js' ],
+            entryPoints: [ 'public/cokiban.js' ],
             bundle: true,
             drop: [ 'debugger', 'console' ],
             minify: true,
@@ -19,7 +19,7 @@ const scripts = async () => {
 const styles = async () => {
     try {
         await esbuild.build({
-            entryPoints: [ `src/public/cokiban.scss` ],
+            entryPoints: [ 'public/cokiban.scss' ],
             target: [ 'es2020', 'chrome58', 'edge16', 'firefox57', 'node12', 'safari11' ],
             plugins: [ sassPlugin() ],
             minify: true,
