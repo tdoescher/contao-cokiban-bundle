@@ -1,6 +1,0 @@
-services:
-  _defaults:
-    autoconfigure: true
-
-  tdoescher\CokibanBundle\Twig\AppExtension:
-    tags: [ twig.extension ]
