@@ -67,8 +67,8 @@ class CokibanContext
                 foreach ($group as $cookieKey => $cookie) {
                     $this->cokiban['cookies'][] = $groupKey . ucfirst($cookieKey);
 
-                    foreach ($cookie as $tempalte) {
-                        $this->cokiban['templates'][$tempalte][] = $groupKey . ucfirst($cookieKey);
+                    foreach ($cookie as $template) {
+                        $this->cokiban['templates'][$template][] = $groupKey . ucfirst($cookieKey);
                     }
                 }
             }

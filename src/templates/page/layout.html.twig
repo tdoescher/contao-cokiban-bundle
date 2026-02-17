@@ -1,7 +1,7 @@
 {% extends "@Contao/page/layout.html.twig" %}
 
 {% block body %}
-    {% if cokiban is defined and cokiban.active %}
+    {% if cokiban is defined %}
         {% include "@Contao_CokibanBundle/page/_cokiban.html.twig" %}
     {% endif %}
 
