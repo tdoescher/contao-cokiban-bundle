@@ -2,7 +2,7 @@
   "author": "Torben Döscher <mail@tdoescher.de>",
   "description": "Cookie-Banner der über die Contao config.yml konfiguriert wird",
   "name": "@tdoescher/cokiban",
-  "main": "src/Resources/public/cokiban.js",
+  "main": "src/public/cokiban.js",
   "type": "module",
   "license": "LGPL-3.0-or-later",
   "repository": {
