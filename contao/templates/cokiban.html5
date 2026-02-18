@@ -77,8 +77,8 @@
                     <button class="cokiban__button" title="<?php echo $this->translation['banner']['save_button_title']; ?>" data-x-bind="bindSaveSettings"><?php echo $this->translation['banner']['save_button_text']; ?></button>
                     <button class="cokiban__button cokiban__button--acccept" title="<?php echo $this->translation['banner']['accept_button_title']; ?>" data-x-bind="bindAcceptAll"><?php echo $this->translation['banner']['accept_button_text']; ?></button>
                 </div>
-                <?php if ($this->translation['banner']['footer_links']): ?>
-                    <div class="cokiban__footer">
+                <div class="cokiban__footer">
+                    <?php if ($this->translation['banner']['footer_links']): ?>
                         <ul>
                             <?php foreach ($this->translation['banner']['footer_links'] as $link): ?>
                                 <li><?php echo $link; ?></li>
@@ -87,13 +87,12 @@
                                 <button class="cokiban__button cokiban__button--link" title="<?php echo $this->translation['banner']['details_link_title']; ?>" data-x-bind="bindDetailsButton"><?php echo $this->translation['banner']['details_link_text']; ?></button>
                             </li>
                         </ul>
-                    </div>
-                <?php else: ?>
-                    <div class="cokiban__footer">
+                    <?php else: ?>
                         <?php echo $this->translation['banner']['footer_text']; ?>
                         <button class="cokiban__button cokiban__button--link" title="<?php echo $this->translation['banner']['details_link_title']; ?>" data-x-bind="bindDetailsButton"><?php echo $this->translation['banner']['details_link_text']; ?></button>
-                    </div>
-                <?php endif; ?>
+                    <?php endif; ?>
+                </div>
+                </div>
             </div>
         </div>
     </template>

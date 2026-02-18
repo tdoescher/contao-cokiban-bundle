@@ -29,26 +29,18 @@ class ParseFrontendTemplateListener
 
     public function __invoke(string $buffer, string $templateName, FrontendTemplate $template): string
     {
-        $cokiban = $this->cokibanContext->getConfig();
-
-        if (!isset($this->cokiban) || !$this->cokiban || $buffer === '') {
+        if (empty($this->cokiban) || $buffer === '') {
             return $buffer;
         }
 
         if ($templateName === 'fe_page') {
-            $cokibanTemplate = 'cokiban';
-
-            if (isset($this->cokiban['template']) && $this->cokiban['template'] !== '') {
-                $cokibanTemplate = $this->cokiban['template'];
-            }
-
-            $objTemplate = new FrontendTemplate($cokibanTemplate);
+            $objTemplate = new FrontendTemplate(empty($this->cokiban['template']) ? 'cokiban' : $this->cokiban['template']);
 
             $objTemplate->id = $this->cokiban['id'];
             $objTemplate->version = $this->cokiban['version'];
             $objTemplate->days = $this->cokiban['days'];
             $objTemplate->active = $this->cokiban['active'];
-            $objTemplate->googleConsentMode = $this->cokiban['google_consent_mode'];
+            $objTemplate->google_consent_mode = $this->cokiban['google_consent_mode'];
             $objTemplate->groups = $this->cokiban['groups'];
             $objTemplate->translation = $this->cokiban['translation'];
             $objTemplate->config = $objTemplate->id.','.$objTemplate->version.','.$objTemplate->days.','.($this->cokiban['active'] ? '1' : '0').','.($this->cokiban['google_consent_mode'] ? '1' : '0');
@@ -61,11 +53,9 @@ class ParseFrontendTemplateListener
             $buffer = '<template data-x-data="cokibanTemplate" data-x-bind="bind" data-cokiban-cookies="' . implode(',', $this->cokiban['templates'][$templateName]) . '">' . $buffer . '</template>';
 
             if (isset($this->cokiban['translation']['replacements'][$templateName])) {
-                $replacementTemplate = 'ce_cokiban_replacement';
-
-                if (isset($this->cokiban['translation']['replacements'][$templateName]['template']) && $this->cokiban['translation']['replacements'][$templateName]['template'] !== '') {
-                    $replacementTemplate = $this->cokiban['translation']['replacements'][$templateName]['template'];
-                }
+                $replacementTemplate = empty($this->cokiban['translation']['replacements'][$templateName]['template'])
+                    ? 'ce_cokiban_replacement'
+                    : $this->cokiban['translation']['replacements'][$templateName]['template'];
 
                 $objTemplate = new FrontendTemplate($replacementTemplate);
                 $objTemplate->setData($template->getData());

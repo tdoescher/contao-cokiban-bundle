@@ -2,7 +2,7 @@
 
 {% block body %}
     {% if cokiban is defined %}
-        {% include "@Contao_CokibanBundle/page/_cokiban.html.twig" %}
+        {% include cokiban.template %}
     {% endif %}
 
     {{ parent() }}

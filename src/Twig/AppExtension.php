@@ -37,12 +37,13 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
 
     public function getGlobals(): array
     {
-        if (!isset($this->cokiban) || !$this->cokiban) {
+        if (empty($this->cokiban)) {
             return [];
         }
 
         return [
             'cokiban' => [
+                'template' => empty($this->cokiban['template']) ? '@Contao/page/_cokiban.html.twig' : '@Contao/' . $this->cokiban['template'] . '.html.twig',
                 'id' => $this->cokiban['id'],
                 'version' => $this->cokiban['version'],
                 'days' => $this->cokiban['days'],
@@ -86,11 +87,9 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
             return;
         }
 
-        $replacementTemplate = 'content_element/cokiban_replacement';
-
-        if (isset($this->cokiban['translation']['replacements'][$templateName]['template']) && $this->cokiban['translation']['replacements'][$templateName]['template'] !== '') {
-            $replacementTemplate = $this->cokiban['translation']['replacements'][$templateName]['template'];
-        }
+        $replacementTemplate = empty($this->cokiban['translation']['replacements'][$templateName]['template'])
+            ? 'content_element/cokiban_replacement'
+            : $this->cokiban['translation']['replacements'][$templateName]['template'];
 
         $context['background'] = false;
         $context['button'] = $this->cokiban['translation']['replacements'][$templateName]['button'];
