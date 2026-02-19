@@ -80,7 +80,7 @@
                         <div class="cokiban__buttons">
                             {% block banner_buttons %}
                                 <button class="cokiban__button" title="{{ cokiban.translation.banner.save_button_title }}" data-x-bind="bindSaveSettings">{{ cokiban.translation.banner.save_button_text }}</button>
-                                <button class="cokiban__button cokiban__button--acccept" title="{{ cokiban.translation.banner.accept_button_title }}" data-x-bind="bindAcceptAll">{{ cokiban.translation.banner.accept_button_text }}</button>
+                                <button class="cokiban__button cokiban__button--accept" title="{{ cokiban.translation.banner.accept_button_title }}" data-x-bind="bindAcceptAll">{{ cokiban.translation.banner.accept_button_text }}</button>
                             {% endblock %}
                         </div>
                         <div class="cokiban__footer">
@@ -128,7 +128,7 @@
                         <div class="cokiban__buttons">
                             {% block hint_buttons %}
                                 <button class="cokiban__button cokiban__button--small" title="{{ cokiban.translation.banner.close_button_title }}" data-x-bind="bindCloseHint">{{ cokiban.translation.banner.close_button_text }}</button>
-                                <button class="cokiban__button cokiban__button--acccept" data-x-bind="bindAcceptHint">Accept</button>
+                                <button class="cokiban__button cokiban__button--accept" data-x-bind="bindAcceptHint">Accept</button>
                             {% endblock %}
                         </div>
                     </div>

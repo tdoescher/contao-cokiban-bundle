@@ -33,7 +33,7 @@ document.addEventListener('alpine:init', () => {
             } catch {
                 storage = null;
             }
-            if (storage !== null && this.version === this.version) {
+            if (storage !== null && storage.version === this.version) {
                 this.date = storage.date;
                 Object.keys(storage.cookies).forEach((item) => {
                     if (this.cache[item] !== undefined) {

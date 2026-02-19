@@ -58,7 +58,7 @@
                                             <p class="cokiban__cookie__title">
                                                 <strong><?php echo $this->translation['cookies'][$cookieKey]['headline']; ?></strong>
                                             </p>
-                                            <p class="cokiban__cookie__titlep__text"><?php echo $this->translation['cookies'][$cookieKey]['text']; ?></p>
+                                            <p class="cokiban__cookie__title__text"><?php echo $this->translation['cookies'][$cookieKey]['text']; ?></p>
                                             <div class="cokiban__switch">
                                                 <input type="checkbox" name="cokibanSwitch<?php echo ucfirst($groupKey) . ucfirst($cookieKey); ?>" id="cokibanSwitch<?php echo ucfirst($groupKey) . ucfirst($cookieKey); ?>" data-x-bind="bindSwitch" data-cokiban-cookie="<?php echo $groupKey . ucfirst($cookieKey); ?>">
                                                 <label for="cokibanSwitch<?php echo ucfirst($groupKey) . ucfirst($cookieKey); ?>">
@@ -75,7 +75,7 @@
                 </template>
                 <div class="cokiban__buttons">
                     <button class="cokiban__button" title="<?php echo $this->translation['banner']['save_button_title']; ?>" data-x-bind="bindSaveSettings"><?php echo $this->translation['banner']['save_button_text']; ?></button>
-                    <button class="cokiban__button cokiban__button--acccept" title="<?php echo $this->translation['banner']['accept_button_title']; ?>" data-x-bind="bindAcceptAll"><?php echo $this->translation['banner']['accept_button_text']; ?></button>
+                    <button class="cokiban__button cokiban__button--accept" title="<?php echo $this->translation['banner']['accept_button_title']; ?>" data-x-bind="bindAcceptAll"><?php echo $this->translation['banner']['accept_button_text']; ?></button>
                 </div>
                 <div class="cokiban__footer">
                     <?php if ($this->translation['banner']['footer_links']): ?>
@@ -114,7 +114,7 @@
                 </div>
                 <div class="cokiban__buttons">
                     <button class="cokiban__button cokiban__button--small" title="<?php echo $this->translation['banner']['close_button_title']; ?>" data-x-bind="bindCloseHint"><?php echo $this->translation['banner']['close_button_text']; ?></button>
-                    <button class="cokiban__button cokiban__button--acccept" data-x-bind="bindAcceptHint">Accept</button>
+                    <button class="cokiban__button cokiban__button--accept" data-x-bind="bindAcceptHint">Accept</button>
                 </div>
             </div>
         </div>
