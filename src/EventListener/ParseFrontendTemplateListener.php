@@ -20,7 +20,7 @@ use tdoescher\CokibanBundle\Service\CokibanContext;
 #[AsHook('parseFrontendTemplate', priority: 100)]
 class ParseFrontendTemplateListener
 {
-    protected $cokiban = [];
+    protected array $cokiban = [];
 
     public function __construct(private readonly CokibanContext $cokibanContext)
     {

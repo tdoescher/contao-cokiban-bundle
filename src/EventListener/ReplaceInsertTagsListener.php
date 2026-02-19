@@ -17,7 +17,7 @@ use tdoescher\CokibanBundle\Service\CokibanContext;
 #[AsHook('replaceInsertTags', priority: 100)]
 class ReplaceInsertTagsListener
 {
-    protected $cokiban = [];
+    protected array $cokiban = [];
 
     public function __construct(private readonly CokibanContext $cokibanContext)
     {
@@ -26,13 +26,13 @@ class ReplaceInsertTagsListener
 
     public function __invoke(string $insertTag)
     {
-        if (!isset($this->cokiban) || !$this->cokiban) {
+        if (!$this->cokiban) {
             return false;
         }
 
         $list = explode('::', $insertTag);
         $insertTag = $list[0];
-        $value = isset($list[1]) ? $list[1] : false;
+        $value = $list[1] ?? false;
 
         if (!in_array($insertTag, ['cokiban', 'cokiban_open', 'cokiban_close'])) {
             return false;

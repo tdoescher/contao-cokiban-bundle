@@ -3,7 +3,7 @@ import js from '@eslint/js';
 
 export default [
     {
-        ignores: [ './src/Resources/contao/public/cokiban.min.js' ],
+        ignores: [ './public/cokiban.min.js' ],
         languageOptions: {
             'globals': globals.browser,
         },

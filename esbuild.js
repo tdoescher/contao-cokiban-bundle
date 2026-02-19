@@ -8,7 +8,7 @@ const scripts = async () => {
             bundle: true,
             drop: [ 'debugger', 'console' ],
             minify: true,
-            outfile: 'src/public/cokiban.min.js',
+            outfile: 'public/cokiban.min.js',
         });
         // eslint-disable-next-line no-unused-vars
     } catch (e) {
@@ -20,10 +20,10 @@ const styles = async () => {
     try {
         await esbuild.build({
             entryPoints: [ 'public/cokiban.scss' ],
-            target: [ 'es2020', 'chrome58', 'edge16', 'firefox57', 'node12', 'safari11' ],
+            target: [ 'es2022', 'chrome90', 'edge90', 'firefox90', 'safari14' ],
             plugins: [ sassPlugin() ],
             minify: true,
-            outfile: 'src/public/cokiban.min.css',
+            outfile: 'public/cokiban.min.css',
         });
         // eslint-disable-next-line no-unused-vars
     } catch (e) {

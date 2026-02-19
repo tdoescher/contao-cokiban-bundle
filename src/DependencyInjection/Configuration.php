@@ -11,8 +11,6 @@
 
 namespace tdoescher\CokibanBundle\DependencyInjection;
 
-use Contao\Controller;
-use Contao\System;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 

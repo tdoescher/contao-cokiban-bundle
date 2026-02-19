@@ -19,14 +19,14 @@ use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension implements GlobalsInterface
 {
-    protected $cokiban = [];
+    protected array $cokiban = [];
 
     public function __construct(private readonly CokibanContext $cokibanContext)
     {
         $this->cokiban = $this->cokibanContext->getConfig();
     }
 
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('cokiban_wrapper_open', [ $this, 'cokibanOpen' ], [ 'needs_context' => true, 'is_safe' => [ 'html' ] ]),

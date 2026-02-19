@@ -11,28 +11,29 @@
 
 namespace tdoescher\CokibanBundle\Service;
 
-use Contao\PageModel;
-use Contao\System;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class CokibanContext
 {
-    protected $cokiban = [];
+    protected array $cokiban = [];
 
-    public function __construct(private readonly RequestStack $requestStack)
-    {
+    public function __construct(
+        private readonly RequestStack $requestStack,
+        #[Autowire(param: 'cokiban')] private readonly array $cokibanConfig,
+    ) {
     }
 
     public function getConfig(): array
     {
         $request = $this->requestStack->getCurrentRequest();
 
-        if($request === null || System::getContainer() === null || $request->attributes->get('_scope') === 'backend') {
+        if ($request === null || $request->attributes->get('_scope') === 'backend') {
             return [];
         }
 
         if(!$this->cokiban) {
-            $config = System::getContainer()->getParameter('cokiban');
+            $config = $this->cokibanConfig;
 
             $pageModel = $request->attributes->get('pageModel');
             $rootAlias = str_replace('-', '_', $pageModel->rootAlias);
