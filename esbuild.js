@@ -10,9 +10,9 @@ const scripts = async () => {
             minify: true,
             outfile: 'public/cokiban.min.js',
         });
-        // eslint-disable-next-line no-unused-vars
+        console.log('\x1b[32mSUCCESS\x1b[0m', 'Scripts bundled');
     } catch (e) {
-        /* empty */
+        console.log('\x1b[31mERROR\x1b[0m', `Scripts: ${ e.message }`);
     }
 };
 
@@ -25,9 +25,9 @@ const styles = async () => {
             minify: true,
             outfile: 'public/cokiban.min.css',
         });
-        // eslint-disable-next-line no-unused-vars
+        console.log('\x1b[32mSUCCESS\x1b[0m', 'Styles bundled');
     } catch (e) {
-        /* empty */
+        console.log('\x1b[31mERROR\x1b[0m', `Styles: ${ e.message }`);
     }
 };
 
