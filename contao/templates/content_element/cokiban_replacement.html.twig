@@ -10,8 +10,8 @@
 
         <div class="content-cokiban-replacement__text">
             <div class="rte">
-                <p>{{ button }}</p>
-                <p>{{ text|raw }}</p>
+                <p>{{ button|insert_tag|raw }}</p>
+                <p>{{ text|insert_tag|raw }}</p>
             </div>
         </div>
     </div>
