@@ -10,7 +10,6 @@
     "url": "git+https://github.com/tdoescher/contao-cokiban-bundle.git"
   },
   "files": [
-    "cokiban.scss",
     "public/cokiban.scss"
   ],
   "scripts": {
