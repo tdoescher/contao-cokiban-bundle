@@ -6,6 +6,7 @@ node_modules
 .env
 
 # macOS
+AGENTS.md
 .idea
 .nova
 .vscode
