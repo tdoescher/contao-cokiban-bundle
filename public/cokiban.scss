@@ -56,6 +56,7 @@
     input:checked + label::after { background-color: var(--cokiban-button-accept); background-position: right top; }
   }
   .cokiban__cookie { position: relative; margin: 0.5em 0; padding: 0.5em; font-size: 0.875em; background: var(--cokiban-cookie); border: 1px solid var(--cokiban-border); border-radius: calc(var(--cokiban-border-radius) * 0.5); }
+  .cokiban__cookie__title { padding-inline-end: 8em; }
   .cokiban__buttons { display: flex; gap: 0.5em;
     > * { flex: 2; }
   }
