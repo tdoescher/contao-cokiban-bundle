@@ -26,16 +26,16 @@ class ReplaceInsertTagsListener
 
     public function __invoke(string $insertTag)
     {
-        if (!$this->cokiban) {
-            return false;
-        }
-
         $list = explode('::', $insertTag);
         $insertTag = $list[0];
         $value = $list[1] ?? false;
 
         if (!in_array($insertTag, ['cokiban', 'cokiban_open', 'cokiban_close'])) {
             return false;
+        }
+
+        if (!$this->cokiban) {
+            return '';
         }
 
         $text = $this->cokiban['translation']['button']['text'];
