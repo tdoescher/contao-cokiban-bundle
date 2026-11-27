@@ -59,7 +59,7 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
 
     public function cokibanOpen($context)
     {
-        $templateName = $context['template'];
+        $templateName = $context['template'] ?? null;
 
         if (!isset($this->cokiban['templates'][$templateName])) {
             return;
@@ -70,7 +70,7 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
 
     public function cokibanClose($context)
     {
-        $templateName = $context['template'];
+        $templateName = $context['template'] ?? null;
 
         if (!isset($this->cokiban['templates'][$templateName])) {
             return;
@@ -81,9 +81,9 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
 
     public function cokibanReplacement($environment, $context)
     {
-        $templateName = $context['template'];
+        $templateName = $context['template'] ?? null;
 
-        if (!isset($this->cokiban['templates'][$templateName]) || !isset($this->cokiban['translation']['replacements'][$templateName])) {
+        if ($templateName === null || !isset($this->cokiban['templates'][$templateName]) || !isset($this->cokiban['translation']['replacements'][$templateName])) {
             return;
         }
 
