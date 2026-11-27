@@ -114,7 +114,7 @@
                 </div>
                 <div class="cokiban__buttons">
                     <button class="cokiban__button cokiban__button--small" title="<?php echo $this->translation['banner']['close_button_title']; ?>" data-x-bind="bindCloseHint"><?php echo $this->translation['banner']['close_button_text']; ?></button>
-                    <button class="cokiban__button cokiban__button--accept" data-x-bind="bindAcceptHint">Accept</button>
+                    <button class="cokiban__button cokiban__button--accept" data-x-bind="bindAcceptHint"><?php echo $this->translation['banner']['accept_button_text']; ?></button>
                 </div>
             </div>
         </div>
